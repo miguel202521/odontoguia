@@ -8,6 +8,9 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
         }
 
         header {
@@ -15,10 +18,13 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
+            background-color: #0077b6;
+            color: white;
         }
 
         h1 {
             font-size: 3em;
+            margin: 0;
         }
 
         img {
@@ -28,6 +34,7 @@
         h2 {
             margin-top: 20px;
             font-size: 1.8em;
+            color: #333;
         }
 
         .areas {
@@ -35,147 +42,194 @@
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 40px;
+            gap: 20px;
         }
 
-        .areas a {
-            display: block;
-            background-color: #f0f0f0;
-            padding: 10px;
-            margin: 10px;
+        .card {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            text-decoration: none;
-            color: #333;
-            width: 150px;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            position: relative;
         }
 
-        ul {
-            display: none;
+        .card:hover {
+            transform: translateY(-10px);
         }
 
-        ul.show {
+        .card:hover .dropdown {
             display: block;
+        }
+
+        .card a {
+            display: block;
+            text-decoration: none;
+            color: #0077b6;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .dropdown {
+            display: none;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            text-align: left;
+            z-index: 1;
+        }
+
+        .dropdown li {
+            list-style: none;
+            padding: 8px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .dropdown li a {
+            text-decoration: none;
+            color: #0077b6;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #0077b6;
+            color: white;
+            position: relative;
         }
     </style>
 </head>
 <body>
     <header>
-        <!-- Título grande à esquerda -->
         <h1>Odontoguia</h1>
-        <!-- Imagem dente à direita -->
         <img src="dente-polegar.jfif" alt="Imagem de um dente">
     </header>
 
-    <!-- Subtítulo -->
     <h2>Conheça sobre diferentes áreas da odontologia e matérias relacionadas</h2>
 
-    <!-- Áreas da odontologia centralizadas -->
     <section class="areas">
-        <a href="#anestesiologia">Anestesiologia</a>
-        <a href="#cirurgia">Cirurgia</a>
-        <a href="#radiografia">Radiografia</a>
-        <a href="#periodontia">Periodontia</a>
-        <a href="#biomateriais">Biomateriais</a>
-        <a href="#estomatologia">Estomatologia</a>
-        <a href="#implantodologia">Implantodologia</a>
-        <a href="#ortodontia">Ortodontia</a>
-        <a href="#endodontia">Endodontia</a>
-        <a href="#odontologia-legal">Odontologia Legal</a>
+        <!-- Cartões de Áreas -->
+        <div class="card">
+            <a href="#anestesiologia">Anestesiologia</a>
+            <ul class="dropdown" id="anestesiologia">
+                <li><a href="tecnicas-anestesicas.html">Anestesia na Maxila</a></li>
+                <li>Técnicas de sedação</li>
+                <li>Anestesia geral</li>
+                <li>Anestesia local</li>
+                <li>Analgésicos odontológicos</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#cirurgia">Cirurgia</a>
+            <ul class="dropdown" id="cirurgia">
+                <li>Extração dentária</li>
+                <li>Cirurgia ortognática</li>
+                <li>Cirurgia de cistos</li>
+                <li>Enxerto ósseo</li>
+                <li>Implante cirúrgico</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#radiografia">Radiografia</a>
+            <ul class="dropdown" id="radiografia">
+                <li>Panorâmica digital</li>
+                <li>Tomografia computadorizada</li>
+                <li>Radiografia periapical</li>
+                <li>Cefalometria</li>
+                <li>Radiografia oclusal</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#periodontia">Periodontia</a>
+            <ul class="dropdown" id="periodontia">
+                <li>Tratamento de gengivite</li>
+                <li>Tratamento de periodontite</li>
+                <li>Raspagem periodontal</li>
+                <li>Cirurgias periodontais</li>
+                <li>Implantes gengivais</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#biomateriais">Biomateriais</a>
+            <ul class="dropdown" id="biomateriais">
+                <li>Biocompatibilidade de materiais</li>
+                <li>Materiais para restaurações dentárias</li>
+                <li>Materiais cerâmicos</li>
+                <li>Compósitos dentários</li>
+                <li>Biomateriais para implantes</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#estomatologia">Estomatologia</a>
+            <ul class="dropdown" id="estomatologia">
+                <li>Diagnóstico de lesões bucais</li>
+                <li>Tratamento de lesões orais</li>
+                <li>Doenças sistêmicas</li>
+                <li>Lesões de mucosas</li>
+                <li>Câncer de boca</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#implantodologia">Implantodologia</a>
+            <ul class="dropdown" id="implantodologia">
+                <li>Planejamento de implantes</li>
+                <li>Cirurgia de implantes</li>
+                <li>Manutenção de implantes</li>
+                <li>Próteses sobre implantes</li>
+                <li>Enxerto ósseo para implantes</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#ortodontia">Ortodontia</a>
+            <ul class="dropdown" id="ortodontia">
+                <li>Correção de dentes tortos</li>
+                <li>Uso de aparelhos fixos</li>
+                <li>Uso de aparelhos móveis</li>
+                <li>Alinhadores invisíveis</li>
+                <li>Tratamento com contenções</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#endodontia">Endodontia</a>
+            <ul class="dropdown" id="endodontia">
+                <li>Tratamento de canal</li>
+                <li>Retratamento endodôntico</li>
+                <li>Cirurgia endodôntica</li>
+                <li>Tratamento de lesões periapicais</li>
+                <li>Uso de microscópio</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <a href="#odontologia-legal">Odontologia Legal</a>
+            <ul class="dropdown" id="odontologia-legal">
+                <li>Identificação de vítimas</li>
+                <li>Laudos periciais</li>
+                <li>Análise de mordidas</li>
+                <li>Determinação de idade dentária</li>
+                <li>Estudos forenses com DNA</li>
+            </ul>
+        </div>
     </section>
-
-    <!-- Itens que aparecem ao clicar nas áreas -->
-    <ul id="anestesiologia">
-        <li><a href="tecnicas-anestesicas.html">Anestesia na maxila</a></li>
-        <li>Técnicas de sedação</li>
-        <li>Anestesia geral</li>
-        <li>Anestesia local</li>
-        <li>Analgésicos odontológicos</li>
-    </ul>
-
-    <ul id="cirurgia">
-        <li>Extração dentária</li>
-        <li>Cirurgia ortognática</li>
-        <li>Cirurgia de cistos</li>
-        <li>Enxerto ósseo</li>
-        <li>Implante cirúrgico</li>
-    </ul>
-
-    <ul id="radiografia">
-        <li>Panorâmica digital</li>
-        <li>Tomografia computadorizada</li>
-        <li>Radiografia periapical</li>
-        <li>Cefalometria</li>
-        <li>Radiografia oclusal</li>
-    </ul>
-
-    <ul id="periodontia">
-        <li>Tratamento de gengivite</li>
-        <li>Tratamento de periodontite</li>
-        <li>Raspagem periodontal</li>
-        <li>Cirurgias periodontais</li>
-        <li>Implantes gengivais</li>
-    </ul>
-
-    <ul id="biomateriais">
-        <li>Materiais para restauração</li>
-        <li>Materiais para implantes</li>
-        <li>Resinas compostas</li>
-        <li>Cerâmicas odontológicas</li>
-        <li>Cimentos dentários</li>
-    </ul>
-
-    <ul id="estomatologia">
-        <li>Diagnóstico de lesões</li>
-        <li>Lesões malignas</li>
-        <li>Lesões benignas</li>
-        <li>Infecções bucais</li>
-        <li>Doenças autoimunes bucais</li>
-    </ul>
-
-    <ul id="implantodologia">
-        <li>Implantes dentários</li>
-        <li>Próteses sobre implantes</li>
-        <li>Enxerto ósseo</li>
-        <li>Carga imediata</li>
-        <li>Manutenção de implantes</li>
-    </ul>
-
-    <ul id="ortodontia">
-        <li>Correção de dentes tortos</li>
-        <li>Uso de aparelhos fixos</li>
-        <li>Uso de aparelhos móveis</li>
-        <li>Alinhadores invisíveis</li>
-        <li>Tratamento com contenções</li>
-    </ul>
-
-    <ul id="endodontia">
-        <li>Tratamento de canal</li>
-        <li>Retratamento endodôntico</li>
-        <li>Cirurgia endodôntica</li>
-        <li>Tratamento de lesões periapicais</li>
-        <li>Uso de microscópio</li>
-    </ul>
-
-    <ul id="odontologia-legal">
-        <li>Identificação por arcada dentária</li>
-        <li>Perícia odontológica</li>
-        <li>Análise de mordidas em crimes</li>
-        <li>Documentação odontológica</li>
-        <li>Odontologia forense</li>
-    </ul>
 
     <footer>
         <p>&copy; 2024 Odontoguia</p>
     </footer>
-
-    <!-- Script para mostrar os itens ao clicar -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.classList.toggle('show');
-            });
-        });
-    </script>
 </body>
 </html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odontoguia - Nova Página</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #0077b6;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        img {
+            max-width: 150px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .areas {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 200px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            position: relative;
+            z-index: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            z-index: 10;
+        }
+
+        .card a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #0077b6;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .area-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .dropdown {
+            display: none;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
+            position: absolute;
+            top: 60px;
+            width: 100%;
+            text-align: left;
+            z-index: 20;
+        }
+
+        .card:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown li {
+            list-style: none;
+            padding: 8px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .dropdown li a {
+            text-decoration: none;
+            color: #0077b6;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #0077b6;
+            color: white;
+            position: relative;
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #0077b6;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Odontoguia - Nova Página</h1>
+        <img src="dente-polegar.jfif" alt="Imagem de um dente">
+    </header>
+
+    <h2>Outras áreas da odontologia e matérias relacionadas</h2>
+
+    <section class="areas">
+        <!-- Cartão de Dentística -->
+        <div class="card">
+            <a href="#dentistica">
+                <img src="dente-polegar.jfif" alt="Imagem de Dentística" class="area-img">
+                Dentística
+            </a>
+            <ul class="dropdown" id="dentistica">
+                <li>Restaurações estéticas</li>
+                <li>Tratamento de cáries</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Odontopediatria -->
+        <div class="card">
+            <a href="#odontopediatria">
+                <img src="dente-polegar.jfif" alt="Imagem de Odontopediatria" class="area-img">
+                Odontopediatria
+            </a>
+            <ul class="dropdown" id="odontopediatria">
+                <li>Tratamento de dentes decíduos</li>
+                <li>Ortodontia preventiva</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Prótese Bucomaxilofacial -->
+        <div class="card">
+            <a href="#protesebucomaxilofacial">
+                <img src="dente-polegar.jfif" alt="Imagem de Prótese Bucomaxilofacial" class="area-img">
+                Prótese Bucomaxilofacial
+            </a>
+            <ul class="dropdown" id="protesebucomaxilofacial">
+                <li>Reconstrução facial</li>
+                <li>Protese maxilofacial</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Prótese Dentária -->
+        <div class="card">
+            <a href="#protesedentaria">
+                <img src="dente-polegar.jfif" alt="Imagem de Prótese Dentária" class="area-img">
+                Prótese Dentária
+            </a>
+            <ul class="dropdown" id="protesedentaria">
+                <li>Próteses fixas</li>
+                <li>Próteses removíveis</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Disfunção Temporomandibular e Dor Orofacial -->
+        <div class="card">
+            <a href="#disfuncao">
+                <img src="dente-polegar.jfif" alt="Imagem de Disfunção Temporomandibular" class="area-img">
+                Disfunção Temporomandibular e Dor Orofacial
+            </a>
+            <ul class="dropdown" id="disfuncao">
+                <li>Tratamento de disfunção</li>
+                <li>Controle da dor orofacial</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Harmonização Orofacial -->
+        <div class="card">
+            <a href="#harmonizacao">
+                <img src="dente-polegar.jfif" alt="Imagem de Harmonização Orofacial" class="area-img">
+                Harmonização Orofacial
+            </a>
+            <ul class="dropdown" id="harmonizacao">
+                <li>Preenchimentos faciais</li>
+                <li>Botox</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Odontologia para Pacientes com Necessidades Especiais -->
+        <div class="card">
+            <a href="#pacientes">
+                <img src="dente-polegar.jfif" alt="Imagem de Odontologia para Pacientes com Necessidades Especiais" class="area-img">
+                Odontologia para Pacientes com Necessidades Especiais
+            </a>
+            <ul class="dropdown" id="pacientes">
+                <li>Cuidados especiais</li>
+                <li>Ajustes no atendimento</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Odontologia do Esporte -->
+        <div class="card">
+            <a href="#esporte">
+                <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Esporte" class="area-img">
+                Odontologia do Esporte
+            </a>
+            <ul class="dropdown" id="esporte">
+                <li>Proteção dentária</li>
+                <li>Cuidados com lesões</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Odontologia do Trabalho -->
+        <div class="card">
+            <a href="#trabalho">
+                <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Trabalho" class="area-img">
+                Odontologia do Trabalho
+            </a>
+            <ul class="dropdown" id="trabalho">
+                <li>Prevenção de doenças ocupacionais</li>
+                <li>Saúde bucal no ambiente de trabalho</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Odontoguia</p>
+        <div class="pagination">
+            <a href="index.html">1</a>
+            <a href="pagina_nova.html">2</a>
+        </div>
+    </footer>
+</body>
+</html>

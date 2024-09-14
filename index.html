@@ -50,6 +50,9 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
         .card:hover {
@@ -57,20 +60,12 @@
         }
 
         .card a {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
             text-decoration: none;
             color: white;
             font-weight: bold;
             font-size: 1.2em;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            bottom: 0;
             z-index: 1;
-            padding-bottom: 10px;
+            padding: 10px;
             background: rgba(0, 0, 0, 0.4);
         }
 
@@ -120,7 +115,7 @@
     <h2>Conheça diferentes áreas da odontologia</h2>
 
     <section class="areas">
-        <!-- Cartão de Anestesiologia -->
+        <!-- Primeira linha de 5 cartões -->
         <div class="card">
             <a href="#anestesiologia">
                 <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia">
@@ -128,7 +123,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Cirurgia -->
         <div class="card">
             <a href="#cirurgia">
                 <img src="cirurgia do siso - Consulta Ideal.jpeg" alt="Imagem de Cirurgia">
@@ -136,7 +130,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Radiografia -->
         <div class="card">
             <a href="#radiografia">
                 <img src="_.jpeg" alt="Imagem de Radiografia">
@@ -144,7 +137,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Periodontia -->
         <div class="card">
             <a href="#periodontia">
                 <img src="Laser Dentistry (Using Diode Laser from Germany).jpeg" alt="Imagem de Periodontia">
@@ -152,7 +144,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Biomateriais -->
         <div class="card">
             <a href="#biomateriais">
                 <img src="Grillz Luxo Cravejado ICE - com Molde de Silicone para ajustar aos dentes - Prata.jpeg" alt="Imagem de Biomateriais">
@@ -160,15 +151,15 @@
             </a>
         </div>
 
-        <!-- Cartão de Estomatologia -->
+        <!-- Segunda linha de 5 cartões -->
         <div class="card">
             <a href="#estomatologia">
-                <img src="O Lúpus Eritematoso Sistêmico (LES) pode afetar a cavidade oral.jpeg" alt="Imagem de Estomatologia">
+                <!-- Sem imagem por enquanto -->
+                <img src="" alt="Imagem de Estomatologia">
                 Estomatologia
             </a>
         </div>
 
-        <!-- Cartão de Implantodontia -->
         <div class="card">
             <a href="#implantodontia">
                 <img src="Sobredentadura ou Overdenture - Dentista Sorridere Porto Alegre.jpeg" alt="Imagem de Implantodontia">
@@ -176,7 +167,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Ortodontia -->
         <div class="card">
             <a href="#ortodontia">
                 <img src="Dentistry ✨.jpeg" alt="Imagem de Ortodontia">
@@ -184,7 +174,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Endodontia -->
         <div class="card">
             <a href="#endodontia">
                 <img src="¿Es seguro el tratamiento de endodoncia, te explicamos el paso a paso.jpeg" alt="Imagem de Endodontia">
@@ -192,7 +181,6 @@
             </a>
         </div>
 
-        <!-- Cartão de Odontologia Legal -->
         <div class="card">
             <a href="#odontologia-legal">
                 <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal">

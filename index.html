@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontoguia</title>
+    <title>Odontoguia - Página Inicial</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
             background-color: #f0f4f8;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
 
         header {
@@ -25,10 +25,6 @@
         h1 {
             font-size: 3em;
             margin: 0;
-        }
-
-        img {
-            max-width: 150px;
         }
 
         h2 {
@@ -50,33 +46,42 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 200px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s ease;
+            height: 250px;
             position: relative;
-            z-index: 0;
+            overflow: hidden;
+            transition: transform 0.2s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            z-index: 10;
         }
 
         .card a {
             display: flex;
             flex-direction: column;
+            justify-content: flex-end;
             align-items: center;
             text-decoration: none;
-            color: #0077b6;
+            color: white;
             font-weight: bold;
             font-size: 1.2em;
-            margin-bottom: 10px;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            z-index: 1;
+            padding-bottom: 10px;
+            background: rgba(0, 0, 0, 0.4);
         }
 
-        .area-img {
-            max-width: 80px;
-            margin-bottom: 10px;
-            border-radius: 5px;
+        .card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
         footer {
@@ -85,21 +90,40 @@
             background-color: #0077b6;
             color: white;
         }
+
+        .pagination {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagination a {
+            margin: 0 5px;
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: #0077b6;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #005f8a;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Odontoguia</h1>
-        <img src="dente-polegar.jfif" alt="Imagem de um dente">
+        <img src="dente-polegar.jfif" alt="Logo" style="max-width: 150px;">
     </header>
 
-    <h2>Conheça sobre diferentes áreas da odontologia e matérias relacionadas</h2>
+    <h2>Conheça diferentes áreas da odontologia</h2>
 
     <section class="areas">
         <!-- Cartão de Anestesiologia -->
         <div class="card">
             <a href="#anestesiologia">
-                <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia" class="area-img">
+                <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia">
                 Anestesiologia
             </a>
         </div>
@@ -107,7 +131,7 @@
         <!-- Cartão de Cirurgia -->
         <div class="card">
             <a href="#cirurgia">
-                <img src="cirurgia do siso - Consulta Ideal.jpeg" alt="Imagem de Cirurgia" class="area-img">
+                <img src="cirurgia do siso - Consulta Ideal.jpeg" alt="Imagem de Cirurgia">
                 Cirurgia
             </a>
         </div>
@@ -115,7 +139,7 @@
         <!-- Cartão de Radiografia -->
         <div class="card">
             <a href="#radiografia">
-                <img src="_.jpeg" alt="Imagem de Radiografia" class="area-img">
+                <img src="_.jpeg" alt="Imagem de Radiografia">
                 Radiografia
             </a>
         </div>
@@ -123,7 +147,7 @@
         <!-- Cartão de Periodontia -->
         <div class="card">
             <a href="#periodontia">
-                <img src="Laser Dentistry (Using Diode Laser from Germany).jpeg" alt="Imagem de Periodontia" class="area-img">
+                <img src="Laser Dentistry (Using Diode Laser from Germany).jpeg" alt="Imagem de Periodontia">
                 Periodontia
             </a>
         </div>
@@ -131,7 +155,7 @@
         <!-- Cartão de Biomateriais -->
         <div class="card">
             <a href="#biomateriais">
-                <img src="Grillz Luxo Cravejado ICE - com Molde de Silicone para ajustar aos dentes - Prata.jpeg" alt="Imagem de Biomateriais" class="area-img">
+                <img src="Grillz Luxo Cravejado ICE - com Molde de Silicone para ajustar aos dentes - Prata.jpeg" alt="Imagem de Biomateriais">
                 Biomateriais
             </a>
         </div>
@@ -139,7 +163,7 @@
         <!-- Cartão de Estomatologia -->
         <div class="card">
             <a href="#estomatologia">
-                <img src="O Lúpus Eritematoso Sistêmico (LES) pode afetar a cavidade oral.jpeg" alt="Imagem de Estomatologia" class="area-img">
+                <img src="O Lúpus Eritematoso Sistêmico (LES) pode afetar a cavidade oral.jpeg" alt="Imagem de Estomatologia">
                 Estomatologia
             </a>
         </div>
@@ -147,7 +171,7 @@
         <!-- Cartão de Implantodontia -->
         <div class="card">
             <a href="#implantodontia">
-                <img src="Sobredentadura ou Overdenture - Dentista Sorridere Porto Alegre.jpeg" alt="Imagem de Implantodontia" class="area-img">
+                <img src="Sobredentadura ou Overdenture - Dentista Sorridere Porto Alegre.jpeg" alt="Imagem de Implantodontia">
                 Implantodontia
             </a>
         </div>
@@ -155,7 +179,7 @@
         <!-- Cartão de Ortodontia -->
         <div class="card">
             <a href="#ortodontia">
-                <img src="Dentistry ✨.jpeg" alt="Imagem de Ortodontia" class="area-img">
+                <img src="Dentistry ✨.jpeg" alt="Imagem de Ortodontia">
                 Ortodontia
             </a>
         </div>
@@ -163,7 +187,7 @@
         <!-- Cartão de Endodontia -->
         <div class="card">
             <a href="#endodontia">
-                <img src="¿Es seguro el tratamiento de endodoncia, te explicamos el paso a paso.jpeg" alt="Imagem de Endodontia" class="area-img">
+                <img src="¿Es seguro el tratamiento de endodoncia, te explicamos el paso a paso.jpeg" alt="Imagem de Endodontia">
                 Endodontia
             </a>
         </div>
@@ -171,11 +195,16 @@
         <!-- Cartão de Odontologia Legal -->
         <div class="card">
             <a href="#odontologia-legal">
-                <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal" class="area-img">
+                <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal">
                 Odontologia Legal
             </a>
         </div>
     </section>
+
+    <div class="pagination">
+        <a href="index.html">1</a>
+        <a href="pagina_nova.html">2</a>
+    </div>
 
     <footer>
         <p>&copy; 2024 Odontoguia</p>

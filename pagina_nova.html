@@ -124,19 +124,24 @@
 
         .pagination a {
             text-decoration: none;
-            color: #0077b6;
+            color: #ffffff;
             font-weight: bold;
-            margin: 0 10px;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        .pagination a.active {
+            color: #ffd700;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Odontoguia - Nova Página</h1>
+        <h1>Odontoguia</h1>
         <img src="dente-polegar.jfif" alt="Imagem de um dente">
     </header>
 
-    <h2>Outras áreas da odontologia e matérias relacionadas</h2>
+    <h2>Conheça outras áreas da odontologia e matérias relacionadas</h2>
 
     <section class="areas">
         <!-- Cartão de Dentística -->
@@ -147,7 +152,7 @@
             </a>
             <ul class="dropdown" id="dentistica">
                 <li>Restaurações estéticas</li>
-                <li>Tratamento de cáries</li>
+                <li>Materiais dentários</li>
             </ul>
         </div>
 
@@ -158,20 +163,20 @@
                 Odontopediatria
             </a>
             <ul class="dropdown" id="odontopediatria">
-                <li>Tratamento de dentes decíduos</li>
-                <li>Ortodontia preventiva</li>
+                <li>Cuidados com dentes de leite</li>
+                <li>Tratamento de cáries em crianças</li>
             </ul>
         </div>
 
         <!-- Cartão de Prótese Bucomaxilofacial -->
         <div class="card">
-            <a href="#protesebucomaxilofacial">
+            <a href="#protesebm">
                 <img src="dente-polegar.jfif" alt="Imagem de Prótese Bucomaxilofacial" class="area-img">
                 Prótese Bucomaxilofacial
             </a>
-            <ul class="dropdown" id="protesebucomaxilofacial">
-                <li>Reconstrução facial</li>
-                <li>Protese maxilofacial</li>
+            <ul class="dropdown" id="protesebm">
+                <li>Próteses faciais</li>
+                <li>Reabilitação maxilofacial</li>
             </ul>
         </div>
 
@@ -189,12 +194,12 @@
 
         <!-- Cartão de Disfunção Temporomandibular e Dor Orofacial -->
         <div class="card">
-            <a href="#disfuncao">
+            <a href="#dtml">
                 <img src="dente-polegar.jfif" alt="Imagem de Disfunção Temporomandibular" class="area-img">
                 Disfunção Temporomandibular e Dor Orofacial
             </a>
-            <ul class="dropdown" id="disfuncao">
-                <li>Tratamento de disfunção</li>
+            <ul class="dropdown" id="dtml">
+                <li>Tratamento de DTM</li>
                 <li>Controle da dor orofacial</li>
             </ul>
         </div>
@@ -206,44 +211,44 @@
                 Harmonização Orofacial
             </a>
             <ul class="dropdown" id="harmonizacao">
-                <li>Preenchimentos faciais</li>
+                <li>Preenchimento labial</li>
                 <li>Botox</li>
             </ul>
         </div>
 
         <!-- Cartão de Odontologia para Pacientes com Necessidades Especiais -->
         <div class="card">
-            <a href="#pacientes">
+            <a href="#odontopaciente">
                 <img src="dente-polegar.jfif" alt="Imagem de Odontologia para Pacientes com Necessidades Especiais" class="area-img">
                 Odontologia para Pacientes com Necessidades Especiais
             </a>
-            <ul class="dropdown" id="pacientes">
+            <ul class="dropdown" id="odontopaciente">
                 <li>Cuidados especiais</li>
-                <li>Ajustes no atendimento</li>
+                <li>Tratamento adaptado</li>
             </ul>
         </div>
 
         <!-- Cartão de Odontologia do Esporte -->
         <div class="card">
-            <a href="#esporte">
+            <a href="#odontoesporte">
                 <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Esporte" class="area-img">
                 Odontologia do Esporte
             </a>
-            <ul class="dropdown" id="esporte">
-                <li>Proteção dentária</li>
-                <li>Cuidados com lesões</li>
+            <ul class="dropdown" id="odontoesporte">
+                <li>Proteção dental para atletas</li>
+                <li>Tratamento de lesões orais</li>
             </ul>
         </div>
 
         <!-- Cartão de Odontologia do Trabalho -->
         <div class="card">
-            <a href="#trabalho">
+            <a href="#odontotrabalho">
                 <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Trabalho" class="area-img">
                 Odontologia do Trabalho
             </a>
-            <ul class="dropdown" id="trabalho">
-                <li>Prevenção de doenças ocupacionais</li>
+            <ul class="dropdown" id="odontotrabalho">
                 <li>Saúde bucal no ambiente de trabalho</li>
+                <li>Prevenção de doenças ocupacionais</li>
             </ul>
         </div>
     </section>
@@ -251,8 +256,7 @@
     <footer>
         <p>&copy; 2024 Odontoguia</p>
         <div class="pagination">
-            <a href="index.html">1</a>
-            <a href="pagina_nova.html">2</a>
+            <a href="index.html">1</a> | <a href="pagina_nova.html" class="active">2</a>
         </div>
     </footer>
 </body>

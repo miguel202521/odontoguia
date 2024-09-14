@@ -53,6 +53,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            text-align: center;
         }
 
         .card:hover {
@@ -64,9 +65,10 @@
             color: white;
             font-weight: bold;
             font-size: 1.2em;
-            z-index: 1;
+            z-index: 2;
             padding: 10px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
+            position: relative;
         }
 
         .card img {
@@ -76,7 +78,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: 0;
+            z-index: 1;
         }
 
         .dropdown {
@@ -86,14 +88,15 @@
             list-style-type: none;
             margin: 0;
             display: none;
-        }
-
-        .card:hover .dropdown {
-            display: block;
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
+            z-index: 3;
+        }
+
+        .card:hover .dropdown {
+            display: block;
         }
 
         footer {
@@ -262,7 +265,7 @@
 
         <div class="card">
             <a href="#odontologia-legal">
-                <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal">
+                <img src="uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal">
                 Odontologia Legal
             </a>
             <ul class="dropdown" id="odontologia-legal">

@@ -50,42 +50,35 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 200px;
-            height: 250px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
             position: relative;
-            overflow: hidden;
+            z-index: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            z-index: 10;
         }
 
         .card a {
-            display: block;
-            height: 100%;
-            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-decoration: none;
-            position: relative;
+            color: #0077b6;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
 
         .area-img {
             width: 100%;
-            height: 100%;
+            height: 150px;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-
-        .card a span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
-            padding: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.2em;
-            color: white;
-            z-index: 2;
-            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .dropdown {
@@ -122,6 +115,7 @@
             padding: 20px;
             background-color: #0077b6;
             color: white;
+            position: relative;
         }
 
         .pagination {
@@ -150,11 +144,11 @@
     <h2>Conheça sobre diferentes áreas da odontologia e matérias relacionadas</h2>
 
     <section class="areas">
-        <!-- Cartão de Anestesiologia (Alterado) -->
+        <!-- Cartão de Anestesiologia -->
         <div class="card">
             <a href="#anestesiologia">
                 <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia" class="area-img">
-                <span>Anestesiologia</span>
+                Anestesiologia
             </a>
             <ul class="dropdown" id="anestesiologia">
                 <li><a href="tecnicas-anestesicas.html">Anestesia na Maxila</a></li>
@@ -169,7 +163,7 @@
         <div class="card">
             <a href="#cirurgia">
                 <img src="dente-polegar.jfif" alt="Imagem de Cirurgia" class="area-img">
-                <span>Cirurgia</span>
+                Cirurgia
             </a>
             <ul class="dropdown" id="cirurgia">
                 <li>Extração dentária</li>
@@ -184,7 +178,7 @@
         <div class="card">
             <a href="#radiografia">
                 <img src="dente-polegar.jfif" alt="Imagem de Radiografia" class="area-img">
-                <span>Radiografia</span>
+                Radiografia
             </a>
             <ul class="dropdown" id="radiografia">
                 <li>Panorâmica digital</li>
@@ -199,7 +193,7 @@
         <div class="card">
             <a href="#periodontia">
                 <img src="dente-polegar.jfif" alt="Imagem de Periodontia" class="area-img">
-                <span>Periodontia</span>
+                Periodontia
             </a>
             <ul class="dropdown" id="periodontia">
                 <li>Tratamento de gengivite</li>
@@ -214,7 +208,7 @@
         <div class="card">
             <a href="#biomateriais">
                 <img src="dente-polegar.jfif" alt="Imagem de Biomateriais" class="area-img">
-                <span>Biomateriais</span>
+                Biomateriais
             </a>
             <ul class="dropdown" id="biomateriais">
                 <li>Biocompatibilidade de materiais</li>
@@ -229,7 +223,7 @@
         <div class="card">
             <a href="#estomatologia">
                 <img src="dente-polegar.jfif" alt="Imagem de Estomatologia" class="area-img">
-                <span>Estomatologia</span>
+                Estomatologia
             </a>
             <ul class="dropdown" id="estomatologia">
                 <li>Diagnóstico de lesões bucais</li>
@@ -244,7 +238,7 @@
         <div class="card">
             <a href="#implantodologia">
                 <img src="dente-polegar.jfif" alt="Imagem de Implantodologia" class="area-img">
-                <span>Implantodologia</span>
+                Implantodologia
             </a>
             <ul class="dropdown" id="implantodologia">
                 <li>Planejamento de implantes</li>
@@ -259,7 +253,7 @@
         <div class="card">
             <a href="#ortodontia">
                 <img src="dente-polegar.jfif" alt="Imagem de Ortodontia" class="area-img">
-                <span>Ortodontia</span>
+                Ortodontia
             </a>
             <ul class="dropdown" id="ortodontia">
                 <li>Correção de dentes tortos</li>
@@ -274,7 +268,7 @@
         <div class="card">
             <a href="#endodontia">
                 <img src="dente-polegar.jfif" alt="Imagem de Endodontia" class="area-img">
-                <span>Endodontia</span>
+                Endodontia
             </a>
             <ul class="dropdown" id="endodontia">
                 <li>Tratamento de canal</li>
@@ -289,7 +283,7 @@
         <div class="card">
             <a href="#odontologia-legal">
                 <img src="dente-polegar.jfif" alt="Imagem de Odontologia Legal" class="area-img">
-                <span>Odontologia Legal</span>
+                Odontologia Legal
             </a>
             <ul class="dropdown" id="odontologia-legal">
                 <li>Perícias odontológicas</li>

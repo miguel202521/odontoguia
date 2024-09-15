@@ -50,9 +50,16 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 200px;
-            height: 250px; /* Ajuste a altura para preencher o cartão */
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease;
             position: relative;
-            overflow: hidden; /* Garante que a imagem preencha o cartão */
+            z-index: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            z-index: 10;
         }
 
         .card a {
@@ -63,26 +70,15 @@
             color: #0077b6;
             font-weight: bold;
             font-size: 1.2em;
-            height: 100%; /* Ajusta a altura do link para preencher o cartão */
-            justify-content: center; /* Centraliza o texto */
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            z-index: 10;
+            margin-bottom: 10px;
         }
 
         .area-img {
             width: 100%;
-            height: 100%;
+            height: 150px;
             object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .dropdown {
@@ -166,7 +162,7 @@
         <!-- Cartão de Cirurgia -->
         <div class="card">
             <a href="#cirurgia">
-                <img src="cirurgia do siso - Consulta Ideal.jpeg" alt="Imagem de Cirurgia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Cirurgia" class="area-img">
                 Cirurgia
             </a>
             <ul class="dropdown" id="cirurgia">
@@ -264,7 +260,7 @@
                 <li>Uso de aparelhos fixos</li>
                 <li>Uso de aparelhos móveis</li>
                 <li>Alinhadores invisíveis</li>
-                <li>Tratamento ortopédico</li>
+                <li>Tratamento com contenções</li>
             </ul>
         </div>
 
@@ -276,10 +272,10 @@
             </a>
             <ul class="dropdown" id="endodontia">
                 <li>Tratamento de canal</li>
-                <li>Retorno de tratamento endodôntico</li>
-                <li>Instrumentação do canal</li>
-                <li>Desinfecção endodôntica</li>
-                <li>Obturamento do canal</li>
+                <li>Retratamento endodôntico</li>
+                <li>Cirurgia endodôntica</li>
+                <li>Tratamento de lesões periapicais</li>
+                <li>Uso de microscópio</li>
             </ul>
         </div>
 
@@ -290,19 +286,19 @@
                 Odontologia Legal
             </a>
             <ul class="dropdown" id="odontologia-legal">
-                <li>Identificação de vítimas</li>
-                <li>Perícia dentária</li>
-                <li>Odontologia forense</li>
-                <li>Registros odontológicos</li>
-                <li>Aspectos legais e éticos</li>
+                <li>Perícias odontológicas</li>
+                <li>Identificação humana</li>
+                <li>Análise de mordidas</li>
+                <li>Laudos periciais</li>
+                <li>Atestados de lesões</li>
             </ul>
         </div>
     </section>
 
     <footer>
+        <p>&copy; 2024 Odontoguia</p>
         <div class="pagination">
-            <a href="index.html" class="active">Página Inicial</a>
-            <a href="pagina_nova.html">Nova Página</a>
+            <a href="index.html">1</a> | <a href="pagina_nova.html">2</a>
         </div>
     </footer>
 </body>

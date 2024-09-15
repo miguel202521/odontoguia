@@ -27,6 +27,10 @@
             margin: 0;
         }
 
+        img {
+            max-width: 150px;
+        }
+
         h2 {
             margin-top: 20px;
             font-size: 1.8em;
@@ -38,23 +42,19 @@
             flex-wrap: wrap;
             justify-content: center;
             margin-top: 40px;
-            gap: 20px;
+            gap: 30px;
         }
 
         .card {
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            width: 220px;
-            height: 220px;
-            padding: 10px;
+            width: 200px;
+            padding: 20px;
             text-align: center;
             transition: transform 0.2s ease;
             position: relative;
             z-index: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
         }
 
         .card:hover {
@@ -63,18 +63,22 @@
         }
 
         .card a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-decoration: none;
             color: #0077b6;
             font-weight: bold;
             font-size: 1.2em;
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         .area-img {
-            max-width: 100%;
-            height: 120px;
+            width: 100%;
+            height: 150px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .dropdown {
@@ -115,16 +119,19 @@
         }
 
         .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .pagination a {
             text-decoration: none;
-            color: #0077b6;
+            color: #ffffff;
+            font-weight: bold;
+            margin: 0 15px;
             font-size: 1.2em;
-            margin: 0 10px;
+        }
+
+        .pagination a.active {
+            color: #ffd700;
         }
     </style>
 </head>
@@ -134,97 +141,165 @@
         <img src="dente-polegar.jfif" alt="Imagem de um dente">
     </header>
 
-    <h2>Conheça sobre diferentes áreas da odontologia</h2>
+    <h2>Conheça sobre diferentes áreas da odontologia e matérias relacionadas</h2>
 
     <section class="areas">
         <!-- Cartão de Anestesiologia -->
         <div class="card">
             <a href="#anestesiologia">
-                <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Seringa de Anestesiologia" class="area-img">
+                <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia" class="area-img">
                 Anestesiologia
             </a>
+            <ul class="dropdown" id="anestesiologia">
+                <li><a href="tecnicas-anestesicas.html">Anestesia na Maxila</a></li>
+                <li>Técnicas de sedação</li>
+                <li>Anestesia geral</li>
+                <li>Anestesia local</li>
+                <li>Analgésicos odontológicos</li>
+            </ul>
         </div>
 
         <!-- Cartão de Cirurgia -->
         <div class="card">
             <a href="#cirurgia">
-                <img src="cirurgia.jpg" alt="Imagem de Cirurgia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Cirurgia" class="area-img">
                 Cirurgia
             </a>
+            <ul class="dropdown" id="cirurgia">
+                <li>Extração dentária</li>
+                <li>Cirurgia ortognática</li>
+                <li>Cirurgia de cistos</li>
+                <li>Enxerto ósseo</li>
+                <li>Implante cirúrgico</li>
+            </ul>
         </div>
 
         <!-- Cartão de Radiografia -->
         <div class="card">
             <a href="#radiografia">
-                <img src="radiografia.jpg" alt="Imagem de Radiografia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Radiografia" class="area-img">
                 Radiografia
             </a>
+            <ul class="dropdown" id="radiografia">
+                <li>Panorâmica digital</li>
+                <li>Tomografia computadorizada</li>
+                <li>Radiografia periapical</li>
+                <li>Cefalometria</li>
+                <li>Radiografia oclusal</li>
+            </ul>
         </div>
 
         <!-- Cartão de Periodontia -->
         <div class="card">
             <a href="#periodontia">
-                <img src="periodontia.jpg" alt="Imagem de Periodontia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Periodontia" class="area-img">
                 Periodontia
             </a>
+            <ul class="dropdown" id="periodontia">
+                <li>Tratamento de gengivite</li>
+                <li>Tratamento de periodontite</li>
+                <li>Raspagem periodontal</li>
+                <li>Cirurgias periodontais</li>
+                <li>Implantes gengivais</li>
+            </ul>
         </div>
 
         <!-- Cartão de Biomateriais -->
         <div class="card">
             <a href="#biomateriais">
-                <img src="biomateriais.jpg" alt="Imagem de Biomateriais" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Biomateriais" class="area-img">
                 Biomateriais
             </a>
+            <ul class="dropdown" id="biomateriais">
+                <li>Biocompatibilidade de materiais</li>
+                <li>Materiais para restaurações dentárias</li>
+                <li>Materiais cerâmicos</li>
+                <li>Compósitos dentários</li>
+                <li>Biomateriais para implantes</li>
+            </ul>
         </div>
 
         <!-- Cartão de Estomatologia -->
         <div class="card">
             <a href="#estomatologia">
-                <img src="estomatologia.jpg" alt="Imagem de Estomatologia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Estomatologia" class="area-img">
                 Estomatologia
             </a>
+            <ul class="dropdown" id="estomatologia">
+                <li>Diagnóstico de lesões bucais</li>
+                <li>Tratamento de lesões orais</li>
+                <li>Doenças sistêmicas</li>
+                <li>Lesões de mucosas</li>
+                <li>Câncer de boca</li>
+            </ul>
         </div>
 
-        <!-- Cartão de Implantodontia -->
+        <!-- Cartão de Implantodologia -->
         <div class="card">
-            <a href="#implantodontia">
-                <img src="implantodontia.jpg" alt="Imagem de Implantodontia" class="area-img">
-                Implantodontia
+            <a href="#implantodologia">
+                <img src="dente-polegar.jfif" alt="Imagem de Implantodologia" class="area-img">
+                Implantodologia
             </a>
+            <ul class="dropdown" id="implantodologia">
+                <li>Planejamento de implantes</li>
+                <li>Cirurgia de implantes</li>
+                <li>Manutenção de implantes</li>
+                <li>Próteses sobre implantes</li>
+                <li>Enxerto ósseo para implantes</li>
+            </ul>
         </div>
 
         <!-- Cartão de Ortodontia -->
         <div class="card">
             <a href="#ortodontia">
-                <img src="ortodontia.jpg" alt="Imagem de Ortodontia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Ortodontia" class="area-img">
                 Ortodontia
             </a>
+            <ul class="dropdown" id="ortodontia">
+                <li>Correção de dentes tortos</li>
+                <li>Uso de aparelhos fixos</li>
+                <li>Uso de aparelhos móveis</li>
+                <li>Alinhadores invisíveis</li>
+                <li>Tratamento com contenções</li>
+            </ul>
         </div>
 
         <!-- Cartão de Endodontia -->
         <div class="card">
             <a href="#endodontia">
-                <img src="endodontia.jpg" alt="Imagem de Endodontia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Endodontia" class="area-img">
                 Endodontia
             </a>
+            <ul class="dropdown" id="endodontia">
+                <li>Tratamento de canal</li>
+                <li>Retratamento endodôntico</li>
+                <li>Cirurgia endodôntica</li>
+                <li>Tratamento de lesões periapicais</li>
+                <li>Uso de microscópio</li>
+            </ul>
         </div>
 
         <!-- Cartão de Odontologia Legal -->
         <div class="card">
             <a href="#odontologia-legal">
-                <img src="odontologia_legal.jpg" alt="Imagem de Odontologia Legal" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Odontologia Legal" class="area-img">
                 Odontologia Legal
             </a>
+            <ul class="dropdown" id="odontologia-legal">
+                <li>Perícias odontológicas</li>
+                <li>Identificação humana</li>
+                <li>Análise de mordidas</li>
+                <li>Laudos periciais</li>
+                <li>Atestados de lesões</li>
+            </ul>
         </div>
     </section>
 
-    <div class="pagination">
-        <a href="index.html">1</a>
-        <a href="pagina_nova.html">2</a>
-    </div>
-
     <footer>
         <p>&copy; 2024 Odontoguia</p>
+        <div class="pagination">
+            <a href="index.html">1</a> | <a href="pagina_nova.html">2</a>
+        </div>
     </footer>
 </body>
 </html>

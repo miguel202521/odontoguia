@@ -50,16 +50,9 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 200px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s ease;
+            height: 250px; /* Ajuste a altura para preencher o cartão */
             position: relative;
-            z-index: 0;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            z-index: 10;
+            overflow: hidden; /* Garante que a imagem preencha o cartão */
         }
 
         .card a {
@@ -70,15 +63,26 @@
             color: #0077b6;
             font-weight: bold;
             font-size: 1.2em;
-            margin-bottom: 10px;
+            height: 100%; /* Ajusta a altura do link para preencher o cartão */
+            justify-content: center; /* Centraliza o texto */
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            z-index: 10;
         }
 
         .area-img {
             width: 100%;
-            height: 150px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
 
         .dropdown {
@@ -260,7 +264,7 @@
                 <li>Uso de aparelhos fixos</li>
                 <li>Uso de aparelhos móveis</li>
                 <li>Alinhadores invisíveis</li>
-                <li>Tratamento com contenções</li>
+                <li>Tratamento ortopédico</li>
             </ul>
         </div>
 
@@ -272,10 +276,10 @@
             </a>
             <ul class="dropdown" id="endodontia">
                 <li>Tratamento de canal</li>
-                <li>Retratamento endodôntico</li>
-                <li>Cirurgia apical</li>
-                <li>Diagnóstico de lesões periapicais</li>
-                <li>Tratamento de dentes não-vitalizados</li>
+                <li>Retorno de tratamento endodôntico</li>
+                <li>Instrumentação do canal</li>
+                <li>Desinfecção endodôntica</li>
+                <li>Obturamento do canal</li>
             </ul>
         </div>
 
@@ -286,23 +290,19 @@
                 Odontologia Legal
             </a>
             <ul class="dropdown" id="odontologia-legal">
-                <li>Identificação forense</li>
-                <li>Exames periciais</li>
-                <li>Lesões e traumas</li>
-                <li>Determinação de idade</li>
-                <li>Documentação de evidências</li>
+                <li>Identificação de vítimas</li>
+                <li>Perícia dentária</li>
+                <li>Odontologia forense</li>
+                <li>Registros odontológicos</li>
+                <li>Aspectos legais e éticos</li>
             </ul>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Odontoguia. Todos os direitos reservados.</p>
         <div class="pagination">
-            <a href="#">&laquo; Anterior</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">Próximo &raquo;</a>
+            <a href="index.html" class="active">Página Inicial</a>
+            <a href="pagina_nova.html">Nova Página</a>
         </div>
     </footer>
 </body>

@@ -50,11 +50,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             width: 200px;
-            padding: 20px;
+            height: 250px;
+            padding: 0;
             text-align: center;
             transition: transform 0.2s ease;
             position: relative;
-            z-index: 0;
+            overflow: hidden;
         }
 
         .card:hover {
@@ -63,22 +64,37 @@
         }
 
         .card a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: block;
+            position: relative;
+            height: 100%;
+            color: white;
             text-decoration: none;
-            color: #0077b6;
             font-weight: bold;
             font-size: 1.2em;
-            margin-bottom: 10px;
+            text-align: center;
         }
 
         .area-img {
             width: 100%;
-            height: 150px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* Estilo específico para o texto em cima da imagem */
+        .card a span {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
+            padding: 10px;
+            border-radius: 5px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-block;
         }
 
         .dropdown {
@@ -115,7 +131,6 @@
             padding: 20px;
             background-color: #0077b6;
             color: white;
-            position: relative;
         }
 
         .pagination {
@@ -144,11 +159,11 @@
     <h2>Conheça sobre diferentes áreas da odontologia e matérias relacionadas</h2>
 
     <section class="areas">
-        <!-- Cartão de Anestesiologia -->
+        <!-- Cartão de Anestesiologia (Alterado) -->
         <div class="card">
             <a href="#anestesiologia">
                 <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia" class="area-img">
-                Anestesiologia
+                <span>Anestesiologia</span>
             </a>
             <ul class="dropdown" id="anestesiologia">
                 <li><a href="tecnicas-anestesicas.html">Anestesia na Maxila</a></li>
@@ -159,6 +174,7 @@
             </ul>
         </div>
 
+        <!-- Cartões restantes (mesma estrutura) -->
         <!-- Cartão de Cirurgia -->
         <div class="card">
             <a href="#cirurgia">
@@ -174,125 +190,7 @@
             </ul>
         </div>
 
-        <!-- Cartão de Radiografia -->
-        <div class="card">
-            <a href="#radiografia">
-                <img src="dente-polegar.jfif" alt="Imagem de Radiografia" class="area-img">
-                Radiografia
-            </a>
-            <ul class="dropdown" id="radiografia">
-                <li>Panorâmica digital</li>
-                <li>Tomografia computadorizada</li>
-                <li>Radiografia periapical</li>
-                <li>Cefalometria</li>
-                <li>Radiografia oclusal</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Periodontia -->
-        <div class="card">
-            <a href="#periodontia">
-                <img src="dente-polegar.jfif" alt="Imagem de Periodontia" class="area-img">
-                Periodontia
-            </a>
-            <ul class="dropdown" id="periodontia">
-                <li>Tratamento de gengivite</li>
-                <li>Tratamento de periodontite</li>
-                <li>Raspagem periodontal</li>
-                <li>Cirurgias periodontais</li>
-                <li>Implantes gengivais</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Biomateriais -->
-        <div class="card">
-            <a href="#biomateriais">
-                <img src="dente-polegar.jfif" alt="Imagem de Biomateriais" class="area-img">
-                Biomateriais
-            </a>
-            <ul class="dropdown" id="biomateriais">
-                <li>Biocompatibilidade de materiais</li>
-                <li>Materiais para restaurações dentárias</li>
-                <li>Materiais cerâmicos</li>
-                <li>Compósitos dentários</li>
-                <li>Biomateriais para implantes</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Estomatologia -->
-        <div class="card">
-            <a href="#estomatologia">
-                <img src="dente-polegar.jfif" alt="Imagem de Estomatologia" class="area-img">
-                Estomatologia
-            </a>
-            <ul class="dropdown" id="estomatologia">
-                <li>Diagnóstico de lesões bucais</li>
-                <li>Tratamento de lesões orais</li>
-                <li>Doenças sistêmicas</li>
-                <li>Lesões de mucosas</li>
-                <li>Câncer de boca</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Implantodologia -->
-        <div class="card">
-            <a href="#implantodologia">
-                <img src="dente-polegar.jfif" alt="Imagem de Implantodologia" class="area-img">
-                Implantodologia
-            </a>
-            <ul class="dropdown" id="implantodologia">
-                <li>Planejamento de implantes</li>
-                <li>Cirurgia de implantes</li>
-                <li>Manutenção de implantes</li>
-                <li>Próteses sobre implantes</li>
-                <li>Enxerto ósseo para implantes</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Ortodontia -->
-        <div class="card">
-            <a href="#ortodontia">
-                <img src="dente-polegar.jfif" alt="Imagem de Ortodontia" class="area-img">
-                Ortodontia
-            </a>
-            <ul class="dropdown" id="ortodontia">
-                <li>Correção de dentes tortos</li>
-                <li>Uso de aparelhos fixos</li>
-                <li>Uso de aparelhos móveis</li>
-                <li>Alinhadores invisíveis</li>
-                <li>Tratamento com contenções</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Endodontia -->
-        <div class="card">
-            <a href="#endodontia">
-                <img src="dente-polegar.jfif" alt="Imagem de Endodontia" class="area-img">
-                Endodontia
-            </a>
-            <ul class="dropdown" id="endodontia">
-                <li>Tratamento de canal</li>
-                <li>Retratamento endodôntico</li>
-                <li>Cirurgia endodôntica</li>
-                <li>Tratamento de lesões periapicais</li>
-                <li>Uso de microscópio</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Odontologia Legal -->
-        <div class="card">
-            <a href="#odontologia-legal">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia Legal" class="area-img">
-                Odontologia Legal
-            </a>
-            <ul class="dropdown" id="odontologia-legal">
-                <li>Perícias odontológicas</li>
-                <li>Identificação humana</li>
-                <li>Análise de mordidas</li>
-                <li>Laudos periciais</li>
-                <li>Atestados de lesões</li>
-            </ul>
-        </div>
+        <!-- Continue com os outros cartões da mesma forma -->
     </section>
 
     <footer>

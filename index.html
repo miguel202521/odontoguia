@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontoguia - Página Inicial</title>
+    <title>Odontoguia</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             background-color: #f0f4f8;
             margin: 0;
             padding: 0;
-            text-align: center;
         }
 
         header {
@@ -27,6 +27,10 @@
             margin: 0;
         }
 
+        img {
+            max-width: 150px;
+        }
+
         h2 {
             margin-top: 20px;
             font-size: 1.8em;
@@ -34,65 +38,76 @@
         }
 
         .areas {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 30px;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             margin-top: 40px;
+            gap: 20px;
         }
 
         .card {
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            width: 200px;
-            height: 320px;
-            position: relative;
-            overflow: hidden;
+            width: 220px;
+            height: 220px;
+            padding: 10px;
+            text-align: center;
             transition: transform 0.2s ease;
+            position: relative;
+            z-index: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
             transform: translateY(-10px);
+            z-index: 10;
         }
 
         .card a {
             text-decoration: none;
-            color: white;
+            color: #0077b6;
             font-weight: bold;
             font-size: 1.2em;
-            z-index: 2;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            box-sizing: border-box;
+            margin-top: 10px;
         }
 
-        .card img {
-            width: 100%;
-            height: 100%;
+        .area-img {
+            max-width: 100%;
+            height: 150px;
             object-fit: cover;
-            z-index: 1;
+            border-radius: 5px;
         }
 
         .dropdown {
-            background-color: #0077b6;
-            color: white;
-            padding: 15px;
-            list-style-type: none;
-            margin: 0;
             display: none;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 3;
+            top: 60px;
+            width: 100%;
+            text-align: left;
+            z-index: 20;
         }
 
         .card:hover .dropdown {
             display: block;
+        }
+
+        .dropdown li {
+            list-style: none;
+            padding: 8px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .dropdown li a {
+            text-decoration: none;
+            color: #0077b6;
         }
 
         footer {
@@ -100,177 +115,102 @@
             padding: 20px;
             background-color: #0077b6;
             color: white;
+            position: relative;
         }
 
         .pagination {
-            margin-top: 30px;
             display: flex;
             justify-content: center;
+            margin-top: 30px;
         }
 
         .pagination a {
-            margin: 0 5px;
-            padding: 10px 15px;
             text-decoration: none;
-            background-color: #0077b6;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .pagination a:hover {
-            background-color: #005f8a;
+            color: #0077b6;
+            font-size: 1.2em;
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Odontoguia</h1>
-        <img src="dente-polegar.jfif" alt="Logo" style="max-width: 150px;">
+        <img src="dente-polegar.jfif" alt="Imagem de um dente">
     </header>
 
-    <h2>Conheça diferentes áreas da odontologia</h2>
+    <h2>Conheça sobre diferentes áreas da odontologia</h2>
 
     <section class="areas">
-        <!-- Primeira linha de 5 cartões -->
-        <div class="card">
-            <a href="#anestesiologia">
-                <img src="Seringa Carpule c_ Refluxo Black - MILLENNIUM.jpeg" alt="Imagem de Anestesiologia">
-                Anestesiologia
-            </a>
-            <ul class="dropdown" id="anestesiologia">
-                <li>Técnicas de anestesia</li>
-                <li>Medicamentos utilizados</li>
-                <li>Indicações e contraindicações</li>
-                <li>Complicações comuns</li>
-                <li>Cuidados pós-anestésicos</li>
-            </ul>
-        </div>
-
+        <!-- Cartão de Cirurgia -->
         <div class="card">
             <a href="#cirurgia">
-                <img src="cirurgia do siso - Consulta Ideal.jpeg" alt="Imagem de Cirurgia">
+                <img src="cirurgia.jpg" alt="Imagem de Cirurgia" class="area-img">
                 Cirurgia
             </a>
-            <ul class="dropdown" id="cirurgia">
-                <li>Cirurgia do siso</li>
-                <li>Cirurgia ortognática</li>
-                <li>Cirurgia periodontal</li>
-                <li>Cirurgia de frenectomia</li>
-                <li>Enxertos ósseos</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Radiografia -->
         <div class="card">
             <a href="#radiografia">
-                <img src="_.jpeg" alt="Imagem de Radiografia">
+                <img src="radiografia.jpg" alt="Imagem de Radiografia" class="area-img">
                 Radiografia
             </a>
-            <ul class="dropdown" id="radiografia">
-                <li>Radiografia periapical</li>
-                <li>Radiografia panorâmica</li>
-                <li>Cefalometria</li>
-                <li>Tomografia computadorizada</li>
-                <li>Radiografia bitewing</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Periodontia -->
         <div class="card">
             <a href="#periodontia">
-                <img src="Laser Dentistry ( Using Diode Laser from Germany ).jpeg" alt="Imagem de Periodontia">
+                <img src="periodontia.jpg" alt="Imagem de Periodontia" class="area-img">
                 Periodontia
             </a>
-            <ul class="dropdown" id="periodontia">
-                <li>Tratamento da gengivite</li>
-                <li>Cirurgia periodontal</li>
-                <li>Raspagem e alisamento radicular</li>
-                <li>Manutenção periodontal</li>
-                <li>Terapia com laser</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Biomateriais -->
         <div class="card">
             <a href="#biomateriais">
-                <img src="Grillz Luxo Cravejado ICE - com Molde de Silicone para ajustar aos dentes - Prata.jpeg" alt="Imagem de Biomateriais">
+                <img src="biomateriais.jpg" alt="Imagem de Biomateriais" class="area-img">
                 Biomateriais
             </a>
-            <ul class="dropdown" id="biomateriais">
-                <li>Materiais restauradores</li>
-                <li>Resinas compostas</li>
-                <li>Materiais de impressão</li>
-                <li>Cimentos dentários</li>
-                <li>Biocompatibilidade</li>
-            </ul>
         </div>
 
-        <!-- Segunda linha de 5 cartões -->
+        <!-- Cartão de Estomatologia -->
         <div class="card">
             <a href="#estomatologia">
-                <img src="" alt="Imagem de Estomatologia">
+                <img src="estomatologia.jpg" alt="Imagem de Estomatologia" class="area-img">
                 Estomatologia
             </a>
-            <ul class="dropdown" id="estomatologia">
-                <li>Lesões bucais</li>
-                <li>Diagnóstico de câncer oral</li>
-                <li>Doenças sistêmicas</li>
-                <li>Úlceras orais</li>
-                <li>Manifestações orais de doenças</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Implantodontia -->
         <div class="card">
             <a href="#implantodontia">
-                <img src="Sobredentadura ou Overdenture - Dentista Sorridere Porto Alegre.jpeg" alt="Imagem de Implantodontia">
+                <img src="implantodontia.jpg" alt="Imagem de Implantodontia" class="area-img">
                 Implantodontia
             </a>
-            <ul class="dropdown" id="implantodontia">
-                <li>Planejamento de implantes</li>
-                <li>Implantes imediatos</li>
-                <li>Implantes tardios</li>
-                <li>Próteses sobre implante</li>
-                <li>Manutenção de implantes</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Ortodontia -->
         <div class="card">
             <a href="#ortodontia">
-                <img src="Dentistry ✨.jpeg" alt="Imagem de Ortodontia">
+                <img src="ortodontia.jpg" alt="Imagem de Ortodontia" class="area-img">
                 Ortodontia
             </a>
-            <ul class="dropdown" id="ortodontia">
-                <li>Tratamento com aparelho fixo</li>
-                <li>Alinhadores invisíveis</li>
-                <li>Disjunção palatina</li>
-                <li>Expansão rápida maxilar</li>
-                <li>Contenção pós-tratamento</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Endodontia -->
         <div class="card">
             <a href="#endodontia">
-                <img src="¿Es seguro el tratamiento de endodoncia, te explicamos el paso a paso.jpeg" alt="Imagem de Endodontia">
+                <img src="endodontia.jpg" alt="Imagem de Endodontia" class="area-img">
                 Endodontia
             </a>
-            <ul class="dropdown" id="endodontia">
-                <li>Tratamento de canal</li>
-                <li>Retratamento endodôntico</li>
-                <li>Apicectomia</li>
-                <li>Preparo biomecânico</li>
-                <li>Obturação do canal</li>
-            </ul>
         </div>
 
+        <!-- Cartão de Odontologia Legal -->
         <div class="card">
             <a href="#odontologia-legal">
-                <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal">
+                <img src="odontologia_legal.jpg" alt="Imagem de Odontologia Legal" class="area-img">
                 Odontologia Legal
             </a>
-            <ul class="dropdown" id="odontologia-legal">
-                <li>Identificação humana</li>
-                <li>Perícias odontológicas</li>
-                <li>Odontologia forense</li>
-                <li>Exames de DNA dentário</li>
-                <li>Laudos periciais</li>
-            </ul>
         </div>
     </section>
 

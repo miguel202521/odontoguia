@@ -55,6 +55,7 @@
             transition: transform 0.2s ease;
             position: relative;
             z-index: 0;
+            overflow: hidden; /* Garante que a imagem não ultrapasse os limites do cartão */
         }
 
         .card:hover {
@@ -71,14 +72,18 @@
             font-weight: bold;
             font-size: 1.2em;
             margin-bottom: 10px;
+            position: relative; /* Necessário para a imagem cobrir todo o cartão */
+            height: 150px; /* Altura do cartão */
         }
 
         .area-img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
+            height: 100%; /* Garante que a imagem cubra todo o espaço disponível */
+            object-fit: cover; /* Mantém a proporção da imagem */
+            position: absolute; /* Faz a imagem ocupar todo o espaço do cartão */
+            top: 0;
+            left: 0;
             border-radius: 10px;
-            margin-bottom: 10px;
         }
 
         .dropdown {

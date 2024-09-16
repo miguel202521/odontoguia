@@ -55,7 +55,6 @@
             transition: transform 0.2s ease;
             position: relative;
             z-index: 0;
-            overflow: hidden; /* Garante que a imagem não ultrapasse os limites do cartão */
         }
 
         .card:hover {
@@ -72,18 +71,14 @@
             font-weight: bold;
             font-size: 1.2em;
             margin-bottom: 10px;
-            position: relative; /* Necessário para a imagem cobrir todo o cartão */
-            height: 150px; /* Altura do cartão */
         }
 
         .area-img {
             width: 100%;
-            height: 100%; /* Garante que a imagem cubra todo o espaço disponível */
-            object-fit: cover; /* Mantém a proporção da imagem */
-            position: absolute; /* Faz a imagem ocupar todo o espaço do cartão */
-            top: 0;
-            left: 0;
+            height: 150px;
+            object-fit: cover;
             border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .dropdown {
@@ -257,7 +252,7 @@
         <!-- Cartão de Ortodontia -->
         <div class="card">
             <a href="#ortodontia">
-                <img src="Dentistry ✨.jpeg" alt="Imagem de Ortodontia" class="area-img">
+                <img src="dente-polegar.jfif" alt="Imagem de Ortodontia" class="area-img">
                 Ortodontia
             </a>
             <ul class="dropdown" id="ortodontia">
@@ -276,19 +271,34 @@
                 Endodontia
             </a>
             <ul class="dropdown" id="endodontia">
-                <li>Tratamento de canal radicular</li>
-                <li>Cirurgias endodônticas</li>
-                <li>Lesões periapicais</li>
-                <li>Retratamento de canal</li>
-                <li>Microscopia operatória</li>
+                <li>Tratamento de canal</li>
+                <li>Retratamento endodôntico</li>
+                <li>Cirurgia endodôntica</li>
+                <li>Tratamento de lesões periapicais</li>
+                <li>Uso de microscópio</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Odontologia Legal -->
+        <div class="card">
+            <a href="#odontologia-legal">
+                <img src="dente-polegar.jfif" alt="Imagem de Odontologia Legal" class="area-img">
+                Odontologia Legal
+            </a>
+            <ul class="dropdown" id="odontologia-legal">
+                <li>Perícias odontológicas</li>
+                <li>Identificação humana</li>
+                <li>Análise de mordidas</li>
+                <li>Laudos periciais</li>
+                <li>Atestados de lesões</li>
             </ul>
         </div>
     </section>
 
     <footer>
+        <p>&copy; 2024 Odontoguia</p>
         <div class="pagination">
-            <a href="index.html" class="active">Início</a>
-            <a href="pagina_nova.html">Próxima Página</a>
+            <a href="index.html">1</a> | <a href="pagina_nova.html">2</a>
         </div>
     </footer>
 </body>

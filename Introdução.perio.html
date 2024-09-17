@@ -6,51 +6,91 @@
     <title>Introdução à Periodontia</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background-color: #f0f4f8;
             padding: 20px;
+            margin: 0;
         }
 
         header {
+            background-color: #0077b6;
+            color: white;
+            padding: 20px 0;
             margin-bottom: 30px;
         }
 
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: left;
         }
 
-        footer {
-            margin-top: 20px;
-        }
-
-        .back-link {
-            margin-top: 20px;
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #0077b6;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-        }
-
-        h1, h2, p {
+        h2, h3, p {
             color: #333;
         }
 
+        h2 {
+            margin-top: 20px;
+        }
+
         ul {
-            list-style-type: disc;
-            padding-left: 20px;
+            list-style-type: square;
+            padding-left: 40px;
+            color: #0077b6;
         }
 
         ul li {
             margin-bottom: 10px;
+        }
+
+        .section-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin: 20px 0;
+            float: right;
+            margin-left: 20px;
+        }
+
+        .info-box {
+            background-color: #e1f5fe;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 25px;
+            background-color: #0077b6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #005f8d;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #0077b6;
+            color: white;
+            text-align: center;
         }
     </style>
 </head>
@@ -61,24 +101,37 @@
 
     <main>
         <h2>O que é Periodontia?</h2>
-        <p>A periodontia é a especialidade da odontologia que trata das doenças que afetam o periodonto, ou seja, os tecidos que suportam e envolvem os dentes. Isso inclui a gengiva, o osso alveolar, o cemento radicular e o ligamento periodontal.</p>
+        <img src="gengiva.jpg" alt="Imagem de gengiva saudável" class="section-img">
+        <p>A periodontia é uma especialidade da odontologia voltada para a prevenção, diagnóstico e tratamento de doenças que afetam os tecidos de suporte dos dentes, conhecidos como periodonto. O periodonto inclui gengiva, osso alveolar, ligamento periodontal e cemento radicular.</p>
 
-        <h3>Principais Doenças Tratadas pela Periodontia:</h3>
+        <div class="info-box">
+            <h3>Principais Doenças Tratadas pela Periodontia</h3>
+            <ul>
+                <li>Gengivite</li>
+                <li>Periodontite</li>
+                <li>Recessão gengival</li>
+                <li>Abscessos periodontais</li>
+            </ul>
+        </div>
+
+        <h2>A atuação do profissional de Periodontia</h2>
+        <p>O profissional periodontista é responsável por diagnosticar e tratar as condições que afetam o periodonto. Ele realiza procedimentos como raspagem, alisamento radicular, cirurgias periodontais, enxertos gengivais e tratamentos regenerativos.</p>
+
+        <p>Além disso, o periodontista também atua na prevenção, educando pacientes sobre a importância da higiene bucal adequada para prevenir a gengivite e outras doenças periodontais.</p>
+
+        <h3>Procedimentos mais comuns realizados pelo periodontista:</h3>
         <ul>
-            <li>Gengivite</li>
-            <li>Periodontite</li>
-            <li>Recessão gengival</li>
-            <li>Abscessos periodontais</li>
+            <li>Raspagem e alisamento radicular</li>
+            <li>Cirurgias periodontais (retalho, enxerto gengival, etc.)</li>
+            <li>Implantes dentários</li>
+            <li>Tratamento de recessão gengival</li>
         </ul>
-
-        <h3>Importância da Periodontia</h3>
-        <p>A saúde periodontal é essencial para a manutenção dos dentes a longo prazo. Doenças periodontais não tratadas podem levar à perda dentária e a complicações sistêmicas.</p>
 
         <a href="index.html" class="back-link">Voltar à Página Principal</a>
     </main>
 
     <footer>
-        <p>&copy; 2024 Odontoguia</p>
+        <p>&copy; 2024 Odontoguia - Todos os direitos reservados.</p>
     </footer>
 </body>
 </html>

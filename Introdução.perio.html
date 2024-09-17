@@ -6,75 +6,89 @@
     <title>Introdução à Periodontia</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            background-color: #f4f4f4;
-            padding: 20px;
         }
 
         header {
-            margin-bottom: 30px;
+            background-color: #0077b6;
+            color: white;
+            padding: 20px;
         }
 
         main {
             max-width: 800px;
-            margin: auto;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
             text-align: left;
         }
 
         footer {
-            margin-top: 20px;
+            margin-top: 30px;
+            background-color: #0077b6;
+            color: white;
+            padding: 10px;
+        }
+
+        h1, h2 {
+            color: #0077b6;
+        }
+
+        p, ul {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .back-link {
-            margin-top: 20px;
             display: inline-block;
+            margin-top: 20px;
             padding: 10px 20px;
             background-color: #0077b6;
             color: white;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 5px;
         }
 
-        h1, h2, p {
-            color: #333;
-        }
-
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-
-        /* Estilo da imagem */
-        .image-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .back-link:hover {
+            background-color: #005f8e;
         }
     </style>
 </head>
 <body>
+
     <header>
         <h1>Introdução à Periodontia</h1>
     </header>
 
     <main>
         <h2>O que é Periodontia?</h2>
-        <p>A periodontia é a especialidade da odontologia que trata das doenças que afetam o periodonto, ou seja, os tecidos que suportam e envolvem os dentes. Isso inclui a gengiva, o osso alveolar, o cemento radicular e o ligamento periodontal.</p>
+        <p>A periodontia é a especialidade da odontologia que trata das doenças que afetam os tecidos que suportam os dentes, chamados de periodonto. Isso inclui a gengiva, o osso alveolar, o cemento radicular e o ligamento periodontal.</p>
+
+        <div class="image-container">
+            <img src="gengiva.jpeg" alt="Anatomia do Periodonto">
+        </div>
 
         <h3>Principais Doenças Tratadas pela Periodontia:</h3>
         <ul>
@@ -85,12 +99,10 @@
         </ul>
 
         <h3>Importância da Periodontia</h3>
-        <p>A saúde periodontal é essencial para a manutenção dos dentes a longo prazo. Doenças periodontais não tratadas podem levar à perda dentária e a complicações sistêmicas.</p>
+        <p>A saúde periodontal é essencial para a preservação dos dentes a longo prazo. Se não tratadas, doenças periodontais podem levar à perda dentária e a outros problemas de saúde.</p>
 
-        <!-- Testando a imagem do cartão de Odontologia Legal -->
-        <div class="image-container">
-            <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal">
-        </div>
+        <h3>Atuação do Dentista Especialista em Periodontia</h3>
+        <p>O periodontista é o profissional capacitado para diagnosticar e tratar doenças periodontais. Ele também realiza cirurgias periodontais para corrigir defeitos nos tecidos de suporte dos dentes e pode atuar na prevenção de doenças, através de orientações de higiene bucal e manutenção periódica.</p>
 
         <a href="index.html" class="back-link">Voltar à Página Principal</a>
     </main>
@@ -98,5 +110,6 @@
     <footer>
         <p>&copy; 2024 Odontoguia</p>
     </footer>
+
 </body>
 </html>

@@ -7,102 +7,62 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
+            padding: 20px;
         }
 
         header {
-            background-color: #0077b6;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2em;
+            margin-bottom: 30px;
         }
 
         main {
-            max-width: 700px;
-            margin: 20px auto;
+            max-width: 800px;
+            margin: auto;
             background-color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            position: relative;
         }
 
         footer {
-            background-color: #0077b6;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 20px;
         }
 
         .back-link {
+            margin-top: 20px;
             display: inline-block;
             padding: 10px 20px;
-            background-color: #005f73;
+            background-color: #0077b6;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            border-radius: 10px;
         }
 
-        .back-link:hover {
-            background-color: #004a5d;
-        }
-
-        h1, h2, h3 {
-            color: #005f73;
-        }
-
-        h1 {
-            font-size: 2.2em;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            margin-top: 20px;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            margin-top: 20px;
-        }
-
-        p {
-            line-height: 1.6;
-            margin-bottom: 20px;
+        h1, h2, p {
+            color: #333;
         }
 
         ul {
             list-style-type: disc;
             padding-left: 20px;
-            margin-bottom: 20px;
         }
 
         ul li {
             margin-bottom: 10px;
         }
 
-        .anatomy-img {
-            max-width: 50%;
-            height: auto;
-            margin: 20px auto;
-            display: block;
+        .image-container {
+            text-align: center;
+            margin: 20px 0;
         }
 
-        .section {
-            margin-bottom: 30px;
+        .image-container img {
+            max-width: 80%;
+            height: auto;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -112,41 +72,29 @@
     </header>
 
     <main>
-        <section class="section">
-            <h2>O que é Periodontia?</h2>
-            <p>A periodontia é a especialidade da odontologia que trata das doenças que afetam o periodonto, ou seja, os tecidos que suportam e envolvem os dentes. Isso inclui a gengiva, o osso alveolar, o cemento radicular e o ligamento periodontal.</p>
-            <img src="_ (1).jpeg" alt="Imagem sobre Anatomia do Periodonto" class="anatomy-img">
-        </section>
+        <h2>O que é Periodontia?</h2>
+        <p>A periodontia é a especialidade da odontologia que trata das doenças que afetam o periodonto, ou seja, os tecidos que suportam e envolvem os dentes. Isso inclui a gengiva, o osso alveolar, o cemento radicular e o ligamento periodontal.</p>
 
-        <section class="section">
-            <h3>Principais Doenças Tratadas pela Periodontia:</h3>
-            <ul>
-                <li>Gengivite</li>
-                <li>Periodontite</li>
-                <li>Recessão gengival</li>
-                <li>Abscessos periodontais</li>
-            </ul>
-        </section>
+        <div class="image-container">
+            <img src="_ (1).jpeg" alt="Anatomia do Periodonto">
+        </div>
 
-        <section class="section">
-            <h3>Áreas da Periodontia</h3>
-            <p>A periodontia pode ser dividida em duas áreas principais:</p>
-            <ul>
-                <li><strong>Periodontia Clínica:</strong> Foca no tratamento das doenças periodontais, incluindo a periodontia médica, que trata condições sistêmicas relacionadas.</li>
-                <li><strong>Periodontia Estética:</strong> Envolve procedimentos para melhorar a aparência das gengivas e dos dentes, visando um sorriso mais harmonioso e saudável.</li>
-            </ul>
-        </section>
+        <h3>Áreas da Periodontia</h3>
+        <p>A periodontia pode ser dividida em duas áreas principais:</p>
+        <ul>
+            <li><strong>Periodontia Clínica:</strong> Foca no tratamento de doenças periodontais, incluindo a periodontia médica.</li>
+            <li><strong>Periodontia Estética:</strong> Envolve procedimentos para melhorar a aparência das gengivas e dentes.</li>
+        </ul>
 
-        <section class="section">
-            <h3>Sintomas das Doenças Periodontais</h3>
-            <ul>
-                <li>Gengivas vermelhas e inchadas</li>
-                <li>Sangramento durante a escovação ou uso do fio dental</li>
-                <li>Mau hálito persistente</li>
-                <li>Mobilidade dentária</li>
-                <li>Recessão gengival</li>
-            </ul>
-        </section>
+        <h3>Sintomas das Doenças Periodontais</h3>
+        <p>Alguns sintomas comuns das doenças periodontais incluem:</p>
+        <ul>
+            <li>Gengivas vermelhas, inchadas ou sensíveis</li>
+            <li>Sangramento ao escovar ou usar fio dental</li>
+            <li>Presença de mau hálito persistente</li>
+            <li>Mobilidade ou deslocamento dos dentes</li>
+            <li>Retração gengival</li>
+        </ul>
 
         <a href="index.html" class="back-link">Voltar à Página Principal</a>
     </main>

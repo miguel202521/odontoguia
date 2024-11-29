@@ -133,6 +133,27 @@
         .pagination a.active {
             color: #ffd700;
         }
+        /* Estilo especial para o 5º item */
+.special-item {
+    background-color: #0077b6;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.special-item a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.special-item:hover {
+    background-color: #005f8b;
+    transform: scale(1.05);
+}
+
     </style>
 </head>
 <body>
@@ -230,7 +251,7 @@
                 <li>Tratamento de lesões orais</li>
                 <li>Doenças sistêmicas</li>
                 <li>Lesões de mucosas</li>
-                <li>Câncer de boca</li>
+                <li class="special-item"><a href="estomatologia-detalhada.html">Ver todos os tópicos</a></li>
             </ul>
         </div>
 

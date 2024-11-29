@@ -128,6 +128,8 @@
 
     <div class="media-geral" id="media-geral"></div>
 
+    <button id="btn-media-geral" onclick="calcularMediaGeral()" disabled>Calcular Média Geral</button>
+
     <a href="index.html" class="back-btn">Voltar para a Página Principal</a>
 
     <script>
@@ -168,7 +170,46 @@
             const resultadoDiv = document.getElementById(`resultado${id}`);
             resultadoDiv.textContent = `Média Ponderada: ${media}`;
 
+            // Habilita o botão de calcular média geral quando todas as calculadoras tiverem resultado
+            habilitarBotaoMediaGeral();
+
             return parseFloat(media);
+        }
+
+        // Função para habilitar o botão de calcular média geral se todas as calculadoras tiverem resultado
+        function habilitarBotaoMediaGeral() {
+            const qtdCalculadoras = document.getElementById('qtd-calculadoras').value;
+            let todasCalculadorasComResultado = true;
+
+            for (let i = 1; i <= qtdCalculadoras; i++) {
+                const resultadoDiv = document.getElementById(`resultado${i}`);
+                if (!resultadoDiv || resultadoDiv.textContent === "") {
+                    todasCalculadorasComResultado = false;
+                    break;
+                }
+            }
+
+            const btnMediaGeral = document.getElementById('btn-media-geral');
+            btnMediaGeral.disabled = !todasCalculadorasComResultado;
+        }
+
+        // Função para calcular a média geral das calculadoras ativas
+        function calcularMediaGeral() {
+            const qtdCalculadoras = document.getElementById('qtd-calculadoras').value;
+            let somaMedias = 0;
+            let count = 0;
+
+            for (let i = 1; i <= qtdCalculadoras; i++) {
+                const media = calcularMedia(i);
+                if (!isNaN(media) && media !== 0) {
+                    somaMedias += media;
+                    count++;
+                }
+            }
+
+            const mediaGeral = count > 0 ? (somaMedias / count).toFixed(2) : 0;
+            const mediaDiv = document.getElementById('media-geral');
+            mediaDiv.textContent = `Média Geral de todas as calculadoras: ${mediaGeral}`;
         }
 
         // Função para exibir as calculadoras de acordo com a escolha do usuário
@@ -176,9 +217,7 @@
             const qtdCalculadoras = document.getElementById('qtd-calculadoras').value;
             const container = document.getElementById('calculadoras-container');
             container.innerHTML = '';
-            let medias = [];
-            
-            // Limita o número de calculadoras a 4
+
             for (let i = 1; i <= qtdCalculadoras; i++) {
                 container.innerHTML += `
                     <div class="calc-container">
@@ -202,32 +241,10 @@
                 const id = select.id.match(/\d+/)[0];
                 atualizarCampos(id);
             });
-
-            // Atualiza a média geral
-            calcularMediaGeral(qtdCalculadoras);
         }
 
-        // Função para calcular a média geral das calculadoras ativas
-        function calcularMediaGeral(qtdCalculadoras) {
-            let somaMedias = 0;
-            let count = 0;
-
-            for (let i = 1; i <= qtdCalculadoras; i++) {
-                const media = calcularMedia(i);
-                if (!isNaN(media) && media !== 0) {
-                    somaMedias += media;
-                    count++;
-                }
-            }
-
-            const mediaGeral = count > 0 ? (somaMedias / count).toFixed(2) : 0;
-            const mediaDiv = document.getElementById('media-geral');
-            mediaDiv.textContent = `Média Geral de todas as calculadoras: ${mediaGeral}`;
-        }
-
-        // Inicializa com 1 calculadora
+        // Chama a função para exibir as calculadoras ao carregar a página
         exibirCalculadoras();
     </script>
-
 </body>
 </html>

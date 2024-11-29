@@ -3,65 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Média</title>
+    <title>Calculadora de Notas e Pesos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
             text-align: center;
-            margin: 0;
-            padding: 0;
+            background-color: #f0f4f8;
         }
-
         h1 {
-            background-color: #0077b6;
-            color: white;
-            padding: 20px;
-            margin: 0;
+            color: #0077b6;
         }
-
         .container {
-            max-width: 600px;
             margin: 20px auto;
-            background: white;
             padding: 20px;
+            border: 1px solid #ccc;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            max-width: 400px;
         }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group label {
+        label {
             display: block;
+            margin: 10px 0 5px;
             font-weight: bold;
-            margin-bottom: 5px;
         }
-
-        .input-group input {
-            width: 100%;
+        input[type="number"] {
+            width: 80%;
             padding: 10px;
+            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
         }
-
         button {
             background-color: #0077b6;
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
             font-size: 1em;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            margin-top: 10px;
         }
-
         button:hover {
-            background-color: #005f86;
+            background-color: #005f87;
         }
-
         .result {
             margin-top: 20px;
             font-size: 1.2em;
@@ -72,43 +59,62 @@
 <body>
     <h1>Calculadora de Média Ponderada</h1>
     <div class="container">
-        <form id="calculator">
-            <div class="input-group">
-                <label for="nota1">Nota 1:</label>
-                <input type="number" id="nota1" placeholder="Digite a primeira nota" required>
-            </div>
-            <div class="input-group">
-                <label for="peso1">Peso 1:</label>
-                <input type="number" id="peso1" placeholder="Digite o peso da primeira nota" required>
-            </div>
-            <div class="input-group">
-                <label for="nota2">Nota 2:</label>
-                <input type="number" id="nota2" placeholder="Digite a segunda nota" required>
-            </div>
-            <div class="input-group">
-                <label for="peso2">Peso 2:</label>
-                <input type="number" id="peso2" placeholder="Digite o peso da segunda nota" required>
-            </div>
-            <button type="button" onclick="calcularMedia()">Calcular Média</button>
-        </form>
+        <label for="num-notas">Escolha o número de notas:</label>
+        <select id="num-notas">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <div id="campos"></div>
+        <button onclick="calcularMedia()">Calcular Média</button>
         <div class="result" id="resultado"></div>
     </div>
 
     <script>
-        function calcularMedia() {
-            const nota1 = parseFloat(document.getElementById('nota1').value);
-            const peso1 = parseFloat(document.getElementById('peso1').value);
-            const nota2 = parseFloat(document.getElementById('nota2').value);
-            const peso2 = parseFloat(document.getElementById('peso2').value);
+        const camposDiv = document.getElementById('campos');
+        const numNotasSelect = document.getElementById('num-notas');
 
-            if (isNaN(nota1) || isNaN(peso1) || isNaN(nota2) || isNaN(peso2)) {
-                alert('Por favor, preencha todos os campos com valores válidos.');
-                return;
+        // Atualiza os campos de acordo com o número de notas selecionado
+        numNotasSelect.addEventListener('change', () => {
+            const numNotas = parseInt(numNotasSelect.value);
+            camposDiv.innerHTML = ''; // Limpa os campos
+
+            for (let i = 1; i <= numNotas; i++) {
+                // Cria campos para nota e peso
+                camposDiv.innerHTML += `
+                    <label for="nota${i}">Nota ${i}:</label>
+                    <input type="number" id="nota${i}" min="0" max="10" step="0.1" placeholder="Digite a nota ${i}">
+                    <label for="peso${i}">Peso ${i}:</label>
+                    <input type="number" id="peso${i}" min="1" max="10" step="1" placeholder="Digite o peso ${i}">
+                `;
+            }
+        });
+
+        // Calcula a média ponderada
+        function calcularMedia() {
+            const numNotas = parseInt(numNotasSelect.value);
+            let somaNotas = 0;
+            let somaPesos = 0;
+
+            for (let i = 1; i <= numNotas; i++) {
+                const nota = parseFloat(document.getElementById(`nota${i}`).value) || 0;
+                const peso = parseFloat(document.getElementById(`peso${i}`).value) || 1;
+
+                somaNotas += nota * peso;
+                somaPesos += peso;
             }
 
-            const mediaPonderada = ((nota1 * peso1) + (nota2 * peso2)) / (peso1 + peso2);
-            document.getElementById('resultado').innerText = `A média ponderada é: ${mediaPonderada.toFixed(2)}`;
+            const media = somaPesos > 0 ? (somaNotas / somaPesos).toFixed(2) : 0;
+
+            // Mostra o resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.textContent = `Média Ponderada: ${media}`;
         }
+
+        // Dispara o evento inicial para criar os campos iniciais
+        numNotasSelect.dispatchEvent(new Event('change'));
     </script>
 </body>
 </html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Média</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #0077b6;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005f86;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Média Ponderada</h1>
+    <div class="container">
+        <form id="calculator">
+            <div class="input-group">
+                <label for="nota1">Nota 1:</label>
+                <input type="number" id="nota1" placeholder="Digite a primeira nota" required>
+            </div>
+            <div class="input-group">
+                <label for="peso1">Peso 1:</label>
+                <input type="number" id="peso1" placeholder="Digite o peso da primeira nota" required>
+            </div>
+            <div class="input-group">
+                <label for="nota2">Nota 2:</label>
+                <input type="number" id="nota2" placeholder="Digite a segunda nota" required>
+            </div>
+            <div class="input-group">
+                <label for="peso2">Peso 2:</label>
+                <input type="number" id="peso2" placeholder="Digite o peso da segunda nota" required>
+            </div>
+            <button type="button" onclick="calcularMedia()">Calcular Média</button>
+        </form>
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularMedia() {
+            const nota1 = parseFloat(document.getElementById('nota1').value);
+            const peso1 = parseFloat(document.getElementById('peso1').value);
+            const nota2 = parseFloat(document.getElementById('nota2').value);
+            const peso2 = parseFloat(document.getElementById('peso2').value);
+
+            if (isNaN(nota1) || isNaN(peso1) || isNaN(nota2) || isNaN(peso2)) {
+                alert('Por favor, preencha todos os campos com valores válidos.');
+                return;
+            }
+
+            const mediaPonderada = ((nota1 * peso1) + (nota2 * peso2)) / (peso1 + peso2);
+            document.getElementById('resultado').innerText = `A média ponderada é: ${mediaPonderada.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>

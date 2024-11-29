@@ -9,25 +9,37 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            text-align: center;
             background-color: #f0f4f8;
         }
+
         h1 {
+            text-align: center;
             color: #0077b6;
         }
+
         .container {
-            margin: 20px auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .calc-container {
+            margin: 0 auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
             background-color: white;
-            max-width: 400px;
+            max-width: 350px;
+            width: 100%;
         }
+
         label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
         }
+
         input[type="number"] {
             width: 80%;
             padding: 10px;
@@ -36,6 +48,7 @@
             border-radius: 5px;
             font-size: 1em;
         }
+
         button {
             background-color: #0077b6;
             color: white;
@@ -46,61 +59,130 @@
             border-radius: 5px;
             margin-top: 10px;
         }
+
         button:hover {
             background-color: #005f87;
         }
+
         .result {
             margin-top: 20px;
             font-size: 1.2em;
             font-weight: bold;
         }
+
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
+
     <h1>Calculadora de Média Ponderada</h1>
+
     <div class="container">
-        <label for="num-notas">Escolha o número de notas:</label>
-        <select id="num-notas">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <div id="campos"></div>
-        <button onclick="calcularMedia()">Calcular Média</button>
-        <div class="result" id="resultado"></div>
+        <!-- Calculadora 1 -->
+        <div class="calc-container">
+            <label for="num-notas1">Escolha o número de notas:</label>
+            <select id="num-notas1" class="num-notas">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="campos" id="campos1"></div>
+            <button onclick="calcularMedia(1)">Calcular Média</button>
+            <div class="result" id="resultado1"></div>
+        </div>
+
+        <!-- Calculadora 2 -->
+        <div class="calc-container">
+            <label for="num-notas2">Escolha o número de notas:</label>
+            <select id="num-notas2" class="num-notas">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="campos" id="campos2"></div>
+            <button onclick="calcularMedia(2)">Calcular Média</button>
+            <div class="result" id="resultado2"></div>
+        </div>
+
+        <!-- Calculadora 3 -->
+        <div class="calc-container">
+            <label for="num-notas3">Escolha o número de notas:</label>
+            <select id="num-notas3" class="num-notas">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="campos" id="campos3"></div>
+            <button onclick="calcularMedia(3)">Calcular Média</button>
+            <div class="result" id="resultado3"></div>
+        </div>
+
+        <!-- Calculadora 4 -->
+        <div class="calc-container">
+            <label for="num-notas4">Escolha o número de notas:</label>
+            <select id="num-notas4" class="num-notas">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="campos" id="campos4"></div>
+            <button onclick="calcularMedia(4)">Calcular Média</button>
+            <div class="result" id="resultado4"></div>
+        </div>
     </div>
 
     <script>
-        const camposDiv = document.getElementById('campos');
-        const numNotasSelect = document.getElementById('num-notas');
-
-        // Atualiza os campos de acordo com o número de notas selecionado
-        numNotasSelect.addEventListener('change', () => {
+        // Função para atualizar campos de acordo com o número de notas selecionado
+        function atualizarCampos(id) {
+            const numNotasSelect = document.getElementById(`num-notas${id}`);
+            const camposDiv = document.getElementById(`campos${id}`);
             const numNotas = parseInt(numNotasSelect.value);
-            camposDiv.innerHTML = ''; // Limpa os campos
+            camposDiv.innerHTML = '';
 
             for (let i = 1; i <= numNotas; i++) {
-                // Cria campos para nota e peso
                 camposDiv.innerHTML += `
-                    <label for="nota${i}">Nota ${i}:</label>
-                    <input type="number" id="nota${i}" min="0" max="10" step="0.1" placeholder="Digite a nota ${i}">
-                    <label for="peso${i}">Peso ${i}:</label>
-                    <input type="number" id="peso${i}" min="1" max="10" step="1" placeholder="Digite o peso ${i}">
+                    <label for="nota${id}_${i}">Nota ${i}:</label>
+                    <input type="number" id="nota${id}_${i}" min="0" max="10" step="0.1" placeholder="Digite a nota ${i}">
+                    <label for="peso${id}_${i}">Peso ${i}:</label>
+                    <input type="number" id="peso${id}_${i}" min="1" max="10" step="1" placeholder="Digite o peso ${i}">
                 `;
             }
-        });
+        }
 
-        // Calcula a média ponderada
-        function calcularMedia() {
+        // Função para calcular a média ponderada
+        function calcularMedia(id) {
+            const numNotasSelect = document.getElementById(`num-notas${id}`);
             const numNotas = parseInt(numNotasSelect.value);
             let somaNotas = 0;
             let somaPesos = 0;
 
             for (let i = 1; i <= numNotas; i++) {
-                const nota = parseFloat(document.getElementById(`nota${i}`).value) || 0;
-                const peso = parseFloat(document.getElementById(`peso${i}`).value) || 1;
+                const nota = parseFloat(document.getElementById(`nota${id}_${i}`).value) || 0;
+                const peso = parseFloat(document.getElementById(`peso${id}_${i}`).value) || 1;
 
                 somaNotas += nota * peso;
                 somaPesos += peso;
@@ -108,13 +190,23 @@
 
             const media = somaPesos > 0 ? (somaNotas / somaPesos).toFixed(2) : 0;
 
-            // Mostra o resultado
-            const resultadoDiv = document.getElementById('resultado');
+            const resultadoDiv = document.getElementById(`resultado${id}`);
             resultadoDiv.textContent = `Média Ponderada: ${media}`;
         }
 
-        // Dispara o evento inicial para criar os campos iniciais
-        numNotasSelect.dispatchEvent(new Event('change'));
+        // Atualiza os campos de cada calculadora quando a seleção de número de notas mudar
+        document.querySelectorAll('.num-notas').forEach(select => {
+            select.addEventListener('change', event => {
+                const id = event.target.id.match(/\d+/)[0]; // Extrai o número da calculadora
+                atualizarCampos(id);
+            });
+        });
+
+        // Inicializa as calculadoras com os campos padrão
+        document.querySelectorAll('.num-notas').forEach(select => {
+            const id = select.id.match(/\d+/)[0];
+            atualizarCampos(id);
+        });
     </script>
 </body>
 </html>

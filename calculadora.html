@@ -116,13 +116,12 @@
 
     <h1>Calculadora de Média Ponderada</h1>
 
-    <label for="qtd-calculadoras">Escolha o número de calculadoras (1 a 5):</label>
+    <label for="qtd-calculadoras">Escolha o número de calculadoras (1 a 4):</label>
     <select id="qtd-calculadoras" onchange="exibirCalculadoras()">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-        <option value="5">5</option>
     </select>
 
     <div class="container" id="calculadoras-container"></div>
@@ -179,6 +178,7 @@
             container.innerHTML = '';
             let medias = [];
             
+            // Limita o número de calculadoras a 4
             for (let i = 1; i <= qtdCalculadoras; i++) {
                 container.innerHTML += `
                     <div class="calc-container">
@@ -214,7 +214,7 @@
 
             for (let i = 1; i <= qtdCalculadoras; i++) {
                 const media = calcularMedia(i);
-                if (!isNaN(media)) {
+                if (!isNaN(media) && media !== 0) {
                     somaMedias += media;
                     count++;
                 }

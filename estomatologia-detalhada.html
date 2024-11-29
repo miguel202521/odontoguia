@@ -3,52 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estomatologia - Tópicos Detalhados</title>
+    <title>Estomatologia</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
-            padding: 20px;
-            background-color: #f0f4f8;
-            color: #333;
+            padding: 0;
         }
+
         header {
+            text-align: center;
+            padding: 20px;
+            background-color: #0077b6;
+            color: white;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        li:hover {
+            background-color: #bbdefb;
+        }
+
+        li img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .highlight {
             background-color: #0077b6;
             color: white;
             text-align: center;
-            padding: 20px;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 15px;
+            transition: background-color 0.3s ease;
         }
-        h1 {
-            font-size: 2.5em;
+
+        .highlight:hover {
+            background-color: #005f86;
         }
-        ul {
+
+        .back-link {
+            text-align: center;
             margin-top: 20px;
-            padding-left: 20px;
         }
-        ul li {
-            margin-bottom: 10px;
-        }
-        a {
-            color: #0077b6;
+
+        .back-link a {
+            background-color: #0077b6;
+            color: white;
             text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            background-color: #005f86;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Estomatologia - Tópicos Detalhados</h1>
-        <a href="index.html">Voltar à Página Inicial</a>
+        <h1>Estomatologia</h1>
     </header>
-    <main>
+
+    <section>
+        <h2>Conheça os tópicos relacionados à Estomatologia</h2>
         <ul>
-            <li>Diagnóstico de lesões bucais</li>
-            <li>Tratamento de lesões orais</li>
-            <li>Doenças sistêmicas</li>
-            <li>Lesões de mucosas</li>
-            <li>Câncer de boca</li>
-            <li>Alterações salivárias</li>
-            <li>Doenças autoimunes relacionadas à boca</li>
+            <li>
+                <img src="diagnostico-lesoes.jpg" alt="Diagnóstico de Lesões">
+                Diagnóstico de lesões bucais
+            </li>
+            <li>
+                <img src="tratamento-lesoes.jpg" alt="Tratamento de Lesões">
+                Tratamento de lesões orais
+            </li>
+            <li>
+                <img src="doencas-sistemicas.jpg" alt="Doenças Sistêmicas">
+                Doenças sistêmicas
+            </li>
+            <li>
+                <img src="lesoes-mucosas.jpg" alt="Lesões de Mucosas">
+                Lesões de mucosas
+            </li>
+            <li class="highlight">
+                <a href="pagina-dedicada.html" style="color: inherit; text-decoration: none;">
+                    Saiba mais sobre Estomatologia →
+                </a>
+            </li>
         </ul>
-    </main>
+    </section>
+
+    <div class="back-link">
+        <a href="index.html">Voltar para a Página Principal</a>
+    </div>
 </body>
 </html>

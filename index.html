@@ -133,27 +133,21 @@
         .pagination a.active {
             color: #ffd700;
         }
-        /* Estilo especial para o 5º item */
-.special-item {
-    background-color: #0077b6;
-    text-align: center;
-    border-radius: 5px;
-    margin-top: 10px;
-    padding: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+        /* Estilo para o 5º item */
+.card .dropdown li:nth-child(5) a {
+    background-color: #0077b6; /* Cor de fundo diferenciada */
+    color: white; /* Texto em branco */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    font-weight: bold; /* Texto em negrito */
+    display: inline-block; /* Formato de botão */
+    text-decoration: none; /* Remove sublinhado */
+    transition: background-color 0.3s ease; /* Efeito suave */
 }
 
-.special-item a {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
+.card .dropdown li:nth-child(5) a:hover {
+    background-color: #005f8b; /* Cor ao passar o mouse */
 }
-
-.special-item:hover {
-    background-color: #005f8b;
-    transform: scale(1.05);
-}
-
     </style>
 </head>
 <body>

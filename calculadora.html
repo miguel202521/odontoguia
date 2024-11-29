@@ -70,6 +70,29 @@
             font-weight: bold;
         }
 
+        .media-geral {
+            font-size: 1.5em;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #0077b6;
+        }
+
+        .back-btn {
+            display: block;
+            margin: 40px auto;
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: white;
+            font-size: 1em;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #005f87;
+        }
+
         @media (max-width: 1200px) {
             .container {
                 grid-template-columns: repeat(3, 1fr);
@@ -93,70 +116,23 @@
 
     <h1>Calculadora de Média Ponderada</h1>
 
-    <div class="container">
-        <!-- Calculadora 1 -->
-        <div class="calc-container">
-            <label for="num-notas1">Escolha o número de notas:</label>
-            <select id="num-notas1" class="num-notas">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <div class="campos" id="campos1"></div>
-            <button onclick="calcularMedia(1)">Calcular Média</button>
-            <div class="result" id="resultado1"></div>
-        </div>
+    <label for="qtd-calculadoras">Escolha o número de calculadoras (1 a 5):</label>
+    <select id="qtd-calculadoras" onchange="exibirCalculadoras()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
 
-        <!-- Calculadora 2 -->
-        <div class="calc-container">
-            <label for="num-notas2">Escolha o número de notas:</label>
-            <select id="num-notas2" class="num-notas">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <div class="campos" id="campos2"></div>
-            <button onclick="calcularMedia(2)">Calcular Média</button>
-            <div class="result" id="resultado2"></div>
-        </div>
+    <div class="container" id="calculadoras-container"></div>
 
-        <!-- Calculadora 3 -->
-        <div class="calc-container">
-            <label for="num-notas3">Escolha o número de notas:</label>
-            <select id="num-notas3" class="num-notas">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <div class="campos" id="campos3"></div>
-            <button onclick="calcularMedia(3)">Calcular Média</button>
-            <div class="result" id="resultado3"></div>
-        </div>
+    <div class="media-geral" id="media-geral"></div>
 
-        <!-- Calculadora 4 -->
-        <div class="calc-container">
-            <label for="num-notas4">Escolha o número de notas:</label>
-            <select id="num-notas4" class="num-notas">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <div class="campos" id="campos4"></div>
-            <button onclick="calcularMedia(4)">Calcular Média</button>
-            <div class="result" id="resultado4"></div>
-        </div>
-    </div>
+    <a href="index.html" class="back-btn">Voltar para a Página Principal</a>
 
     <script>
-        // Função para atualizar campos de acordo com o número de notas selecionado
+        // Função para atualizar os campos de acordo com o número de notas selecionado
         function atualizarCampos(id) {
             const numNotasSelect = document.getElementById(`num-notas${id}`);
             const camposDiv = document.getElementById(`campos${id}`);
@@ -173,7 +149,7 @@
             }
         }
 
-        // Função para calcular a média ponderada
+        // Função para calcular a média ponderada de uma calculadora
         function calcularMedia(id) {
             const numNotasSelect = document.getElementById(`num-notas${id}`);
             const numNotas = parseInt(numNotasSelect.value);
@@ -192,21 +168,66 @@
 
             const resultadoDiv = document.getElementById(`resultado${id}`);
             resultadoDiv.textContent = `Média Ponderada: ${media}`;
+
+            return parseFloat(media);
         }
 
-        // Atualiza os campos de cada calculadora quando a seleção de número de notas mudar
-        document.querySelectorAll('.num-notas').forEach(select => {
-            select.addEventListener('change', event => {
-                const id = event.target.id.match(/\d+/)[0]; // Extrai o número da calculadora
+        // Função para exibir as calculadoras de acordo com a escolha do usuário
+        function exibirCalculadoras() {
+            const qtdCalculadoras = document.getElementById('qtd-calculadoras').value;
+            const container = document.getElementById('calculadoras-container');
+            container.innerHTML = '';
+            let medias = [];
+            
+            for (let i = 1; i <= qtdCalculadoras; i++) {
+                container.innerHTML += `
+                    <div class="calc-container">
+                        <label for="num-notas${i}">Escolha o número de notas:</label>
+                        <select id="num-notas${i}" class="num-notas" onchange="atualizarCampos(${i})">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <div class="campos" id="campos${i}"></div>
+                        <button onclick="calcularMedia(${i})">Calcular Média</button>
+                        <div class="result" id="resultado${i}"></div>
+                    </div>
+                `;
+            }
+
+            // Inicializa as calculadoras com os campos padrão
+            document.querySelectorAll('.num-notas').forEach(select => {
+                const id = select.id.match(/\d+/)[0];
                 atualizarCampos(id);
             });
-        });
 
-        // Inicializa as calculadoras com os campos padrão
-        document.querySelectorAll('.num-notas').forEach(select => {
-            const id = select.id.match(/\d+/)[0];
-            atualizarCampos(id);
-        });
+            // Atualiza a média geral
+            calcularMediaGeral(qtdCalculadoras);
+        }
+
+        // Função para calcular a média geral das calculadoras ativas
+        function calcularMediaGeral(qtdCalculadoras) {
+            let somaMedias = 0;
+            let count = 0;
+
+            for (let i = 1; i <= qtdCalculadoras; i++) {
+                const media = calcularMedia(i);
+                if (!isNaN(media)) {
+                    somaMedias += media;
+                    count++;
+                }
+            }
+
+            const mediaGeral = count > 0 ? (somaMedias / count).toFixed(2) : 0;
+            const mediaDiv = document.getElementById('media-geral');
+            mediaDiv.textContent = `Média Geral de todas as calculadoras: ${mediaGeral}`;
+        }
+
+        // Inicializa com 1 calculadora
+        exibirCalculadoras();
     </script>
+
 </body>
 </html>

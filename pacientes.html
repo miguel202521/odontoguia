@@ -75,6 +75,39 @@
         .actions button {
             margin-right: 5px;
         }
+
+        #search-container {
+            margin-top: 20px;
+            max-width: 600px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        #search-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        #back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        #back-button:hover {
+            background-color: #005f8a;
+        }
     </style>
 </head>
 <body>
@@ -89,6 +122,10 @@
         <button onclick="addNote()">Salvar Anotação</button>
     </div>
 
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Buscar paciente..." oninput="searchNotes()">
+    </div>
+
     <table>
         <thead>
             <tr>
@@ -101,13 +138,16 @@
         </tbody>
     </table>
 
+    <button id="back-button" onclick="window.location.href='index.html';">&larr;</button>
+
     <script>
         const notesTable = document.getElementById('notes-table');
+        const searchInput = document.getElementById('search-input');
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
 
-        function renderNotes() {
+        function renderNotes(filteredNotes = notes) {
             notesTable.innerHTML = '';
-            notes.forEach((note, index) => {
+            filteredNotes.forEach((note, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${note.name}</td>
@@ -149,6 +189,14 @@
             notes.splice(index, 1);
             localStorage.setItem('notes', JSON.stringify(notes));
             renderNotes();
+        }
+
+        function searchNotes() {
+            const query = searchInput.value.trim().toLowerCase();
+            const filteredNotes = notes.filter(note =>
+                note.name.toLowerCase().includes(query)
+            );
+            renderNotes(filteredNotes);
         }
 
         // Renderiza as anotações salvas ao carregar a página

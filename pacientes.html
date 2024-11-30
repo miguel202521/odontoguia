@@ -19,7 +19,7 @@
 
         .form-container {
             margin: 20px auto;
-            max-width: 400px;
+            max-width: 600px;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -55,30 +55,25 @@
             background-color: #005f8a;
         }
 
-        .notes-container {
+        table {
+            width: 100%;
+            border-collapse: collapse;
             margin-top: 30px;
         }
 
-        .note-card {
-            background: white;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
             text-align: left;
         }
 
-        .note-card h3 {
-            margin: 0;
-            color: #0077b6;
-        }
-
-        .note-card p {
-            margin: 10px 0;
+        th {
+            background-color: #0077b6;
+            color: white;
         }
 
         .actions button {
-            margin-right: 10px;
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -94,26 +89,35 @@
         <button onclick="addNote()">Salvar Anotação</button>
     </div>
 
-    <div class="notes-container" id="notes-container"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Paciente</th>
+                <th>Anotação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="notes-table">
+        </tbody>
+    </table>
 
     <script>
-        const notesContainer = document.getElementById('notes-container');
+        const notesTable = document.getElementById('notes-table');
         let notes = JSON.parse(localStorage.getItem('notes')) || [];
 
         function renderNotes() {
-            notesContainer.innerHTML = '';
+            notesTable.innerHTML = '';
             notes.forEach((note, index) => {
-                const noteCard = document.createElement('div');
-                noteCard.className = 'note-card';
-                noteCard.innerHTML = `
-                    <h3>${note.name}</h3>
-                    <p>${note.content}</p>
-                    <div class="actions">
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${note.name}</td>
+                    <td>${note.content}</td>
+                    <td class="actions">
                         <button onclick="editNote(${index})">Editar</button>
                         <button onclick="deleteNote(${index})">Excluir</button>
-                    </div>
+                    </td>
                 `;
-                notesContainer.appendChild(noteCard);
+                notesTable.appendChild(row);
             });
         }
 

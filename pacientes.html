@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciador de Anotações</title>
+    <title>Gerenciador de Pacientes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
-            margin: 0;
             padding: 20px;
-            text-align: center;
         }
 
         h1 {
             color: #333;
+            text-align: center;
         }
 
         .form-container {
@@ -32,7 +31,7 @@
             font-weight: bold;
         }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -55,30 +54,10 @@
             background-color: #005f8a;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-        }
-
-        th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #0077b6;
-            color: white;
-        }
-
-        .actions button {
-            margin-right: 5px;
-        }
-
         #search-container {
             margin-top: 20px;
             max-width: 600px;
+            margin-bottom: 10px;
             display: flex;
             gap: 10px;
             justify-content: center;
@@ -90,6 +69,28 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
+        }
+
+        .patient-list {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .patient-card {
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .patient-card img {
+            max-width: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
 
         #back-button {
@@ -111,96 +112,124 @@
     </style>
 </head>
 <body>
-    <h1>Gerenciador de Anotações</h1>
+    <h1>Gerenciador de Pacientes</h1>
+
     <div class="form-container">
         <label for="patient-name">Nome do Paciente</label>
         <input type="text" id="patient-name" placeholder="Digite o nome do paciente">
-        
-        <label for="note-content">Anotação</label>
-        <textarea id="note-content" rows="5" placeholder="Digite a anotação"></textarea>
-        
-        <button onclick="addNote()">Salvar Anotação</button>
+
+        <label for="patient-sex">Sexo</label>
+        <select id="patient-sex">
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+        </select>
+
+        <label for="patient-age">Idade</label>
+        <input type="number" id="patient-age" placeholder="Digite a idade do paciente">
+
+        <label for="patient-photo">Foto</label>
+        <input type="file" id="patient-photo" accept="image/*">
+
+        <label for="patient-complaints">Reclamações</label>
+        <textarea id="patient-complaints" rows="3" placeholder="Digite as reclamações do paciente"></textarea>
+
+        <button onclick="addPatient()">Salvar Paciente</button>
     </div>
 
     <div id="search-container">
-        <input type="text" id="search-input" placeholder="Buscar paciente..." oninput="searchNotes()">
+        <input type="text" id="search-input" placeholder="Buscar paciente..." oninput="searchPatients()">
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nome do Paciente</th>
-                <th>Anotação</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody id="notes-table">
-        </tbody>
-    </table>
+    <div class="patient-list" id="patient-list"></div>
 
     <button id="back-button" onclick="window.location.href='index.html';">&larr;</button>
 
     <script>
-        const notesTable = document.getElementById('notes-table');
-        const searchInput = document.getElementById('search-input');
-        let notes = JSON.parse(localStorage.getItem('notes')) || [];
+        let patients = JSON.parse(localStorage.getItem('patients')) || [];
 
-        function renderNotes(filteredNotes = notes) {
-            notesTable.innerHTML = '';
-            filteredNotes.forEach((note, index) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${note.name}</td>
-                    <td>${note.content}</td>
-                    <td class="actions">
-                        <button onclick="editNote(${index})">Editar</button>
-                        <button onclick="deleteNote(${index})">Excluir</button>
-                    </td>
+        function renderPatients(filteredPatients = patients) {
+            const patientList = document.getElementById('patient-list');
+            patientList.innerHTML = '';
+
+            filteredPatients.forEach((patient, index) => {
+                const card = document.createElement('div');
+                card.className = 'patient-card';
+                card.innerHTML = `
+                    <img src="${patient.photo || ''}" alt="Foto do Paciente">
+                    <p><strong>Nome:</strong> ${patient.name}</p>
+                    <p><strong>Sexo:</strong> ${patient.sex}</p>
+                    <p><strong>Idade:</strong> ${patient.age}</p>
+                    <p><strong>Reclamações:</strong> ${patient.complaints}</p>
+                    <textarea rows="3" placeholder="Adicione anotações...">${patient.notes || ''}</textarea>
+                    <button onclick="saveNotes(${index}, this.previousElementSibling)">Salvar Anotações</button>
+                    <button onclick="deletePatient(${index})">Excluir</button>
                 `;
-                notesTable.appendChild(row);
+                patientList.appendChild(card);
             });
         }
 
-        function addNote() {
+        function addPatient() {
             const name = document.getElementById('patient-name').value.trim();
-            const content = document.getElementById('note-content').value.trim();
+            const sex = document.getElementById('patient-sex').value;
+            const age = document.getElementById('patient-age').value.trim();
+            const photoInput = document.getElementById('patient-photo');
+            const complaints = document.getElementById('patient-complaints').value.trim();
 
-            if (!name || !content) {
-                alert('Por favor, preencha todos os campos.');
+            let photo = '';
+            if (photoInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    photo = e.target.result;
+                    savePatient(name, sex, age, photo, complaints);
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                savePatient(name, sex, age, photo, complaints);
+            }
+        }
+
+        function savePatient(name, sex, age, photo, complaints) {
+            if (!name || !age || !complaints) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
             }
 
-            notes.push({ name, content });
-            localStorage.setItem('notes', JSON.stringify(notes));
-            renderNotes();
+            patients.push({ name, sex, age, photo, complaints, notes: '' });
+            localStorage.setItem('patients', JSON.stringify(patients));
+            renderPatients();
+            clearForm();
+        }
+
+        function saveNotes(index, textarea) {
+            patients[index].notes = textarea.value;
+            localStorage.setItem('patients', JSON.stringify(patients));
+            alert('Anotações salvas com sucesso!');
+        }
+
+        function clearForm() {
             document.getElementById('patient-name').value = '';
-            document.getElementById('note-content').value = '';
+            document.getElementById('patient-sex').value = 'Masculino';
+            document.getElementById('patient-age').value = '';
+            document.getElementById('patient-photo').value = '';
+            document.getElementById('patient-complaints').value = '';
         }
 
-        function editNote(index) {
-            const note = notes[index];
-            document.getElementById('patient-name').value = note.name;
-            document.getElementById('note-content').value = note.content;
-
-            deleteNote(index); // Remove a anotação para ser atualizada
+        function deletePatient(index) {
+            patients.splice(index, 1);
+            localStorage.setItem('patients', JSON.stringify(patients));
+            renderPatients();
         }
 
-        function deleteNote(index) {
-            notes.splice(index, 1);
-            localStorage.setItem('notes', JSON.stringify(notes));
-            renderNotes();
-        }
-
-        function searchNotes() {
-            const query = searchInput.value.trim().toLowerCase();
-            const filteredNotes = notes.filter(note =>
-                note.name.toLowerCase().includes(query)
+        function searchPatients() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filteredPatients = patients.filter(patient =>
+                patient.name.toLowerCase().includes(query)
             );
-            renderNotes(filteredNotes);
+            renderPatients(filteredPatients);
         }
 
-        // Renderiza as anotações salvas ao carregar a página
-        renderNotes();
+        renderPatients();
     </script>
 </body>
 </html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Anotações</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .form-container {
+            margin: 20px auto;
+            max-width: 400px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #005f8a;
+        }
+
+        .notes-container {
+            margin-top: 30px;
+        }
+
+        .note-card {
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .note-card h3 {
+            margin: 0;
+            color: #0077b6;
+        }
+
+        .note-card p {
+            margin: 10px 0;
+        }
+
+        .actions button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gerenciador de Anotações</h1>
+    <div class="form-container">
+        <label for="patient-name">Nome do Paciente</label>
+        <input type="text" id="patient-name" placeholder="Digite o nome do paciente">
+        
+        <label for="note-content">Anotação</label>
+        <textarea id="note-content" rows="5" placeholder="Digite a anotação"></textarea>
+        
+        <button onclick="addNote()">Salvar Anotação</button>
+    </div>
+
+    <div class="notes-container" id="notes-container"></div>
+
+    <script>
+        const notesContainer = document.getElementById('notes-container');
+        let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+        function renderNotes() {
+            notesContainer.innerHTML = '';
+            notes.forEach((note, index) => {
+                const noteCard = document.createElement('div');
+                noteCard.className = 'note-card';
+                noteCard.innerHTML = `
+                    <h3>${note.name}</h3>
+                    <p>${note.content}</p>
+                    <div class="actions">
+                        <button onclick="editNote(${index})">Editar</button>
+                        <button onclick="deleteNote(${index})">Excluir</button>
+                    </div>
+                `;
+                notesContainer.appendChild(noteCard);
+            });
+        }
+
+        function addNote() {
+            const name = document.getElementById('patient-name').value.trim();
+            const content = document.getElementById('note-content').value.trim();
+
+            if (!name || !content) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            notes.push({ name, content });
+            localStorage.setItem('notes', JSON.stringify(notes));
+            renderNotes();
+            document.getElementById('patient-name').value = '';
+            document.getElementById('note-content').value = '';
+        }
+
+        function editNote(index) {
+            const note = notes[index];
+            document.getElementById('patient-name').value = note.name;
+            document.getElementById('note-content').value = note.content;
+
+            deleteNote(index); // Remove a anotação para ser atualizada
+        }
+
+        function deleteNote(index) {
+            notes.splice(index, 1);
+            localStorage.setItem('notes', JSON.stringify(notes));
+            renderNotes();
+        }
+
+        // Renderiza as anotações salvas ao carregar a página
+        renderNotes();
+    </script>
+</body>
+</html>

@@ -117,6 +117,11 @@
             margin-top: 10px;
             cursor: pointer;
         }
+        .footer-btns {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
         .btn-back {
             background-color: #cccccc;
             margin-top: 10px;
@@ -178,7 +183,9 @@
         <p><strong>Data da Consulta:</strong> <span id="details-consultation-date"></span></p>
         <button class="btn" onclick="editPatient()">Editar</button>
         <button class="btn-delete" onclick="deletePatient()">Excluir Paciente</button>
-        <button class="btn-back" onclick="window.location.href = 'index.html'">Voltar para a Página Principal</button>
+        <div class="footer-btns">
+            <button class="btn-back" onclick="window.location.href = 'index.html'">Voltar para a Página Principal</button>
+        </div>
     </div>
 
     <script>

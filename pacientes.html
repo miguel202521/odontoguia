@@ -27,16 +27,27 @@
         }
         .patient-list {
             margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
         }
         .patient-card {
             display: flex;
+            flex-direction: column;
             align-items: center;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin: 10px;
             padding: 10px;
             background: #f9f9f9;
             cursor: pointer;
+            width: 150px;
+            text-align: center;
+        }
+        .patient-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 10px;
         }
         .patient-card:hover {
             background-color: #e1f5fe;
@@ -118,32 +129,8 @@
             <input type="number" id="age" placeholder="Digite a idade do paciente">
         </div>
         <div class="form-group">
-            <label for="weight">Peso (kg):</label>
-            <input type="number" id="weight" placeholder="Digite o peso do paciente">
-        </div>
-        <div class="form-group">
-            <label for="height">Altura (cm):</label>
-            <input type="number" id="height" placeholder="Digite a altura do paciente">
-        </div>
-        <div class="form-group">
-            <label for="gender">Sexo:</label>
-            <select id="gender">
-                <option value="Masculino">Masculino</option>
-                <option value="Feminino">Feminino</option>
-                <option value="Outro">Outro</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="complaints">Reclamações:</label>
-            <textarea id="complaints" rows="3" placeholder="Adicione as reclamações"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="notes">Anotações:</label>
-            <textarea id="notes" rows="3" placeholder="Adicione anotações"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="history">Histórico Médico:</label>
-            <textarea id="history" rows="3" placeholder="Adicione o histórico médico"></textarea>
+            <label for="photo">Foto:</label>
+            <input type="file" id="photo" accept="image/*">
         </div>
         <button class="btn" onclick="addPatient()">Salvar Paciente</button>
 
@@ -157,13 +144,9 @@
     <div class="details-popup" id="details-popup">
         <button class="btn-close" onclick="closeDetails()">×</button>
         <h2 id="details-name"></h2>
+        <img id="details-photo" src="" alt="Foto do Paciente" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;">
         <p><strong>Idade:</strong> <span id="details-age"></span></p>
-        <p><strong>Peso:</strong> <span id="details-weight"></span></p>
-        <p><strong>Altura:</strong> <span id="details-height"></span></p>
         <p><strong>Sexo:</strong> <span id="details-gender"></span></p>
-        <p><strong>Reclamações:</strong> <span id="details-complaints"></span></p>
-        <p><strong>Anotações:</strong> <span id="details-notes"></span></p>
-        <p><strong>Histórico Médico:</strong> <span id="details-history"></span></p>
     </div>
 
     <script>
@@ -176,47 +159,39 @@
         function addPatient() {
             const name = document.getElementById("name").value;
             const age = document.getElementById("age").value;
-            const weight = document.getElementById("weight").value;
-            const height = document.getElementById("height").value;
-            const gender = document.getElementById("gender").value;
-            const complaints = document.getElementById("complaints").value;
-            const notes = document.getElementById("notes").value;
-            const history = document.getElementById("history").value;
-
-            if (!name || !age || !weight || !height || !gender) {
+            const photo = document.getElementById("photo").files[0];
+            const gender = "Masculino";  // Default value, you can customize
+            if (!name || !age || !photo) {
                 alert("Preencha os campos obrigatórios!");
                 return;
             }
 
-            const patient = {
-                id: Date.now(),
-                name,
-                age,
-                weight,
-                height,
-                gender,
-                complaints,
-                notes,
-                history
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const patient = {
+                    id: Date.now(),
+                    name,
+                    age,
+                    gender,
+                    photo: event.target.result,
+                };
+
+                let patients = JSON.parse(localStorage.getItem("patients")) || [];
+                patients.push(patient);
+                localStorage.setItem("patients", JSON.stringify(patients));
+
+                addPatientToList(patient);
+                clearForm();
             };
-
-            let patients = JSON.parse(localStorage.getItem("patients")) || [];
-            patients.push(patient);
-            localStorage.setItem("patients", JSON.stringify(patients));
-
-            addPatientToList(patient);
-            clearForm();
+            reader.readAsDataURL(photo);
         }
 
         function addPatientToList(patient) {
             const card = document.createElement("div");
             card.classList.add("patient-card");
             card.innerHTML = `
-                <div>
-                    <strong>${patient.name}</strong>
-                    <p>Idade: ${patient.age} anos</p>
-                    <p>Peso: ${patient.weight} kg</p>
-                </div>
+                <img src="${patient.photo}" alt="Foto do paciente">
+                <strong>${patient.name}</strong>
             `;
             card.onclick = () => showDetails(patient);
             patientList.appendChild(card);
@@ -230,9 +205,33 @@
         function showDetails(patient) {
             document.getElementById("details-name").textContent = patient.name;
             document.getElementById("details-age").textContent = patient.age;
-            document.getElementById("details-weight").textContent = patient.weight;
-            document.getElementById("details-height").textContent = patient.height;
             document.getElementById("details-gender").textContent = patient.gender;
-            document.getElementById("details-complaints").textContent = patient.complaints;
-            document.getElementById("details-notes").textContent = patient.notes;
-            document.getElementById("details-history").text
+            document.getElementById("details-photo").src = patient.photo;
+
+            overlay.style.display = "block";
+            detailsPopup.style.display = "block";
+        }
+
+        function closeDetails() {
+            overlay.style.display = "none";
+            detailsPopup.style.display = "none";
+        }
+
+        function filterPatients() {
+            const searchQuery = document.getElementById("search").value.toLowerCase();
+            const cards = document.querySelectorAll(".patient-card");
+
+            cards.forEach(card => {
+                const name = card.querySelector("strong").textContent.toLowerCase();
+                card.style.display = name.includes(searchQuery) ? "flex" : "none";
+            });
+        }
+
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("photo").value = "";
+        }
+    </script>
+</body>
+</html>

@@ -3,233 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciador de Pacientes</title>
+    <title>Gerenciamento de Pacientes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f9;
-            padding: 20px;
         }
-
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-
-        .form-container {
-            margin: 20px auto;
-            max-width: 600px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-
-        button {
-            padding: 10px 20px;
+        header {
             background-color: #0077b6;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
+            text-align: center;
+            padding: 20px;
         }
-
-        button:hover {
-            background-color: #005f8a;
-        }
-
-        #search-container {
-            margin-top: 20px;
-            max-width: 600px;
-            margin-bottom: 10px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        #search-input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1em;
-        }
-
-        .patient-list {
+        .container {
             max-width: 800px;
             margin: 20px auto;
-            background: #fff;
+            background: white;
+            padding: 20px;
             border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-
+        .patient-list {
+            margin-top: 20px;
+        }
         .patient-card {
-            border: 1px solid #ccc;
-            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            padding: 10px;
-        }
-
-        .patient-card img {
-            max-width: 100px;
-            border-radius: 50%;
             margin-bottom: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            cursor: pointer;
         }
-
-        #back-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 15px;
+        .patient-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .patient-card:hover {
+            background-color: #e1f5fe;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn {
             background-color: #0077b6;
             color: white;
             border: none;
-            border-radius: 50%;
+            padding: 10px 15px;
+            border-radius: 5px;
             cursor: pointer;
-            font-size: 1.2em;
         }
-
-        #back-button:hover {
-            background-color: #005f8a;
+        .btn:hover {
+            background-color: #005f8c;
+        }
+        .details-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
+        .details-popup h2 {
+            margin-top: 0;
+        }
+        .details-popup .btn-close {
+            background: red;
+            color: white;
+            float: right;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
         }
     </style>
 </head>
 <body>
-    <h1>Gerenciador de Pacientes</h1>
+    <header>
+        <h1>Gerenciamento de Pacientes</h1>
+    </header>
+    <div class="container">
+        <h2>Adicionar Novo Paciente</h2>
+        <div class="form-group">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" placeholder="Digite o nome do paciente">
+        </div>
+        <div class="form-group">
+            <label for="age">Idade:</label>
+            <input type="number" id="age" placeholder="Digite a idade do paciente">
+        </div>
+        <div class="form-group">
+            <label for="weight">Peso (kg):</label>
+            <input type="number" id="weight" placeholder="Digite o peso do paciente">
+        </div>
+        <div class="form-group">
+            <label for="height">Altura (cm):</label>
+            <input type="number" id="height" placeholder="Digite a altura do paciente">
+        </div>
+        <div class="form-group">
+            <label for="gender">Sexo:</label>
+            <select id="gender">
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="complaints">Reclamações:</label>
+            <textarea id="complaints" rows="3" placeholder="Adicione as reclamações"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="notes">Anotações:</label>
+            <textarea id="notes" rows="3" placeholder="Adicione anotações"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="history">Histórico Médico:</label>
+            <textarea id="history" rows="3" placeholder="Adicione o histórico médico"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="photo">Foto:</label>
+            <input type="file" id="photo" accept="image/*">
+        </div>
+        <button class="btn" onclick="addPatient()">Salvar Paciente</button>
 
-    <div class="form-container">
-        <label for="patient-name">Nome do Paciente</label>
-        <input type="text" id="patient-name" placeholder="Digite o nome do paciente">
-
-        <label for="patient-sex">Sexo</label>
-        <select id="patient-sex">
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-            <option value="Outro">Outro</option>
-        </select>
-
-        <label for="patient-age">Idade</label>
-        <input type="number" id="patient-age" placeholder="Digite a idade do paciente">
-
-        <label for="patient-photo">Foto</label>
-        <input type="file" id="patient-photo" accept="image/*">
-
-        <label for="patient-complaints">Reclamações</label>
-        <textarea id="patient-complaints" rows="3" placeholder="Digite as reclamações do paciente"></textarea>
-
-        <button onclick="addPatient()">Salvar Paciente</button>
+        <h2>Pacientes</h2>
+        <input type="text" id="search" placeholder="Pesquisar paciente..." onkeyup="filterPatients()">
+        <div class="patient-list" id="patient-list"></div>
     </div>
 
-    <div id="search-container">
-        <input type="text" id="search-input" placeholder="Buscar paciente..." oninput="searchPatients()">
+    <!-- Detalhes do Paciente -->
+    <div class="overlay" id="overlay"></div>
+    <div class="details-popup" id="details-popup">
+        <button class="btn-close" onclick="closeDetails()">×</button>
+        <h2 id="details-name"></h2>
+        <img id="details-photo" src="" alt="Foto do Paciente" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;">
+        <p><strong>Idade:</strong> <span id="details-age"></span></p>
+        <p><strong>Peso:</strong> <span id="details-weight"></span></p>
+        <p><strong>Altura:</strong> <span id="details-height"></span></p>
+        <p><strong>Sexo:</strong> <span id="details-gender"></span></p>
+        <p><strong>Reclamações:</strong> <span id="details-complaints"></span></p>
+        <p><strong>Anotações:</strong> <span id="details-notes"></span></p>
+        <p><strong>Histórico Médico:</strong> <span id="details-history"></span></p>
     </div>
 
-    <div class="patient-list" id="patient-list"></div>
-
-    <button id="back-button" onclick="window.location.href='index.html';">&larr;</button>
-
-    <script>
-        let patients = JSON.parse(localStorage.getItem('patients')) || [];
-
-        function renderPatients(filteredPatients = patients) {
-            const patientList = document.getElementById('patient-list');
-            patientList.innerHTML = '';
-
-            filteredPatients.forEach((patient, index) => {
-                const card = document.createElement('div');
-                card.className = 'patient-card';
-                card.innerHTML = `
-                    <img src="${patient.photo || ''}" alt="Foto do Paciente">
-                    <p><strong>Nome:</strong> ${patient.name}</p>
-                    <p><strong>Sexo:</strong> ${patient.sex}</p>
-                    <p><strong>Idade:</strong> ${patient.age}</p>
-                    <p><strong>Reclamações:</strong> ${patient.complaints}</p>
-                    <textarea rows="3" placeholder="Adicione anotações...">${patient.notes || ''}</textarea>
-                    <button onclick="saveNotes(${index}, this.previousElementSibling)">Salvar Anotações</button>
-                    <button onclick="deletePatient(${index})">Excluir</button>
-                `;
-                patientList.appendChild(card);
-            });
-        }
-
-        function addPatient() {
-            const name = document.getElementById('patient-name').value.trim();
-            const sex = document.getElementById('patient-sex').value;
-            const age = document.getElementById('patient-age').value.trim();
-            const photoInput = document.getElementById('patient-photo');
-            const complaints = document.getElementById('patient-complaints').value.trim();
-
-            let photo = '';
-            if (photoInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    photo = e.target.result;
-                    savePatient(name, sex, age, photo, complaints);
-                };
-                reader.readAsDataURL(photoInput.files[0]);
-            } else {
-                savePatient(name, sex, age, photo, complaints);
-            }
-        }
-
-        function savePatient(name, sex, age, photo, complaints) {
-            if (!name || !age || !complaints) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-
-            patients.push({ name, sex, age, photo, complaints, notes: '' });
-            localStorage.setItem('patients', JSON.stringify(patients));
-            renderPatients();
-            clearForm();
-        }
-
-        function saveNotes(index, textarea) {
-            patients[index].notes = textarea.value;
-            localStorage.setItem('patients', JSON.stringify(patients));
-            alert('Anotações salvas com sucesso!');
-        }
-
-        function clearForm() {
-            document.getElementById('patient-name').value = '';
-            document.getElementById('patient-sex').value = 'Masculino';
-            document.getElementById('patient-age').value = '';
-            document.getElementById('patient-photo').value = '';
-            document.getElementById('patient-complaints').value = '';
-        }
-
-        function deletePatient(index) {
-            patients.splice(index, 1);
-            localStorage.setItem('patients', JSON.stringify(patients));
-            renderPatients();
-        }
-
-        function searchPatients() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filteredPatients = patients.filter(patient =>
-                patient.name.toLowerCase().includes(query)
-            );
-            renderPatients(filteredPatients);
-        }
-
-        renderPatients();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

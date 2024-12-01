@@ -25,33 +25,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .patient-list {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .patient-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin: 10px;
-            padding: 10px;
-            background: #f9f9f9;
-            cursor: pointer;
-            width: 150px;
-            text-align: center;
-        }
-        .patient-card img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-        .patient-card:hover {
-            background-color: #e1f5fe;
-        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -76,7 +49,26 @@
         .btn:hover {
             background-color: #005f8c;
         }
-        .details-popup {
+        .patient-list {
+            margin-top: 20px;
+        }
+        .patient-card {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            cursor: pointer;
+        }
+        .patient-card img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .details-popup, .confirmation-popup {
             display: none;
             position: fixed;
             top: 50%;
@@ -90,17 +82,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             z-index: 1000;
         }
-        .details-popup h2 {
+        .details-popup h2, .confirmation-popup h2 {
             margin-top: 0;
-        }
-        .details-popup .btn-close {
-            background: red;
-            color: white;
-            float: right;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 50%;
-            font-weight: bold;
         }
         .overlay {
             display: none;
@@ -112,43 +95,18 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
-        .btn-delete {
-            background: red;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .footer-btns {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .btn-back {
-            background-color: #cccccc;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-        .confirmation-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        .confirmation-popup button {
-            background-color: #0077b6;
+        .back-button {
+            display: inline-block;
+            margin: 10px 0;
+            text-decoration: none;
+            background-color: #555;
             color: white;
-            padding: 10px 15px;
+            padding: 8px 15px;
             border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
+            text-align: center;
         }
-        .confirmation-popup button:hover {
-            background-color: #005f8c;
+        .back-button:hover {
+            background-color: #333;
         }
     </style>
 </head>
@@ -157,7 +115,8 @@
         <h1>Gerenciamento de Pacientes</h1>
     </header>
     <div class="container">
-        <h2>Adicionar Novo Paciente</h2>
+        <a href="index.html" class="back-button">Voltar para Página Principal</a>
+        <h2>Adicionar/Editar Paciente</h2>
         <div class="form-group">
             <label for="name">Nome:</label>
             <input type="text" id="name" placeholder="Digite o nome do paciente">
@@ -167,7 +126,14 @@
             <input type="number" id="age" placeholder="Digite a idade do paciente">
         </div>
         <div class="form-group">
-            <label for="weight">Peso (kg):</label>
+            <label for="gender">Sexo:</label>
+            <select id="gender">
+                <option value="Masculino">Homem</option>
+                <option value="Feminino">Mulher</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="weight">Peso:</label>
             <input type="number" id="weight" placeholder="Digite o peso do paciente">
         </div>
         <div class="form-group">
@@ -186,173 +152,31 @@
             <label for="consultation-date">Data da Consulta:</label>
             <input type="date" id="consultation-date">
         </div>
-        <div class="form-group">
-            <label for="photo">Foto:</label>
-            <input type="file" id="photo" accept="image/*">
-        </div>
-        <button class="btn" onclick="addPatient()">Salvar Paciente</button>
-
+        <button class="btn" id="save-button">Salvar Paciente</button>
         <h2>Pacientes</h2>
         <input type="text" id="search" placeholder="Pesquisar paciente..." onkeyup="filterPatients()">
-        <div class="patient-list" id="patient-list"></div>
+        <div id="patient-list" class="patient-list"></div>
     </div>
-
-    <!-- Detalhes do Paciente -->
     <div class="overlay" id="overlay"></div>
     <div class="details-popup" id="details-popup">
-        <button class="btn-close" onclick="closeDetails()">×</button>
+        <button class="btn" onclick="closeDetails()">Fechar</button>
         <h2 id="details-name"></h2>
         <img id="details-photo" src="" alt="Foto do Paciente" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;">
         <p><strong>Idade:</strong> <span id="details-age"></span></p>
+        <p><strong>Sexo:</strong> <span id="details-gender"></span></p>
         <p><strong>Peso:</strong> <span id="details-weight"></span></p>
         <p><strong>Reclamações:</strong> <span id="details-complaints"></span></p>
         <p><strong>Histórico Médico:</strong> <span id="details-history"></span></p>
         <p><strong>Anotações:</strong> <span id="details-notes"></span></p>
         <p><strong>Data da Consulta:</strong> <span id="details-consultation-date"></span></p>
         <button class="btn" onclick="editPatient()">Editar</button>
-        <button class="btn-delete" onclick="openConfirmation()">Excluir Paciente</button>
-        <div class="footer-btns">
-            <button class="btn-back" onclick="window.location.href = 'index.html'">Voltar para a Página Principal</button>
-        </div>
+        <button class="btn" onclick="confirmDeletion()">Excluir</button>
     </div>
-
-    <!-- Confirmação de Exclusão -->
     <div class="confirmation-popup" id="confirmation-popup">
-        <h3>Tem certeza que deseja excluir este paciente?</h3>
-        <button onclick="deletePatient()">Sim</button>
-        <button onclick="closeConfirmation()">Não</button>
+        <h2>Deseja realmente excluir este paciente?</h2>
+        <button class="btn" onclick="deletePatient()">Sim</button>
+        <button class="btn" onclick="closeConfirmation()">Não</button>
     </div>
-
-    <script>
-        const patientList = document.getElementById("patient-list");
-        const overlay = document.getElementById("overlay");
-        const detailsPopup = document.getElementById("details-popup");
-        const confirmationPopup = document.getElementById("confirmation-popup");
-        let currentPatient = null;
-
-        document.addEventListener("DOMContentLoaded", loadPatients);
-
-        function addPatient() {
-            const name = document.getElementById("name").value;
-            const age = document.getElementById("age").value;
-            const weight = document.getElementById("weight").value;
-            const complaints = document.getElementById("complaints").value;
-            const history = document.getElementById("history").value;
-            const notes = document.getElementById("notes").value;
-            const consultationDate = document.getElementById("consultation-date").value;
-            const photo = document.getElementById("photo").files[0];
-
-            if (name && age && weight && complaints && history && notes && consultationDate) {
-                const patient = {
-                    id: Date.now(),
-                    name,
-                    age,
-                    weight,
-                    complaints,
-                    history,
-                    notes,
-                    consultationDate,
-                    photo: photo ? URL.createObjectURL(photo) : ""
-                };
-
-                let patients = JSON.parse(localStorage.getItem("patients")) || [];
-                patients.push(patient);
-                localStorage.setItem("patients", JSON.stringify(patients));
-
-                addPatientToList(patient);
-                clearForm();
-            }
-        }
-
-        function addPatientToList(patient) {
-            const card = document.createElement("div");
-            card.classList.add("patient-card");
-            card.innerHTML = `
-                <img src="${patient.photo}" alt="Foto do Paciente">
-                <strong>${patient.name}</strong>
-            `;
-            card.onclick = () => showDetails(patient);
-            patientList.appendChild(card);
-        }
-
-        function loadPatients() {
-            const patients = JSON.parse(localStorage.getItem("patients")) || [];
-            patients.forEach(patient => addPatientToList(patient));
-        }
-
-        function showDetails(patient) {
-            currentPatient = patient;
-
-            document.getElementById("details-name").textContent = patient.name;
-            document.getElementById("details-age").textContent = patient.age;
-            document.getElementById("details-weight").textContent = patient.weight;
-            document.getElementById("details-complaints").textContent = patient.complaints;
-            document.getElementById("details-history").textContent = patient.history;
-            document.getElementById("details-notes").textContent = patient.notes;
-            document.getElementById("details-consultation-date").textContent = patient.consultationDate;
-            document.getElementById("details-photo").src = patient.photo;
-
-            overlay.style.display = "block";
-            detailsPopup.style.display = "block";
-        }
-
-        function closeDetails() {
-            overlay.style.display = "none";
-            detailsPopup.style.display = "none";
-        }
-
-        function editPatient() {
-            document.getElementById("name").value = currentPatient.name;
-            document.getElementById("age").value = currentPatient.age;
-            document.getElementById("weight").value = currentPatient.weight;
-            document.getElementById("complaints").value = currentPatient.complaints;
-            document.getElementById("history").value = currentPatient.history;
-            document.getElementById("notes").value = currentPatient.notes;
-            document.getElementById("consultation-date").value = currentPatient.consultationDate;
-
-            document.getElementById("photo").setAttribute("data-id", currentPatient.id);
-            closeDetails();
-        }
-
-        function deletePatient() {
-            let patients = JSON.parse(localStorage.getItem("patients")) || [];
-            patients = patients.filter(patient => patient.id !== currentPatient.id);
-            localStorage.setItem("patients", JSON.stringify(patients));
-
-            patientList.innerHTML = "";
-            loadPatients();
-            closeDetails();
-            closeConfirmation();
-        }
-
-        function filterPatients() {
-            const searchQuery = document.getElementById("search").value.toLowerCase();
-            const cards = document.querySelectorAll(".patient-card");
-
-            cards.forEach(card => {
-                const name = card.querySelector("strong").textContent.toLowerCase();
-                card.style.display = name.includes(searchQuery) ? "flex" : "none";
-            });
-        }
-
-        function clearForm() {
-            document.getElementById("name").value = "";
-            document.getElementById("age").value = "";
-            document.getElementById("weight").value = "";
-            document.getElementById("complaints").value = "";
-            document.getElementById("history").value = "";
-            document.getElementById("notes").value = "";
-            document.getElementById("consultation-date").value = "";
-            document.getElementById("photo").value = "";
-        }
-
-        function openConfirmation() {
-            confirmationPopup.style.display = "block";
-        }
-
-        function closeConfirmation() {
-            confirmationPopup.style.display = "none";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

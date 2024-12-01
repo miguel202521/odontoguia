@@ -117,6 +117,11 @@
             margin-top: 10px;
             cursor: pointer;
         }
+        .btn-back {
+            background-color: #cccccc;
+            margin-top: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -173,6 +178,7 @@
         <p><strong>Data da Consulta:</strong> <span id="details-consultation-date"></span></p>
         <button class="btn" onclick="editPatient()">Editar</button>
         <button class="btn-delete" onclick="deletePatient()">Excluir Paciente</button>
+        <button class="btn-back" onclick="window.location.href = 'index.html'">Voltar para a Página Principal</button>
     </div>
 
     <script>
@@ -238,6 +244,7 @@
 
         function showDetails(patient) {
             currentPatient = patient;
+
             document.getElementById("details-name").textContent = patient.name;
             document.getElementById("details-age").textContent = patient.age;
             document.getElementById("details-weight").textContent = patient.weight;
@@ -272,7 +279,6 @@
             patients = patients.filter(patient => patient.id !== currentPatient.id);
             localStorage.setItem("patients", JSON.stringify(patients));
 
-            // Atualiza a lista de pacientes após exclusão
             patientList.innerHTML = "";
             loadPatients();
             closeDetails();

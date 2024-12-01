@@ -112,6 +112,11 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 999;
         }
+        .btn-delete {
+            background: red;
+            margin-top: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -167,6 +172,7 @@
         <p><strong>Histórico Médico:</strong> <span id="details-history"></span></p>
         <p><strong>Data da Consulta:</strong> <span id="details-consultation-date"></span></p>
         <button class="btn" onclick="editPatient()">Editar</button>
+        <button class="btn-delete" onclick="deletePatient()">Excluir Paciente</button>
     </div>
 
     <script>
@@ -258,6 +264,17 @@
             document.getElementById("consultation-date").value = currentPatient.consultationDate;
 
             document.getElementById("photo").setAttribute("data-id", currentPatient.id);
+            closeDetails();
+        }
+
+        function deletePatient() {
+            let patients = JSON.parse(localStorage.getItem("patients")) || [];
+            patients = patients.filter(patient => patient.id !== currentPatient.id);
+            localStorage.setItem("patients", JSON.stringify(patients));
+
+            // Atualiza a lista de pacientes após exclusão
+            patientList.innerHTML = "";
+            loadPatients();
             closeDetails();
         }
 

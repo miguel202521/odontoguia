@@ -232,6 +232,7 @@
             if (currentTooth) {
                 currentTooth.nota = toothNote.value;
                 modal.classList.remove("open");
+                salvarOdontograma();
             }
         });
 
@@ -246,6 +247,7 @@
                     currentTooth.status = "Excluído";
                 }
                 modal.classList.remove("open");
+                salvarOdontograma();
             }
         });
 
@@ -276,7 +278,6 @@
             Object.keys(odontogramasSalvos).forEach((nome) => {
                 const li = document.createElement("li");
                 li.textContent = nome;
-
                 const openBtn = document.createElement("button");
                 openBtn.textContent = "Abrir";
                 openBtn.addEventListener("click", () => abrirOdontograma(nome));

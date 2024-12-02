@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontograma Interativo</title>
+    <title>Odontograma</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f3f4f6;
+            background-color: #f4f4f9;
         }
         .container {
-            width: 90%;
-            margin: 20px auto;
             max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
         }
         h1 {
             text-align: center;
@@ -23,255 +23,230 @@
         .odontograma {
             display: grid;
             grid-template-columns: repeat(16, 1fr);
-            gap: 5px;
-            margin-top: 20px;
+            gap: 10px;
+            justify-items: center;
+            margin-top: 30px;
+        }
+        .quadrante {
+            grid-column: span 16;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
         }
         .tooth {
-            width: 60px;
-            height: 60px;
-            background-color: #fff;
+            width: 50px;
+            height: 50px;
             border: 2px solid #ddd;
-            border-radius: 5px;
+            border-radius: 50%;
+            background-color: #fff;
             display: flex;
-            align-items: center;
             justify-content: center;
-            position: relative;
+            align-items: center;
             cursor: pointer;
+            position: relative;
         }
         .tooth:hover {
             border-color: #007bff;
-            background-color: #f0f8ff;
+            background-color: #e6f7ff;
         }
         .tooth-number {
-            font-size: 12px;
-            color: #333;
             position: absolute;
             top: 5px;
-            right: 5px;
+            left: 5px;
+            font-size: 10px;
+            color: #666;
         }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            align-items: center;
-            justify-content: center;
+        .dente-superior {
+            margin-bottom: 20px;
         }
-        .modal-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .modal h2 {
-            margin-top: 0;
-            color: #333;
-        }
-        .modal button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #007bff;
-            border: none;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .modal button:hover {
-            background: #0056b3;
-        }
-        .status {
-            margin-top: 10px;
-        }
-        .status span {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .status span:hover {
-            background: #f0f8ff;
-        }
-        .status span.selected {
-            background: #007bff;
-            color: #fff;
-            border-color: #007bff;
-        }
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .dente-inferior {
             margin-top: 20px;
         }
-        .controls input {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            flex: 1;
-            margin-right: 10px;
+        .actions {
+            text-align: center;
+            margin-top: 20px;
         }
-        .controls button {
+        .actions button {
+            margin: 5px;
             padding: 10px 20px;
-            background: #007bff;
+            background-color: #007bff;
             border: none;
-            color: #fff;
+            color: white;
             border-radius: 5px;
             cursor: pointer;
         }
-        .controls button:hover {
-            background: #0056b3;
+        .actions button:hover {
+            background-color: #0056b3;
         }
-        .delete-btn {
-            background: #dc3545;
+        .actions .delete-btn {
+            background-color: #dc3545;
         }
-        .delete-btn:hover {
-            background: #a71d2a;
+        .actions .delete-btn:hover {
+            background-color: #a71d2a;
+        }
+        .saved-list {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .saved-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .saved-list ul li {
+            margin: 10px 0;
+        }
+        .saved-list ul li button {
+            margin-left: 10px;
+            background-color: #dc3545;
+            padding: 5px 10px;
+            border: none;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .saved-list ul li button:hover {
+            background-color: #a71d2a;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="odontograma-title">Odontograma</h1>
-        <div class="controls">
-            <input type="text" id="odontograma-name" placeholder="Digite o nome do odontograma">
-            <button id="save-name">Salvar Nome</button>
-            <button id="delete-all" class="delete-btn">Excluir Tudo</button>
-        </div>
+        <h1>Odontograma Interativo</h1>
         <div class="odontograma" id="odontograma">
             <!-- Dentes serão gerados dinamicamente aqui -->
         </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <h2>Configurar Dente <span id="dente-id"></span></h2>
-            <div class="status">
-                <span data-status="Saudável">Saudável</span>
-                <span data-status="Cárie">Cárie</span>
-                <span data-status="Restaurado">Restaurado</span>
-                <span data-status="Extraído">Extraído</span>
-            </div>
-            <button id="salvar">Salvar</button>
+        <div class="actions">
+            <button id="save-button">Salvar Odontograma</button>
+            <button id="new-button">Novo Odontograma</button>
+        </div>
+        <div class="saved-list">
+            <h2>Odontogramas Salvos</h2>
+            <ul id="saved-odontograms">
+                <!-- Lista de odontogramas salvos -->
+            </ul>
         </div>
     </div>
 
     <script>
-        // Elementos
-        const odontograma = document.getElementById('odontograma');
-        const modal = document.getElementById('modal');
-        const modalDenteId = document.getElementById('dente-id');
-        const salvarButton = document.getElementById('salvar');
-        const statusSpans = document.querySelectorAll('.status span');
-        const deleteAllButton = document.getElementById('delete-all');
-        const odontogramaTitle = document.getElementById('odontograma-title');
-        const odontogramaNameInput = document.getElementById('odontograma-name');
-        const saveNameButton = document.getElementById('save-name');
+        const odontograma = document.getElementById("odontograma");
+        const saveButton = document.getElementById("save-button");
+        const newButton = document.getElementById("new-button");
+        const savedList = document.getElementById("saved-odontograms");
 
         let dentes = [];
-        let denteSelecionado = null;
+        let odontogramasSalvos = JSON.parse(localStorage.getItem("odontogramas")) || {};
 
-        // Função para salvar os dados no Local Storage
-        function salvarOdontograma() {
-            localStorage.setItem('odontograma', JSON.stringify(dentes));
-            localStorage.setItem('odontogramaName', odontogramaTitle.textContent);
-        }
+        // Gerar dentes do odontograma
+        function gerarDentes() {
+            const quadrantes = {
+                superiorDireito: [18, 17, 16, 15, 14, 13, 12, 11],
+                superiorEsquerdo: [21, 22, 23, 24, 25, 26, 27, 28],
+                inferiorDireito: [48, 47, 46, 45, 44, 43, 42, 41],
+                inferiorEsquerdo: [31, 32, 33, 34, 35, 36, 37, 38],
+            };
 
-        // Função para carregar os dados do Local Storage
-        function carregarOdontograma() {
-            const dadosSalvos = localStorage.getItem('odontograma');
-            const nomeSalvo = localStorage.getItem('odontogramaName');
-            if (dadosSalvos) {
-                dentes = JSON.parse(dadosSalvos);
-                dentes.forEach(dente => atualizarDente(dente.id, dente.status));
+            for (const [nome, dentesLista] of Object.entries(quadrantes)) {
+                dentesLista.forEach((num) => {
+                    const dente = document.createElement("div");
+                    dente.classList.add("tooth");
+                    dente.dataset.id = num;
+                    dente.innerHTML = `<span class="tooth-number">${num}</span>`;
+                    dente.addEventListener("click", () => alterarStatus(num));
+                    odontograma.appendChild(dente);
+
+                    dentes.push({ id: num, status: "Saudável" });
+                });
             }
-            if (nomeSalvo) {
-                odontogramaTitle.textContent = nomeSalvo;
-                odontogramaNameInput.value = nomeSalvo;
-            }
         }
 
-        // Atualizar o visual do dente
-        function atualizarDente(id, status) {
-            const dente = odontograma.querySelector(`[data-id="${id}"]`);
-            dente.style.backgroundColor = status === "Saudável" ? "#d4edda" :
-                                          status === "Cárie" ? "#f8d7da" :
-                                          status === "Restaurado" ? "#fff3cd" : "#f5f5f5";
-        }
-
-        // Gerar dentes
-        for (let i = 1; i <= 32; i++) {
-            dentes.push({ id: i, status: "Saudável" });
-
-            const dente = document.createElement('div');
-            dente.classList.add('tooth');
-            dente.innerHTML = `<span class="tooth-number">${i}</span>`;
-            dente.dataset.id = i;
-
-            dente.addEventListener('click', () => abrirModal(i));
-
-            odontograma.appendChild(dente);
-        }
-
-        // Abrir modal
-        function abrirModal(id) {
-            denteSelecionado = id;
-            modalDenteId.textContent = id;
-            statusSpans.forEach(span => span.classList.remove('selected'));
-            const statusAtual = dentes.find(dente => dente.id === id).status;
-            document.querySelector(`[data-status="${statusAtual}"]`).classList.add('selected');
-            modal.style.display = 'flex';
-        }
-
-        // Selecionar status
-        statusSpans.forEach(span => {
-            span.addEventListener('click', () => {
-                statusSpans.forEach(s => s.classList.remove('selected'));
-                span.classList.add('selected');
+        // Atualizar visual do dente
+        function atualizarVisual() {
+            dentes.forEach(({ id, status }) => {
+                const dente = document.querySelector(`[data-id="${id}"]`);
+                dente.style.backgroundColor =
+                    status === "Saudável"
+                        ? "#d4edda"
+                        : status === "Cárie"
+                        ? "#f8d7da"
+                        : status === "Restaurado"
+                        ? "#fff3cd"
+                        : "#f5f5f5";
             });
-        });
+        }
 
-        // Salvar status
-        salvarButton.addEventListener('click', () => {
-            const novoStatus = document.querySelector('.status .selected').dataset.status;
-            const dente = dentes.find(dente => dente.id === denteSelecionado);
-            dente.status = novoStatus;
-            atualizarDente(denteSelecionado, novoStatus);
-            salvarOdontograma();
-            modal.style.display = 'none';
-        });
-
-        // Fechar modal ao clicar fora
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.style.display = 'none';
-        });
-
-        // Excluir todos os dados
-        deleteAllButton.addEventListener('click', () => {
-            if (confirm('Tem certeza de que deseja excluir todos os dados do odontograma?')) {
-                localStorage.clear();
-                location.reload();
+        // Alterar status do dente
+        function alterarStatus(id) {
+            const dente = dentes.find((d) => d.id === id);
+            const novoStatus = prompt(
+                `Alterar status do dente ${id}:\n(Saudável, Cárie, Restaurado, Extraído)`,
+                dente.status
+            );
+            if (novoStatus) {
+                dente.status = novoStatus;
+                atualizarVisual();
             }
-        });
+        }
 
-        // Salvar o nome do odontograma
-        saveNameButton.addEventListener('click', () => {
-            const nome = odontogramaNameInput.value.trim();
-            if (nome) {
-                odontogramaTitle.textContent = nome;
-                salvarOdontograma();
+        // Salvar odontograma
+        function salvarOdontograma() {
+            const nome = prompt("Digite o nome para este odontograma:");
+            if (!nome) return alert("Nome inválido.");
+            odontogramasSalvos[nome] = JSON.parse(JSON.stringify(dentes));
+            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
+            carregarLista();
+        }
+
+        // Criar novo odontograma
+        function novoOdontograma() {
+            if (confirm("Deseja criar um novo odontograma? Todas as alterações não salvas serão perdidas.")) {
+                dentes = dentes.map((d) => ({ ...d, status: "Saudável" }));
+                atualizarVisual();
             }
-        });
+        }
 
-        // Carregar dados ao iniciar a página
-        window.addEventListener('load', carregarOdontograma);
+        // Carregar lista de odontogramas salvos
+        function carregarLista() {
+            savedList.innerHTML = "";
+            for (const nome in odontogramasSalvos) {
+                const li = document.createElement("li");
+                li.textContent = nome;
+                const carregarButton = document.createElement("button");
+                carregarButton.textContent = "Carregar";
+                carregarButton.addEventListener("click", () => carregarOdontograma(nome));
+
+                const excluirButton = document.createElement("button");
+                excluirButton.textContent = "Excluir";
+                excluirButton.addEventListener("click", () => excluirOdontograma(nome));
+
+                li.appendChild(carregarButton);
+                li.appendChild(excluirButton);
+                savedList.appendChild(li);
+            }
+        }
+
+        // Carregar odontograma salvo
+        function carregarOdontograma(nome) {
+            dentes = JSON.parse(JSON.stringify(odontogramasSalvos[nome]));
+            atualizarVisual();
+        }
+
+        // Excluir odontograma salvo
+        function excluirOdontograma(nome) {
+            if (confirm(`Tem certeza que deseja excluir o odontograma "${nome}"?`)) {
+                delete odontogramasSalvos[nome];
+                localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
+                carregarLista();
+            }
+        }
+
+        // Inicializar
+        gerarDentes();
+        atualizarVisual();
+        carregarLista();
+
+        saveButton.addEventListener("click", salvarOdontograma);
+        newButton.addEventListener("click", novoOdontograma);
     </script>
 </body>
 </html>

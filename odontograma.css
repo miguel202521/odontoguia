@@ -58,6 +58,7 @@ header h1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
+    margin: 20px 0;
 }
 
 .quadrant {
@@ -80,12 +81,12 @@ header h1 {
     border: 2px solid #ddd;
     border-radius: 50%;
     background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
     cursor: pointer;
     position: relative;
-}
-
-.tooth:hover {
-    background-color: #e3f2fd;
 }
 
 .tooth.selected {
@@ -108,4 +109,26 @@ header h1 {
 
 .controls .btn:hover {
     background-color: #005f8c;
+}
+
+.periograms {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.periograms ul {
+    list-style: none;
+    padding: 0;
+}
+
+.periograms li {
+    margin: 5px 0;
+    padding: 10px;
+    background: #f4f4f4;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.periograms li:hover {
+    background: #e3f2fd;
 }

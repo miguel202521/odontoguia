@@ -147,6 +147,14 @@
         .saved-list li button:hover {
             background-color: #218838;
         }
+
+        .delete-button {
+            background-color: #dc3545;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
 <body>
@@ -274,6 +282,12 @@
                 openBtn.addEventListener("click", () => abrirOdontograma(nome));
                 li.appendChild(openBtn);
 
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Excluir";
+                deleteBtn.classList.add("delete-button");
+                deleteBtn.addEventListener("click", () => excluirOdontograma(nome));
+                li.appendChild(deleteBtn);
+
                 savedList.appendChild(li);
             });
         }
@@ -282,6 +296,12 @@
             dentes = odontogramasSalvos[nome];
             odontograma.innerHTML = "";
             gerarDentes();
+        }
+
+        function excluirOdontograma(nome) {
+            delete odontogramasSalvos[nome];
+            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
+            listarOdontogramas();
         }
 
         listarOdontogramas();

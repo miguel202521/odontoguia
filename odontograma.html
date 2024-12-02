@@ -261,23 +261,29 @@
                 odontogramasSalvos[nome] = dentes;
                 localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
                 listarOdontogramas();
+                limparOdontograma();
             } else {
                 alert("Por favor, insira um nome para o odontograma.");
             }
         });
 
         document.getElementById("new-button").addEventListener("click", () => {
+            limparOdontograma();
+        });
+
+        function limparOdontograma() {
             dentes = [];
             odontograma.innerHTML = "";
-            gerarDentes();
             odontogramaNome.value = "";
-        });
+            gerarDentes();
+        }
 
         function listarOdontogramas() {
             savedList.innerHTML = "";
-            Object.keys(odontogramasSalvos).forEach((nome) => {
+            for (const nome in odontogramasSalvos) {
                 const li = document.createElement("li");
                 li.textContent = nome;
+
                 const openBtn = document.createElement("button");
                 openBtn.textContent = "Abrir";
                 openBtn.addEventListener("click", () => abrirOdontograma(nome));
@@ -290,7 +296,7 @@
                 li.appendChild(deleteBtn);
 
                 savedList.appendChild(li);
-            });
+            }
         }
 
         function abrirOdontograma(nome) {
@@ -303,6 +309,14 @@
             delete odontogramasSalvos[nome];
             localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
             listarOdontogramas();
+        }
+
+        function salvarOdontograma() {
+            if (odontogramaNome.value.trim()) {
+                const nome = odontogramaNome.value.trim();
+                odontogramasSalvos[nome] = dentes;
+                localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
+            }
         }
 
         listarOdontogramas();

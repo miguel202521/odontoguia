@@ -299,7 +299,7 @@
                 const deleteBtn = document.createElement("button");
                 deleteBtn.textContent = "Excluir";
                 deleteBtn.classList.add("delete-button");
-                deleteBtn.addEventListener("click", () => confirmarExclusao(nome));
+                deleteBtn.addEventListener("click", () => excluirOdontograma(nome));
                 li.appendChild(deleteBtn);
 
                 savedList.appendChild(li);
@@ -318,15 +318,12 @@
             });
         }
 
-        function confirmarExclusao(nome) {
-            odontogramaExcluido = nome;
-            confirmarExclusaoModal.classList.add("open");
-        }
-
         function excluirOdontograma(nome) {
-            delete odontogramasSalvos[nome];
-            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
-            listarOdontogramas();
+            if (confirm("Tem certeza que deseja excluir este odontograma?")) {
+                delete odontogramasSalvos[nome];
+                localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
+                listarOdontogramas();
+            }
         }
 
         document.getElementById("new-button").addEventListener("click", () => {

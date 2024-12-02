@@ -10,6 +10,10 @@
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         .container {
@@ -30,7 +34,10 @@
             gap: 15px;
             justify-items: center;
             margin: 30px 0;
-            transform: scale(1.5); /* Aumenta o tamanho */
+            max-width: 1200px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .tooth {
@@ -251,6 +258,7 @@
 
         document.getElementById("new-button").addEventListener("click", () => {
             dentes = [];
+            odontograma.innerHTML = "";
             gerarDentes();
             odontogramaNome.value = "";
         });

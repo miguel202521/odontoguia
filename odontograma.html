@@ -12,10 +12,36 @@
         <button class="btn-back" onclick="window.location.href='index.html'">Voltar para Página Principal</button>
     </header>
     <div class="container">
-        <div id="odontograma">
-            <!-- A arcada dentária será gerada aqui -->
+        <div class="patient-info">
+            <label for="patient-name">Nome do Paciente:</label>
+            <input type="text" id="patient-name" placeholder="Digite o nome do paciente">
+            <button class="btn" onclick="savePeriogram()">Salvar Periograma</button>
         </div>
-        <button class="btn-save" onclick="saveOdontograma()">Salvar Odontograma</button>
+
+        <div id="odontograma">
+            <!-- Quadrantes -->
+            <div class="quadrant">
+                <h3>Quadrante 1</h3>
+                <div id="q1" class="teeth-row"></div>
+            </div>
+            <div class="quadrant">
+                <h3>Quadrante 2</h3>
+                <div id="q2" class="teeth-row"></div>
+            </div>
+            <div class="quadrant">
+                <h3>Quadrante 3</h3>
+                <div id="q3" class="teeth-row"></div>
+            </div>
+            <div class="quadrant">
+                <h3>Quadrante 4</h3>
+                <div id="q4" class="teeth-row"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" onclick="addTooth()">Adicionar Dente</button>
+            <button class="btn" onclick="removeTooth()">Remover Dente</button>
+        </div>
     </div>
     <script src="odontograma.js"></script>
 </body>

@@ -125,7 +125,6 @@
 
         .saved-list {
             margin: 30px 0;
-            display: none;
         }
 
         .saved-list ul {
@@ -157,24 +156,6 @@
             background-color: #c82333;
         }
 
-        .confirm-delete-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1001;
-            border-radius: 10px;
-            width: 300px;
-        }
-
-        .confirm-delete-modal.open {
-            display: block;
-        }
-
         .restore-button {
             background-color: #ffc107;
         }
@@ -197,9 +178,7 @@
             <button id="save-button">Salvar Odontograma</button>
             <button id="new-button">Novo Odontograma</button>
         </div>
-        <div class="actions">
-            <button id="view-saved">Ver Odontogramas Salvos</button>
-        </div>
+        
         <div class="saved-list" id="saved-list">
             <h2>Odontogramas Salvos</h2>
             <ul id="saved-odontograms"></ul>
@@ -215,17 +194,10 @@
         <button id="close-modal">Fechar</button>
     </div>
 
-    <div class="confirm-delete-modal" id="confirm-delete-modal">
-        <h3>Tem certeza que deseja excluir este odontograma?</h3>
-        <button id="confirm-delete-btn">Sim, Excluir</button>
-        <button id="cancel-delete-btn">Cancelar</button>
-    </div>
-
     <script>
         const odontograma = document.getElementById("odontograma");
         const odontogramaNome = document.getElementById("odontograma-nome");
         const savedList = document.getElementById("saved-odontograms");
-        const viewSavedBtn = document.getElementById("view-saved");
         const modal = document.getElementById("tooth-modal");
         const modalTitle = document.getElementById("modal-title");
         const toothNote = document.getElementById("tooth-note");
@@ -233,14 +205,10 @@
         const excludeToothBtn = document.getElementById("exclude-tooth");
         const restoreToothBtn = document.getElementById("restore-tooth");
         const closeModalBtn = document.getElementById("close-modal");
-        const confirmDeleteModal = document.getElementById("confirm-delete-modal");
-        const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
-        const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
 
         let dentes = [];
         let currentTooth = null;
         let odontogramasSalvos = JSON.parse(localStorage.getItem("odontogramas")) || {};
-        let odontogramaExcluido = null;
 
         function gerarDentes() {
             const quadrantes = {
@@ -352,17 +320,8 @@
 
         function confirmarExclusao(nome) {
             odontogramaExcluido = nome;
-            confirmDeleteModal.classList.add("open");
+            confirmarExclusaoModal.classList.add("open");
         }
-
-        confirmDeleteBtn.addEventListener("click", () => {
-            excluirOdontograma(odontogramaExcluido);
-            confirmDeleteModal.classList.remove("open");
-        });
-
-        cancelDeleteBtn.addEventListener("click", () => {
-            confirmDeleteModal.classList.remove("open");
-        });
 
         function excluirOdontograma(nome) {
             delete odontogramasSalvos[nome];

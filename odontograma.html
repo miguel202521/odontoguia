@@ -163,6 +163,28 @@
         .restore-button:hover {
             background-color: #e0a800;
         }
+
+        .patient-note-container {
+            margin-top: 20px;
+        }
+
+        .patient-note-container textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .patient-note-container button {
+            background-color: #28a745;
+            margin-top: 10px;
+        }
+
+        .patient-note-container button:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -173,12 +195,19 @@
     <div class="container">
         <h1>Odontograma Interativo</h1>
         <div class="odontograma" id="odontograma"></div>
+
         <div class="actions">
             <input type="text" id="odontograma-nome" placeholder="Nome do Odontograma" />
             <button id="save-button">Salvar Odontograma</button>
             <button id="new-button">Novo Odontograma</button>
         </div>
-        
+
+        <div class="patient-note-container">
+            <h3>Anotação do Paciente:</h3>
+            <textarea id="patient-note" placeholder="Escreva uma anotação geral sobre o paciente..."></textarea>
+            <button id="save-patient-note">Salvar Anotação</button>
+        </div>
+
         <div class="saved-list" id="saved-list">
             <h2>Odontogramas Salvos</h2>
             <ul id="saved-odontograms"></ul>
@@ -205,10 +234,13 @@
         const excludeToothBtn = document.getElementById("exclude-tooth");
         const restoreToothBtn = document.getElementById("restore-tooth");
         const closeModalBtn = document.getElementById("close-modal");
+        const patientNote = document.getElementById("patient-note");
+        const savePatientNoteBtn = document.getElementById("save-patient-note");
 
         let dentes = [];
         let currentTooth = null;
         let odontogramasSalvos = JSON.parse(localStorage.getItem("odontogramas")) || {};
+        let patientNotes = JSON.parse(localStorage.getItem("patientNotes")) || {};
 
         function gerarDentes() {
             const quadrantes = {
@@ -251,37 +283,50 @@
 
         saveNoteBtn.addEventListener("click", () => {
             currentTooth.nota = toothNote.value;
-            salvarOdontograma();
+            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
             modal.classList.remove("open");
         });
 
         excludeToothBtn.addEventListener("click", () => {
-            const toothEl = document.querySelector(`.tooth[data-id='${currentTooth.id}']`);
-            toothEl.classList.add("excluded");
             currentTooth.status = "Excluído";
-            salvarOdontograma();
+            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
             modal.classList.remove("open");
+            gerarDentes();
         });
 
         restoreToothBtn.addEventListener("click", () => {
-            const toothEl = document.querySelector(`.tooth[data-id='${currentTooth.id}']`);
-            toothEl.classList.remove("excluded");
             currentTooth.status = "Saudável";
-            salvarOdontograma();
+            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
             modal.classList.remove("open");
+            gerarDentes();
         });
 
         closeModalBtn.addEventListener("click", () => {
             modal.classList.remove("open");
         });
 
+        document.getElementById("new-button").addEventListener("click", () => {
+            odontograma.innerHTML = "";
+            odontogramaNome.value = "";
+            dentes = [];
+            gerarDentes();
+        });
+
+        document.getElementById("save-button").addEventListener("click", () => {
+            salvarOdontograma();
+        });
+
+        savePatientNoteBtn.addEventListener("click", () => {
+            const nome = odontogramaNome.value.trim();
+            patientNotes[nome] = patientNote.value;
+            localStorage.setItem("patientNotes", JSON.stringify(patientNotes));
+        });
+
         function salvarOdontograma() {
-            if (odontogramaNome.value.trim()) {
-                const nome = odontogramaNome.value.trim();
-                odontogramasSalvos[nome] = dentes;
-                localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
-                listarOdontogramas();
-            }
+            const nome = odontogramaNome.value.trim();
+            odontogramasSalvos[nome] = dentes;
+            localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
+            listarOdontogramas();
         }
 
         function listarOdontogramas() {
@@ -316,6 +361,7 @@
                     toothEl.classList.add("excluded");
                 }
             });
+            patientNote.value = patientNotes[nome] || "";
         }
 
         function excluirOdontograma(nome) {
@@ -325,15 +371,6 @@
                 listarOdontogramas();
             }
         }
-
-        document.getElementById("new-button").addEventListener("click", () => {
-            odontograma.innerHTML = "";
-            odontogramaNome.value = "";
-            dentes = [];
-            gerarDentes();
-        });
-
-        document.getElementById("save-button").addEventListener("click", salvarOdontograma);
 
         listarOdontogramas();
         gerarDentes();

@@ -1,63 +1,75 @@
 // Dados do odontograma
-let odontograma = JSON.parse(localStorage.getItem("odontograma")) || [];
+let odontograma = JSON.parse(localStorage.getItem("odontograma")) || {};
 
-// Função para gerar a arcada dentária
+// Função para gerar os quadrantes
 function generateOdontograma() {
-    const odontogramaContainer = document.getElementById("odontograma");
-    odontogramaContainer.innerHTML = "";
+    for (let i = 1; i <= 4; i++) {
+        const row = document.getElementById(`q${i}`);
+        row.innerHTML = "";
 
-    // Criar 32 dentes
-    for (let i = 1; i <= 32; i++) {
-        const tooth = document.createElement("div");
-        tooth.classList.add("tooth");
-        tooth.setAttribute("data-tooth", i);
-        tooth.innerHTML = `<span>${i}</span>`;
+        // Criar dentes para o quadrante
+        for (let j = 1; j <= 8; j++) {
+            const toothNumber = `${i}${j}`;
+            const tooth = document.createElement("div");
+            tooth.classList.add("tooth");
+            tooth.setAttribute("data-tooth", toothNumber);
 
-        // Restaurar nota, se existir
-        const toothData = odontograma.find((t) => t.number === i);
-        if (toothData) {
-            tooth.classList.add("selected");
-            const notes = document.createElement("div");
-            notes.classList.add("tooth-notes");
-            notes.innerText = toothData.notes;
-            tooth.appendChild(notes);
-        }
-
-        // Evento de clique no dente
-        tooth.addEventListener("click", () => {
-            const notes = prompt(`Anotações para o dente ${i}:`, toothData?.notes || "");
-            if (notes !== null) {
-                updateToothData(i, notes);
+            if (odontograma[toothNumber]) {
+                tooth.classList.add("selected");
             }
-        });
 
-        odontogramaContainer.appendChild(tooth);
+            // Evento de clique no dente
+            tooth.addEventListener("click", () => {
+                const notes = prompt(`Anotações para o dente ${toothNumber}:`, odontograma[toothNumber] || "");
+                if (notes !== null) {
+                    odontograma[toothNumber] = notes;
+                    saveOdontograma();
+                    generateOdontograma();
+                }
+            });
+
+            row.appendChild(tooth);
+        }
     }
 }
 
-// Atualizar ou adicionar dados de um dente
-function updateToothData(toothNumber, notes) {
-    const index = odontograma.findIndex((t) => t.number === toothNumber);
-
-    if (index !== -1) {
-        // Atualizar dente existente
-        odontograma[index].notes = notes;
-    } else {
-        // Adicionar novo dente
-        odontograma.push({ number: toothNumber, notes });
+// Salvar nome e periograma
+function savePeriogram() {
+    const patientName = document.getElementById("patient-name").value.trim();
+    if (!patientName) {
+        alert("Por favor, insira o nome do paciente.");
+        return;
     }
-
-    // Salvar no localStorage
-    saveOdontograma();
-
-    // Atualizar visualização
-    generateOdontograma();
-}
-
-// Salvar odontograma no localStorage
-function saveOdontograma() {
     localStorage.setItem("odontograma", JSON.stringify(odontograma));
+    localStorage.setItem("patientName", patientName);
     alert("Odontograma salvo com sucesso!");
+}
+
+// Adicionar dente
+function addTooth() {
+    const quadrant = prompt("Quadrante do dente (1-4):");
+    const position = prompt("Posição do dente (1-8):");
+    const toothNumber = `${quadrant}${position}`;
+
+    if (odontograma[toothNumber]) {
+        alert("Esse dente já está adicionado.");
+    } else {
+        odontograma[toothNumber] = "";
+        saveOdontograma();
+        generateOdontograma();
+    }
+}
+
+// Remover dente
+function removeTooth() {
+    const toothNumber = prompt("Número do dente para remover (ex: 11, 24):");
+    if (odontograma[toothNumber]) {
+        delete odontograma[toothNumber];
+        saveOdontograma();
+        generateOdontograma();
+    } else {
+        alert("Esse dente não existe no odontograma.");
+    }
 }
 
 // Inicializar

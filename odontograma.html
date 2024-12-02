@@ -198,7 +198,7 @@
         <h3 id="modal-title"></h3>
         <textarea id="tooth-note" placeholder="Escreva uma anotação..."></textarea>
         <button id="save-note">Salvar</button>
-        <button id="exclude-tooth">Excluir/Restaurar Dente</button>
+        <button id="exclude-tooth">Excluir Dente</button>
         <button id="close-modal">Fechar</button>
     </div>
 
@@ -257,25 +257,17 @@
         }
 
         saveNoteBtn.addEventListener("click", () => {
-            if (currentTooth) {
-                currentTooth.nota = toothNote.value;
-                modal.classList.remove("open");
-                salvarOdontograma();
-            }
+            currentTooth.nota = toothNote.value;
+            salvarOdontograma();
+            modal.classList.remove("open");
         });
 
         excludeToothBtn.addEventListener("click", () => {
-            if (currentTooth) {
-                const toothEl = document.querySelector(`.tooth[data-id='${currentTooth.id}']`);
-                if (toothEl.classList.contains("excluded")) {
-                    toothEl.classList.remove("excluded");
-                    currentTooth.status = "Saudável";
-                } else {
-                    toothEl.classList.add("excluded");
-                    currentTooth.status = "Excluído";
-                }
-                salvarOdontograma();
-            }
+            const toothEl = document.querySelector(`.tooth[data-id='${currentTooth.id}']`);
+            toothEl.classList.add("excluded");
+            currentTooth.status = "Excluído";
+            salvarOdontograma();
+            modal.classList.remove("open");
         });
 
         closeModalBtn.addEventListener("click", () => {
@@ -317,6 +309,12 @@
             dentes = odontogramasSalvos[nome];
             odontograma.innerHTML = "";
             gerarDentes();
+            dentes.forEach((dente) => {
+                if (dente.status === "Excluído") {
+                    const toothEl = document.querySelector(`.tooth[data-id='${dente.id}']`);
+                    toothEl.classList.add("excluded");
+                }
+            });
         }
 
         function confirmarExclusao(nome) {
@@ -345,6 +343,8 @@
             dentes = [];
             gerarDentes();
         });
+
+        document.getElementById("save-button").addEventListener("click", salvarOdontograma);
 
         listarOdontogramas();
         gerarDentes();

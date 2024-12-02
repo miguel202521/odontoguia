@@ -42,23 +42,45 @@ header h1 {
     text-align: center;
 }
 
-#odontograma {
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    gap: 10px;
+.patient-info {
     margin-bottom: 20px;
 }
 
-.tooth {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #ddd;
+.patient-info input {
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f4f4f4;
-    cursor: pointer;
+}
+
+#odontograma {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.quadrant {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.teeth-row {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.tooth {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
     position: relative;
 }
 
@@ -71,24 +93,11 @@ header h1 {
     border-color: #0077b6;
 }
 
-.tooth span {
-    font-size: 12px;
-    font-weight: bold;
-    position: absolute;
-    top: -15px;
-    background: white;
-    padding: 2px 5px;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.controls {
+    margin-top: 20px;
 }
 
-.tooth-notes {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #333;
-}
-
-.btn-save {
+.controls .btn {
     background-color: #0077b6;
     color: white;
     border: none;
@@ -97,6 +106,6 @@ header h1 {
     cursor: pointer;
 }
 
-.btn-save:hover {
+.controls .btn:hover {
     background-color: #005f8c;
 }

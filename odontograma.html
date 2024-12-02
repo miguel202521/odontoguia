@@ -155,6 +155,24 @@
         .delete-button:hover {
             background-color: #c82333;
         }
+
+        .confirm-delete-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        .confirm-delete-modal.open {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -184,6 +202,12 @@
         <button id="close-modal">Fechar</button>
     </div>
 
+    <div class="confirm-delete-modal" id="confirm-delete-modal">
+        <h3>Tem certeza que deseja excluir este odontograma?</h3>
+        <button id="confirm-delete-btn">Sim, Excluir</button>
+        <button id="cancel-delete-btn">Cancelar</button>
+    </div>
+
     <script>
         const odontograma = document.getElementById("odontograma");
         const odontogramaNome = document.getElementById("odontograma-nome");
@@ -194,10 +218,14 @@
         const saveNoteBtn = document.getElementById("save-note");
         const excludeToothBtn = document.getElementById("exclude-tooth");
         const closeModalBtn = document.getElementById("close-modal");
+        const confirmDeleteModal = document.getElementById("confirm-delete-modal");
+        const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
+        const cancelDeleteBtn = document.getElementById("cancel-delete-btn");
 
         let dentes = [];
         let currentTooth = null;
         let odontogramasSalvos = JSON.parse(localStorage.getItem("odontogramas")) || {};
+        let odontogramaExcluido = null;
 
         function gerarDentes() {
             const quadrantes = {
@@ -246,7 +274,6 @@
                     toothEl.classList.add("excluded");
                     currentTooth.status = "Excluído";
                 }
-                modal.classList.remove("open");
                 salvarOdontograma();
             }
         });
@@ -255,32 +282,19 @@
             modal.classList.remove("open");
         });
 
-        document.getElementById("save-button").addEventListener("click", () => {
-            const nome = odontogramaNome.value.trim();
-            if (nome) {
+        function salvarOdontograma() {
+            if (odontogramaNome.value.trim()) {
+                const nome = odontogramaNome.value.trim();
                 odontogramasSalvos[nome] = dentes;
                 localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
                 listarOdontogramas();
-                limparOdontograma();
-            } else {
-                alert("Por favor, insira um nome para o odontograma.");
             }
-        });
-
-        document.getElementById("new-button").addEventListener("click", () => {
-            limparOdontograma();
-        });
-
-        function limparOdontograma() {
-            dentes = [];
-            odontograma.innerHTML = "";
-            odontogramaNome.value = "";
-            gerarDentes();
         }
 
         function listarOdontogramas() {
             savedList.innerHTML = "";
-            for (const nome in odontogramasSalvos) {
+            const sortedOdontogramas = Object.keys(odontogramasSalvos).sort();
+            sortedOdontogramas.forEach((nome) => {
                 const li = document.createElement("li");
                 li.textContent = nome;
 
@@ -292,11 +306,11 @@
                 const deleteBtn = document.createElement("button");
                 deleteBtn.textContent = "Excluir";
                 deleteBtn.classList.add("delete-button");
-                deleteBtn.addEventListener("click", () => excluirOdontograma(nome));
+                deleteBtn.addEventListener("click", () => confirmarExclusao(nome));
                 li.appendChild(deleteBtn);
 
                 savedList.appendChild(li);
-            }
+            });
         }
 
         function abrirOdontograma(nome) {
@@ -305,19 +319,32 @@
             gerarDentes();
         }
 
+        function confirmarExclusao(nome) {
+            odontogramaExcluido = nome;
+            confirmDeleteModal.classList.add("open");
+        }
+
+        confirmDeleteBtn.addEventListener("click", () => {
+            excluirOdontograma(odontogramaExcluido);
+            confirmDeleteModal.classList.remove("open");
+        });
+
+        cancelDeleteBtn.addEventListener("click", () => {
+            confirmDeleteModal.classList.remove("open");
+        });
+
         function excluirOdontograma(nome) {
             delete odontogramasSalvos[nome];
             localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
             listarOdontogramas();
         }
 
-        function salvarOdontograma() {
-            if (odontogramaNome.value.trim()) {
-                const nome = odontogramaNome.value.trim();
-                odontogramasSalvos[nome] = dentes;
-                localStorage.setItem("odontogramas", JSON.stringify(odontogramasSalvos));
-            }
-        }
+        document.getElementById("new-button").addEventListener("click", () => {
+            odontograma.innerHTML = "";
+            odontogramaNome.value = "";
+            dentes = [];
+            gerarDentes();
+        });
 
         listarOdontogramas();
         gerarDentes();

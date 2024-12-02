@@ -81,7 +81,7 @@
         }
 
         .back-button button {
-            background-color: #dc3545;
+            background-color: #007bff;
         }
 
         .modal {
@@ -130,6 +130,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .saved-list li button {
+            background-color: #28a745;
+            cursor: pointer;
+        }
+
+        .saved-list li button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -240,17 +249,35 @@
             }
         });
 
+        document.getElementById("new-button").addEventListener("click", () => {
+            dentes = [];
+            gerarDentes();
+            odontogramaNome.value = "";
+        });
+
         function listarOdontogramas() {
             savedList.innerHTML = "";
             Object.keys(odontogramasSalvos).forEach((nome) => {
                 const li = document.createElement("li");
                 li.textContent = nome;
+
+                const openBtn = document.createElement("button");
+                openBtn.textContent = "Abrir";
+                openBtn.addEventListener("click", () => abrirOdontograma(nome));
+                li.appendChild(openBtn);
+
                 savedList.appendChild(li);
             });
         }
 
-        gerarDentes();
+        function abrirOdontograma(nome) {
+            dentes = odontogramasSalvos[nome];
+            odontograma.innerHTML = "";
+            gerarDentes();
+        }
+
         listarOdontogramas();
+        gerarDentes();
     </script>
 </body>
 </html>

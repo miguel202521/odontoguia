@@ -3,7 +3,7 @@ let periograms = JSON.parse(localStorage.getItem("periograms")) || {};
 
 // Gerar quadrantes e dentes
 function generateOdontograma() {
-    const quadrants = [1, 2, 3, 4];
+    const quadrants = [1, 2, 4, 3]; // Ordem corrigida
     quadrants.forEach((quad) => {
         const row = document.getElementById(`q${quad}`);
         row.innerHTML = "";
@@ -43,6 +43,22 @@ function savePeriogram() {
     localStorage.setItem("periograms", JSON.stringify(periograms));
     listPeriograms();
     alert("Periograma salvo com sucesso!");
+}
+
+// Excluir periograma com confirmação
+function deletePeriogram() {
+    const patientName = prompt("Digite o nome do paciente para excluir:");
+    if (patientName in periograms) {
+        const confirmDelete = confirm(`Tem certeza que deseja excluir o periograma de ${patientName}?`);
+        if (confirmDelete) {
+            delete periograms[patientName];
+            localStorage.setItem("periograms", JSON.stringify(periograms));
+            listPeriograms();
+            alert("Periograma excluído com sucesso!");
+        }
+    } else {
+        alert("Nenhum periograma encontrado com esse nome.");
+    }
 }
 
 // Listar periogramas salvos

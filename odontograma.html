@@ -125,6 +125,7 @@
 
         .saved-list {
             margin: 30px 0;
+            display: none;
         }
 
         .saved-list ul {
@@ -173,6 +174,14 @@
         .confirm-delete-modal.open {
             display: block;
         }
+
+        .restore-button {
+            background-color: #ffc107;
+        }
+
+        .restore-button:hover {
+            background-color: #e0a800;
+        }
     </style>
 </head>
 <body>
@@ -188,7 +197,10 @@
             <button id="save-button">Salvar Odontograma</button>
             <button id="new-button">Novo Odontograma</button>
         </div>
-        <div class="saved-list">
+        <div class="actions">
+            <button id="view-saved">Ver Odontogramas Salvos</button>
+        </div>
+        <div class="saved-list" id="saved-list">
             <h2>Odontogramas Salvos</h2>
             <ul id="saved-odontograms"></ul>
         </div>
@@ -199,6 +211,7 @@
         <textarea id="tooth-note" placeholder="Escreva uma anotação..."></textarea>
         <button id="save-note">Salvar</button>
         <button id="exclude-tooth">Excluir Dente</button>
+        <button id="restore-tooth" class="restore-button" style="display:none;">Restaurar Dente</button>
         <button id="close-modal">Fechar</button>
     </div>
 
@@ -212,11 +225,13 @@
         const odontograma = document.getElementById("odontograma");
         const odontogramaNome = document.getElementById("odontograma-nome");
         const savedList = document.getElementById("saved-odontograms");
+        const viewSavedBtn = document.getElementById("view-saved");
         const modal = document.getElementById("tooth-modal");
         const modalTitle = document.getElementById("modal-title");
         const toothNote = document.getElementById("tooth-note");
         const saveNoteBtn = document.getElementById("save-note");
         const excludeToothBtn = document.getElementById("exclude-tooth");
+        const restoreToothBtn = document.getElementById("restore-tooth");
         const closeModalBtn = document.getElementById("close-modal");
         const confirmDeleteModal = document.getElementById("confirm-delete-modal");
         const confirmDeleteBtn = document.getElementById("confirm-delete-btn");
@@ -250,9 +265,19 @@
         }
 
         function abrirModal(id) {
-            currentTooth = dentes.find((d) => d.id === id);
-            modalTitle.textContent = `Dente ${id}`;
-            toothNote.value = currentTooth.nota || "";
+            currentTooth = dentes.find(dente => dente.id == id);
+            modalTitle.textContent = `Dente ${currentTooth.id}`;
+            toothNote.value = currentTooth.nota;
+
+            // Mostrar opções de restaurar ou excluir, dependendo do estado do dente
+            if (currentTooth.status === "Excluído") {
+                restoreToothBtn.style.display = "inline-block";
+                excludeToothBtn.style.display = "none";
+            } else {
+                restoreToothBtn.style.display = "none";
+                excludeToothBtn.style.display = "inline-block";
+            }
+
             modal.classList.add("open");
         }
 
@@ -266,6 +291,14 @@
             const toothEl = document.querySelector(`.tooth[data-id='${currentTooth.id}']`);
             toothEl.classList.add("excluded");
             currentTooth.status = "Excluído";
+            salvarOdontograma();
+            modal.classList.remove("open");
+        });
+
+        restoreToothBtn.addEventListener("click", () => {
+            const toothEl = document.querySelector(`.tooth[data-id='${currentTooth.id}']`);
+            toothEl.classList.remove("excluded");
+            currentTooth.status = "Saudável";
             salvarOdontograma();
             modal.classList.remove("open");
         });
@@ -345,6 +378,10 @@
         });
 
         document.getElementById("save-button").addEventListener("click", salvarOdontograma);
+
+        viewSavedBtn.addEventListener("click", () => {
+            savedList.style.display = savedList.style.display === "block" ? "none" : "block";
+        });
 
         listarOdontogramas();
         gerarDentes();

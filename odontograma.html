@@ -9,49 +9,83 @@
 <body>
     <header>
         <h1>Odontograma Digital</h1>
-        <button class="btn-back" onclick="window.location.href='index.html'">Voltar para Página Principal</button>
+        <a href="index.html" class="btn-back">Voltar para Página Principal</a>
     </header>
-    <main class="container">
-        <!-- Informações do paciente -->
+    <div class="container">
         <div class="patient-info">
             <label for="patient-name">Nome do Paciente:</label>
             <input type="text" id="patient-name" placeholder="Digite o nome do paciente">
-            <button class="btn" onclick="savePeriogram()">Salvar Periograma</button>
+            <button id="save-periogram">Salvar Periograma</button>
         </div>
-
-        <!-- Odontograma -->
         <div id="odontograma">
+            <!-- Quadrantes -->
             <div class="quadrant">
                 <h3>Quadrante 1</h3>
-                <div id="q1" class="teeth-row"></div>
+                <div class="teeth-row" data-quadrant="1">
+                    <!-- Dentes numerados do 18 ao 11 -->
+                    <div class="tooth" data-number="18">18</div>
+                    <div class="tooth" data-number="17">17</div>
+                    <div class="tooth" data-number="16">16</div>
+                    <div class="tooth" data-number="15">15</div>
+                    <div class="tooth" data-number="14">14</div>
+                    <div class="tooth" data-number="13">13</div>
+                    <div class="tooth" data-number="12">12</div>
+                    <div class="tooth" data-number="11">11</div>
+                </div>
             </div>
             <div class="quadrant">
                 <h3>Quadrante 2</h3>
-                <div id="q2" class="teeth-row"></div>
+                <div class="teeth-row" data-quadrant="2">
+                    <!-- Dentes numerados do 21 ao 28 -->
+                    <div class="tooth" data-number="21">21</div>
+                    <div class="tooth" data-number="22">22</div>
+                    <div class="tooth" data-number="23">23</div>
+                    <div class="tooth" data-number="24">24</div>
+                    <div class="tooth" data-number="25">25</div>
+                    <div class="tooth" data-number="26">26</div>
+                    <div class="tooth" data-number="27">27</div>
+                    <div class="tooth" data-number="28">28</div>
+                </div>
             </div>
             <div class="quadrant">
                 <h3>Quadrante 3</h3>
-                <div id="q3" class="teeth-row"></div>
+                <div class="teeth-row" data-quadrant="3">
+                    <!-- Dentes numerados do 31 ao 38 -->
+                    <div class="tooth" data-number="31">31</div>
+                    <div class="tooth" data-number="32">32</div>
+                    <div class="tooth" data-number="33">33</div>
+                    <div class="tooth" data-number="34">34</div>
+                    <div class="tooth" data-number="35">35</div>
+                    <div class="tooth" data-number="36">36</div>
+                    <div class="tooth" data-number="37">37</div>
+                    <div class="tooth" data-number="38">38</div>
+                </div>
             </div>
             <div class="quadrant">
                 <h3>Quadrante 4</h3>
-                <div id="q4" class="teeth-row"></div>
+                <div class="teeth-row" data-quadrant="4">
+                    <!-- Dentes numerados do 48 ao 41 -->
+                    <div class="tooth" data-number="48">48</div>
+                    <div class="tooth" data-number="47">47</div>
+                    <div class="tooth" data-number="46">46</div>
+                    <div class="tooth" data-number="45">45</div>
+                    <div class="tooth" data-number="44">44</div>
+                    <div class="tooth" data-number="43">43</div>
+                    <div class="tooth" data-number="42">42</div>
+                    <div class="tooth" data-number="41">41</div>
+                </div>
             </div>
         </div>
-
-        <!-- Controles -->
         <div class="controls">
-            <button class="btn" onclick="addTooth()">Adicionar Dente</button>
-            <button class="btn" onclick="removeTooth()">Remover Dente</button>
-            <button class="btn-delete" onclick="deletePeriogram()">Excluir Periograma</button>
+            <button class="btn" id="add-tooth">Adicionar Dente</button>
+            <button class="btn-delete" id="remove-tooth">Remover Dente</button>
         </div>
-
-        <!-- Lista de Periogramas Salvos -->
         <div class="periograms">
-            <h3>Periogramas Salvos:</h3>
+            <h3>Periogramas Salvos</h3>
             <ul id="periogram-list"></ul>
         </div>
-    </main>
+    </div>
+
     <script src="odontograma.js"></script>
 </body>
 </html>

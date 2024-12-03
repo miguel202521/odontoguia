@@ -18,7 +18,7 @@ function savePatient() {
     const photo =
         gender === "Feminino"
             ? "Asuna Yuuki.jpeg" // Imagem para o gênero feminino
-            : "Itachi Uchiha.jpeg"; // Imagem para o gênero masculino
+            : "Kirito ♡.jpeg"; // Imagem para o gênero masculino
 
     if (!name || !age || !gender || !consultationDate) {
         alert("Por favor, preencha os campos obrigatórios.");

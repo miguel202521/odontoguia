@@ -1,79 +1,209 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raspagem Periodontal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raspagem Periodontal</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        header {
-            background-color: #0077cc;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f6fa;
+      color: #333;
+      line-height: 1.7;
+    }
 
-        main {
-            max-width: 800px;
-            margin: 30px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
+    header {
+      background: linear-gradient(to right, #0077cc, #00aaff);
+      padding: 30px 20px;
+      text-align: center;
+      color: white;
+    }
 
-        h1, h2 {
-            color: #0077cc;
-        }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-        a.voltar {
-            display: inline-block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: white;
-            background-color: #0077cc;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
+    header p {
+      font-size: 1.2rem;
+    }
 
-        a.voltar:hover {
-            background-color: #005fa3;
-        }
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #eee;
-            margin-top: 40px;
-        }
-    </style>
+    h2 {
+      color: #0077cc;
+      margin-top: 40px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+
+    .image-caption {
+      font-size: 0.95rem;
+      color: #666;
+      text-align: center;
+      margin-top: -10px;
+      margin-bottom: 30px;
+    }
+
+    a.button {
+      display: inline-block;
+      background-color: #0077cc;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 30px;
+      transition: background-color 0.3s;
+    }
+
+    a.button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background-color: #e6e6e6;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #444;
+    }
+
+    blockquote {
+      background-color: #eaf5ff;
+      border-left: 5px solid #0077cc;
+      padding: 15px 20px;
+      margin: 20px 0;
+      font-style: italic;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Raspagem Periodontal</h1>
-    </header>
 
-    <main>
-        <h2>O que é?</h2>
-        <p>A raspagem periodontal é um procedimento odontológico utilizado para remover a placa bacteriana e o tártaro acumulados abaixo da linha da gengiva.</p>
+  <header>
+    <h1>Raspagem Periodontal</h1>
+    <p>Entenda o procedimento, instrumentos utilizados e técnicas modernas para o cuidado com a saúde gengival.</p>
+  </header>
 
-        <h2>Quando é indicada?</h2>
-        <p>É indicada principalmente em casos de gengivite ou periodontite, doenças que afetam os tecidos de suporte dos dentes.</p>
+  <main>
+    <h2>🦷 Introdução</h2>
+    <p>
+      A raspagem periodontal é um dos procedimentos mais importantes para o tratamento de doenças periodontais como gengivite e periodontite.
+      Trata-se de uma técnica que visa a remoção de tártaro (cálculo dental), placa bacteriana e biofilme subgengival, impedindo a progressão das inflamações e perdas ósseas.
+    </p>
 
-        <h2>Como é feita?</h2>
-        <p>O dentista utiliza instrumentos manuais ou ultrassônicos para fazer a remoção do tártaro. Em alguns casos, é necessário mais de uma sessão.</p>
+    <blockquote>
+      “O sucesso do tratamento periodontal depende da correta remoção dos fatores irritantes locais que favorecem a inflamação gengival.”
+    </blockquote>
 
-        <a href="index.html" class="voltar">← Voltar para a página inicial</a>
-    </main>
+    <h2>🔧 Instrumentos Manuais: Curetas</h2>
+    <p>
+      As curetas periodontais são instrumentos manuais fundamentais para a raspagem. Elas permitem o acesso preciso às superfícies radiculares, mesmo em áreas de difícil acesso.
+      Cada tipo de cureta possui uma angulação e um design voltado para dentes específicos.
+    </p>
 
-    <footer>
-        &copy; 2025 - Sua Clínica Odontológica
-    </footer>
+    <p>As principais curetas utilizadas são:</p>
+    <ul>
+      <li><strong>Gracey 1/2:</strong> incisivos e caninos anteriores.</li>
+      <li><strong>Gracey 7/8:</strong> dentes posteriores (faces vestibulares e linguais).</li>
+      <li><strong>Gracey 11/12:</strong> dentes posteriores – face mesial.</li>
+      <li><strong>Gracey 13/14:</strong> dentes posteriores – face distal.</li>
+    </ul>
+
+    <p>
+      Veja abaixo um esquema com a numeração das curetas e suas regiões de aplicação:
+    </p>
+
+    <!-- Substitua o nome da imagem se necessário -->
+    <img src="Captura de tela 2025-06-18 23.53.48.jpg" alt="Tabela de curetas por dente e região">
+    <div class="image-caption">Imagem: Distribuição das curetas periodontais por região dentária.</div>
+
+    <h2>⚙️ Técnicas que não utilizam curetas</h2>
+    <p>
+      Além do uso manual com curetas, há métodos modernos e menos invasivos que também são eficazes:
+    </p>
+
+    <ul>
+      <li><strong>Raspagem ultrassônica:</strong> utiliza um aparelho com ponta vibratória que remove o cálculo com eficiência e conforto.</li>
+      <li><strong>Polimento com jato de bicarbonato:</strong> remove manchas e placa superficial, complementando a raspagem.</li>
+      <li><strong>Laserterapia:</strong> tecnologia complementar que ajuda na descontaminação da bolsa periodontal e cicatrização.</li>
+    </ul>
+
+    <p>
+      Esses métodos muitas vezes são combinados com curetas para resultados ainda mais completos e eficazes.
+    </p>
+
+    <h2>💡 Cuidados após a raspagem</h2>
+    <p>
+      Após o procedimento, o paciente deve seguir cuidados específicos:
+    </p>
+    <ul>
+      <li>Evitar alimentos duros ou muito quentes nas primeiras 24h.</li>
+      <li>Realizar higiene bucal suave com escova de cerdas macias.</li>
+      <li>Utilizar antissépticos bucais se recomendados pelo dentista.</li>
+      <li>Retornar para reavaliação após o período indicado.</li>
+    </ul>
+
+    <h2>📅 Frequência do tratamento</h2>
+    <p>
+      A raspagem periodontal pode ser indicada uma ou mais vezes ao ano, dependendo do grau da doença periodontal e do controle de placa do paciente.
+      Em alguns casos, é realizada uma <strong>raspagem profunda por quadrante</strong>, com ou sem anestesia local.
+    </p>
+
+    <h2>📚 Conclusão</h2>
+    <p>
+      A raspagem periodontal é um procedimento seguro, eficaz e essencial para manter a saúde bucal em dia. Seja com curetas ou aparelhos modernos, o importante é remover o biofilme que ameaça a integridade dos tecidos periodontais.
+    </p>
+
+    <a href="index.html" class="button">← Voltar à Página Inicial</a>
+  </main>
+
+  <footer>
+    &copy; 2025 - Clínica Periodontal Avançada. Todos os direitos reservados.
+  </footer>
+
 </body>
 </html>

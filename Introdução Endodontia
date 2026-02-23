@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução à Endodontia</title>
+    <style>
+        /* --- CSS (Estilos) --- */
+        :root {
+            --primary-color: #005f73;
+            --secondary-color: #0a9396;
+            --accent-color: #94d2bd;
+            --text-color: #333;
+            --bg-color: #f4f4f9;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Sections */
+        section {
+            background: var(--white);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-left: 5px solid var(--secondary-color);
+            border-radius: 4px;
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block;
+                margin: 10px 0;
+            }
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <h1>Portal de Endodontia</h1>
+            <nav>
+                <ul>
+                    <li><a href="#definicao">O que é?</a></li>
+                    <li><a href="#objetivos">Objetivos</a></li>
+                    <li><a href="#indicacoes">Indicações</a></li>
+                    <li><a href="#procedimentos">Procedimentos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Seção Definição -->
+        <section id="definicao">
+            <h2>O que é Endodontia?</h2>
+            <p>A <strong>Endodontia</strong> é a especialidade da Odontologia responsável pelo estudo da polpa dentária, dos tecidos periapicais e das doenças que os afligem. Popularmente conhecida como "tratamento de canal", esta área atua tanto na prevenção quanto no tratamento das patologias pulpares.</p>
+            <p>O termo deriva do grego: <em>Endo</em> (dentro) e <em>Odontos</em> (dente), ou seja, o tratamento que acontece <strong>dentro</strong> do dente.</p>
+        </section>
+
+        <!-- Seção Objetivos -->
+        <section id="objetivos">
+            <h2>Objetivos do Tratamento</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Promoção da Saúde</h3>
+                    <p>Eliminar a dor e a infecção, promovendo a saúde dos tecidos periapicais.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Preservação Dentária</h3>
+                    <p>Manter o dente funcional na cavidade oral, evitando a extração.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Prevenção</h3>
+                    <p>Prevenir a disseminação de infecções para regiões vizinhas (seio maxilar, osso, etc.).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Indicações -->
+        <section id="indicacoes">
+            <h2>Quando é necessário?</h2>
+            <p>O tratamento endodôntico é indicado quando a polpa do dente está irreversivelmente danificada ou morta. As principais causas são:</p>
+            <ul>
+                <li><strong>Cárie Dentária Profunda:</strong> A bactéria atinge a polpa causando inflamação (pulpite).</li>
+                <li><strong>Traumatismo Dental:</strong> Fraturas que expõem a polpa ao meio oral.</li>
+                <li><strong>Necrose Pulpar:</strong> Morte da polpa por falta de irrigação sanguínea.</li>
+                <li><strong>Hipersensibilidade Grave:</strong> Dores prolongadas ao frio/calor que não cessam.</li>
+                <li><strong>Retratamento:</strong> Quando um canal anterior apresentou falha.</li>
+            </ul>
+        </section>
+
+        <!-- Seção Procedimentos -->
+        <section id="procedimentos">
+            <h2>Principais Etapas do Tratamento</h2>
+            <ol>
+                <li><strong>Diagnóstico e Anamnese:</strong> Avaliação clínica e radiográfica.</li>
+                <li><strong>Anestesia:</strong> Anestesiar o dente e a região adjacente.</li>
+                <li><strong>Isolamento Absoluto:</strong> Uso do dique de borracha para proteger o campo operatório.</li>
+                <li><strong>Acesso e Remoção da Polpa:</strong> Abertura da câmara pulpar e remoção do tecido mole.</li>
+                <li><strong>Preparo Químico-Mecânico:</strong> Limagem dos canais e irrigação com soluções antissépticas (Hipoclorito de Sódio).</li>
+                <li><strong>Obturação Canalar:</strong> Preenchimento dos canais com material selador e guta-percha.</li>
+                <li><strong>Restauração Final:</strong> Rebuilding the tooth structure (crown or core).</li>
+            </ol>
+        </section>
+
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2023 Introdução à Endodontia. Material informativo.</p>
+    </footer>
+
+</body>
+</html>

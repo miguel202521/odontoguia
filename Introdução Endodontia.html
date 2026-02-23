@@ -1,222 +1,227 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introdução à Endodontia</title>
-    <style>
-        /* --- CSS (Estilos) --- */
-        :root {
-            --primary-color: #005f73;
-            --secondary-color: #0a9396;
-            --accent-color: #94d2bd;
-            --text-color: #333;
-            --bg-color: #f4f4f9;
-            --white: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução à Endodontia</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+:root{
+    --primary:#0b5d6b;
+    --secondary:#1b9aaa;
+    --light:#f4f8fb;
+    --dark:#2c2c2c;
+    --white:#ffffff;
+}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Header */
-        header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--light);
+    color:var(--dark);
+    line-height:1.7;
+}
 
-        header h1 {
-            margin-bottom: 0.5rem;
-        }
+/* HEADER */
+header{
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+    color:var(--white);
+    padding:3rem 1rem;
+    text-align:center;
+}
 
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
+header h1{
+    font-size:2.4rem;
+    margin-bottom:0.5rem;
+}
 
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
+header p{
+    font-size:1.1rem;
+    max-width:700px;
+    margin:auto;
+}
 
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:2.5rem 1.5rem;
+}
 
-        nav ul li a:hover {
-            color: var(--accent-color);
-        }
+/* SECTIONS */
+section{
+    background:var(--white);
+    padding:2rem;
+    margin-bottom:2rem;
+    border-radius:10px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.08);
+}
 
-        /* Main Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+section h2{
+    color:var(--primary);
+    margin-bottom:1rem;
+    border-left:5px solid var(--secondary);
+    padding-left:10px;
+}
 
-        /* Sections */
-        section {
-            background: var(--white);
-            margin-bottom: 2rem;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+    gap:1.5rem;
+}
 
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
+.card{
+    background:var(--light);
+    padding:1.5rem;
+    border-radius:8px;
+}
 
-        p {
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
+.card h3{
+    color:var(--primary);
+    margin-bottom:0.5rem;
+}
 
-        ul {
-            margin-left: 20px;
-            margin-bottom: 1rem;
-        }
+/* LISTS */
+ul, ol{
+    margin-left:20px;
+}
 
-        li {
-            margin-bottom: 0.5rem;
-        }
+li{
+    margin-bottom:0.6rem;
+}
 
-        /* Cards Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+/* HIGHLIGHT SECTION */
+.highlight{
+    background:linear-gradient(135deg,#e8f6f8,#ffffff);
+    border:2px solid var(--secondary);
+}
 
-        .card {
-            background: var(--bg-color);
-            padding: 1.5rem;
-            border-left: 5px solid var(--secondary-color);
-            border-radius: 4px;
-        }
+/* FOOTER */
+footer{
+    background:var(--primary);
+    color:var(--white);
+    text-align:center;
+    padding:1.5rem;
+}
 
-        .card h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: var(--white);
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
-
-        /* Responsividade */
-        @media (max-width: 600px) {
-            nav ul li {
-                display: block;
-                margin: 10px 0;
-            }
-            .container {
-                padding: 1rem;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media(max-width:600px){
+    header h1{
+        font-size:1.9rem;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Cabeçalho -->
-    <header>
-        <div class="container">
-            <h1>Portal de Endodontia</h1>
-            <nav>
-                <ul>
-                    <li><a href="#definicao">O que é?</a></li>
-                    <li><a href="#objetivos">Objetivos</a></li>
-                    <li><a href="#indicacoes">Indicações</a></li>
-                    <li><a href="#procedimentos">Procedimentos</a></li>
-                </ul>
-            </nav>
+<header>
+    <h1>Introdução à Endodontia</h1>
+    <p>Compreendendo a especialidade responsável por salvar dentes e preservar a função mastigatória.</p>
+</header>
+
+<div class="container">
+
+<section>
+    <h2>O que é Endodontia?</h2>
+    <p>
+        A <strong>Endodontia</strong> é a área da odontologia que estuda e trata a <strong>polpa dentária</strong>
+        (nervos, vasos sanguíneos e tecido conjuntivo) e os tecidos ao redor da raiz do dente.
+    </p>
+    <p>
+        Popularmente conhecida como <strong>tratamento de canal</strong>, essa especialidade tem como principal
+        objetivo <strong>eliminar infecções, aliviar a dor e manter o dente na boca</strong>.
+    </p>
+</section>
+
+<section>
+    <h2>Quando o tratamento endodôntico é necessário?</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Cárie profunda</h3>
+            <p>
+                Quando as bactérias atingem a polpa, causando inflamação intensa ou necrose.
+            </p>
         </div>
-    </header>
-
-    <div class="container">
-        
-        <!-- Seção Definição -->
-        <section id="definicao">
-            <h2>O que é Endodontia?</h2>
-            <p>A <strong>Endodontia</strong> é a especialidade da Odontologia responsável pelo estudo da polpa dentária, dos tecidos periapicais e das doenças que os afligem. Popularmente conhecida como "tratamento de canal", esta área atua tanto na prevenção quanto no tratamento das patologias pulpares.</p>
-            <p>O termo deriva do grego: <em>Endo</em> (dentro) e <em>Odontos</em> (dente), ou seja, o tratamento que acontece <strong>dentro</strong> do dente.</p>
-        </section>
-
-        <!-- Seção Objetivos -->
-        <section id="objetivos">
-            <h2>Objetivos do Tratamento</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>1. Promoção da Saúde</h3>
-                    <p>Eliminar a dor e a infecção, promovendo a saúde dos tecidos periapicais.</p>
-                </div>
-                <div class="card">
-                    <h3>2. Preservação Dentária</h3>
-                    <p>Manter o dente funcional na cavidade oral, evitando a extração.</p>
-                </div>
-                <div class="card">
-                    <h3>3. Prevenção</h3>
-                    <p>Prevenir a disseminação de infecções para regiões vizinhas (seio maxilar, osso, etc.).</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Seção Indicações -->
-        <section id="indicacoes">
-            <h2>Quando é necessário?</h2>
-            <p>O tratamento endodôntico é indicado quando a polpa do dente está irreversivelmente danificada ou morta. As principais causas são:</p>
-            <ul>
-                <li><strong>Cárie Dentária Profunda:</strong> A bactéria atinge a polpa causando inflamação (pulpite).</li>
-                <li><strong>Traumatismo Dental:</strong> Fraturas que expõem a polpa ao meio oral.</li>
-                <li><strong>Necrose Pulpar:</strong> Morte da polpa por falta de irrigação sanguínea.</li>
-                <li><strong>Hipersensibilidade Grave:</strong> Dores prolongadas ao frio/calor que não cessam.</li>
-                <li><strong>Retratamento:</strong> Quando um canal anterior apresentou falha.</li>
-            </ul>
-        </section>
-
-        <!-- Seção Procedimentos -->
-        <section id="procedimentos">
-            <h2>Principais Etapas do Tratamento</h2>
-            <ol>
-                <li><strong>Diagnóstico e Anamnese:</strong> Avaliação clínica e radiográfica.</li>
-                <li><strong>Anestesia:</strong> Anestesiar o dente e a região adjacente.</li>
-                <li><strong>Isolamento Absoluto:</strong> Uso do dique de borracha para proteger o campo operatório.</li>
-                <li><strong>Acesso e Remoção da Polpa:</strong> Abertura da câmara pulpar e remoção do tecido mole.</li>
-                <li><strong>Preparo Químico-Mecânico:</strong> Limagem dos canais e irrigação com soluções antissépticas (Hipoclorito de Sódio).</li>
-                <li><strong>Obturação Canalar:</strong> Preenchimento dos canais com material selador e guta-percha.</li>
-                <li><strong>Restauração Final:</strong> Rebuilding the tooth structure (crown or core).</li>
-            </ol>
-        </section>
-
+        <div class="card">
+            <h3>Traumas dentários</h3>
+            <p>
+                Pancadas ou fraturas que comprometem o suprimento sanguíneo do dente.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Dor espontânea</h3>
+            <p>
+                Dor contínua, latejante ou que não desaparece após estímulos térmicos.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Infecção periapical</h3>
+            <p>
+                Presença de abscessos ou lesões visíveis em exames radiográficos.
+            </p>
+        </div>
     </div>
+</section>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2023 Introdução à Endodontia. Material informativo.</p>
-    </footer>
+<section>
+    <h2>Principais etapas do tratamento de canal</h2>
+    <ol>
+        <li>Diagnóstico clínico e radiográfico</li>
+        <li>Anestesia local e isolamento absoluto</li>
+        <li>Acesso à câmara pulpar</li>
+        <li>Remoção do tecido pulpar infectado</li>
+        <li>Limpeza e desinfecção dos canais</li>
+        <li>Obturação com guta-percha e cimento</li>
+        <li>Restauração definitiva do dente</li>
+    </ol>
+</section>
+
+<section class="highlight">
+    <h2>Por que não remover o dente em vez de salvá-lo?</h2>
+
+    <p>
+        A extração pode parecer uma solução mais simples, porém <strong>retirar um dente gera consequências
+        funcionais, estéticas e biológicas</strong>.
+    </p>
+
+    <ul>
+        <li>
+            <strong>O dente natural é insubstituível:</strong> Nenhuma prótese ou implante reproduz
+            perfeitamente a função de um dente natural.
+        </li>
+        <li>
+            <strong>Perda óssea:</strong> A extração leva à reabsorção do osso ao longo do tempo.
+        </li>
+        <li>
+            <strong>Deslocamento dos dentes vizinhos:</strong> Pode causar desalinhamento e problemas na mordida.
+        </li>
+        <li>
+            <strong>Custo maior no futuro:</strong> Implantes e próteses costumam ser mais caros que o tratamento endodôntico.
+        </li>
+        <li>
+            <strong>Manutenção da mastigação e estética:</strong> Preservar o dente mantém o equilíbrio do sorriso.
+        </li>
+    </ul>
+
+    <p>
+        <strong>Conclusão:</strong> Sempre que possível, a endodontia é a melhor escolha,
+        pois preserva o dente natural, a função mastigatória e a saúde bucal a longo prazo.
+    </p>
+</section>
+
+</div>
+
+<footer>
+    <p>Material educativo – Introdução à Endodontia</p>
+</footer>
 
 </body>
 </html>
+

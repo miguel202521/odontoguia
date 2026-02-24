@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introdução à Estomatologia</title>
+
+<style>
+:root{
+    --primary:#7a1f3d;
+    --secondary:#c0396b;
+    --light:#fdf2f6;
+    --dark:#2b2b2b;
+    --white:#ffffff;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:var(--light);
+    color:var(--dark);
+    line-height:1.7;
+}
+
+/* HEADER */
+header{
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+    color:var(--white);
+    padding:3rem 1.5rem;
+    text-align:center;
+}
+
+header h1{
+    font-size:2.4rem;
+    margin-bottom:0.6rem;
+}
+
+header p{
+    font-size:1.1rem;
+    max-width:750px;
+    margin:auto;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:2.5rem 1.5rem;
+}
+
+/* SECTIONS */
+section{
+    background:var(--white);
+    padding:2rem;
+    margin-bottom:2rem;
+    border-radius:10px;
+    box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+section h2{
+    color:var(--primary);
+    margin-bottom:1rem;
+    border-left:5px solid var(--secondary);
+    padding-left:12px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:1.5rem;
+}
+
+.card{
+    background:var(--light);
+    padding:1.5rem;
+    border-radius:8px;
+}
+
+.card h3{
+    color:var(--primary);
+    margin-bottom:0.5rem;
+}
+
+/* LISTS */
+ul{
+    margin-left:20px;
+}
+
+li{
+    margin-bottom:0.6rem;
+}
+
+/* BOTÃO */
+.back{
+    text-align:center;
+    margin-top:2.5rem;
+}
+
+.back a{
+    display:inline-block;
+    text-decoration:none;
+    background:var(--primary);
+    color:var(--white);
+    padding:0.9rem 1.8rem;
+    border-radius:30px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back a:hover{
+    background:var(--secondary);
+}
+
+/* FOOTER */
+footer{
+    background:var(--primary);
+    color:var(--white);
+    text-align:center;
+    padding:1.5rem;
+}
+
+/* RESPONSIVO */
+@media(max-width:600px){
+    header h1{
+        font-size:1.9rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Introdução à Estomatologia</h1>
+    <p>
+        A especialidade da odontologia dedicada ao diagnóstico das doenças que acometem
+        a boca, os maxilares e estruturas associadas.
+    </p>
+</header>
+
+<div class="container">
+
+<section>
+    <h2>O que é Estomatologia?</h2>
+    <p>
+        A <strong>Estomatologia</strong> é a área da odontologia responsável pelo
+        <strong>diagnóstico, prevenção e acompanhamento das doenças da cavidade bucal</strong>,
+        incluindo tecidos moles, ossos maxilares, glândulas salivares e manifestações bucais
+        de doenças sistêmicas.
+    </p>
+    <p>
+        Diferente de outras especialidades mais intervencionistas, a estomatologia
+        tem papel fundamental no <strong>diagnóstico precoce</strong>, muitas vezes
+        sendo decisiva para a detecção de condições graves.
+    </p>
+</section>
+
+<section>
+    <h2>Principais áreas de atuação</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Lesões bucais</h3>
+            <p>
+                Diagnóstico de aftas, leucoplasias, eritroplasias e outras alterações da mucosa.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Doenças sistêmicas</h3>
+            <p>
+                Identificação de manifestações bucais de doenças como diabetes,
+                anemia e doenças autoimunes.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Patologia oral</h3>
+            <p>
+                Avaliação de cistos, tumores benignos e malignos da cavidade bucal.
+            </p>
+        </div>
+        <div class="card">
+            <h3>Diagnóstico do câncer bucal</h3>
+            <p>
+                Detecção precoce e acompanhamento de lesões potencialmente malignas.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Quando o paciente deve procurar um estomatologista?</h2>
+    <ul>
+        <li>Feridas na boca que não cicatrizam</li>
+        <li>Manchas brancas, vermelhas ou escuras na mucosa</li>
+        <li>Aumento de volume em boca ou face</li>
+        <li>Alterações na língua ou gengiva</li>
+        <li>Dor ou sangramento sem causa aparente</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Importância da Estomatologia</h2>
+    <p>
+        A estomatologia é essencial para a <strong>prevenção e diagnóstico precoce</strong>
+        de doenças bucais, especialmente o câncer oral, aumentando significativamente
+        as chances de sucesso no tratamento.
+    </p>
+    <p>
+        <strong>Conclusão:</strong> O estomatologista desempenha um papel decisivo
+        na promoção da saúde bucal e geral do paciente.
+    </p>
+</section>
+
+<div class="back">
+    <a href="index.html">⬅ Voltar para a página principal</a>
+</div>
+
+</div>
+
+<footer>
+    <p>Material educativo – Introdução à Estomatologia</p>
+</footer>
+
+</body>
+</html>

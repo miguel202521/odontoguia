@@ -27,7 +27,7 @@
             margin: 0;
         }
 
-        img {
+        header img {
             max-width: 150px;
         }
 
@@ -45,20 +45,25 @@
             gap: 30px;
         }
 
+        /* CARD QUADRADO */
         .card {
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            width: 200px;
-            padding: 20px;
+            border-radius: 15px;
+            width: 260px;
+            height: 260px;
+            padding: 15px;
             text-align: center;
             transition: transform 0.2s ease;
             position: relative;
             z-index: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             z-index: 10;
         }
 
@@ -69,28 +74,28 @@
             text-decoration: none;
             color: #0077b6;
             font-weight: bold;
-            font-size: 1.2em;
-            margin-bottom: 10px;
+            font-size: 1.1em;
         }
 
-        /* 🔥 IMAGENS MELHORADAS */
+        /* IMAGEM MAIOR */
         .area-img {
             width: 100%;
-            height: 190px; /* aumentada */
+            height: 170px;
             object-fit: cover;
             border-radius: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .dropdown {
             display: none;
             background-color: #f9f9f9;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
+            border-radius: 8px;
             padding: 10px;
             position: absolute;
-            top: 60px;
-            width: 100%;
+            top: 70px;
+            width: 90%;
+            left: 5%;
             text-align: left;
             z-index: 20;
         }
@@ -101,7 +106,7 @@
 
         .dropdown li {
             list-style: none;
-            padding: 8px 0;
+            padding: 6px 0;
             color: #555;
             font-size: 0.9em;
         }
@@ -116,11 +121,10 @@
             padding: 20px;
             background-color: #0077b6;
             color: white;
-            position: relative;
         }
 
         .pagination {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .pagination a {
@@ -137,6 +141,7 @@
     </style>
 </head>
 <body>
+
     <header>
         <h1>Odontoguia</h1>
         <img src="dente-polegar.jfif" alt="Imagem de um dente">
@@ -145,6 +150,8 @@
     <h2>Conheça outras áreas da odontologia e matérias relacionadas</h2>
 
     <section class="areas">
+
+        <!-- MODELO DE CARD (repita igual para os outros se quiser manter padrão) -->
 
         <div class="card">
             <a href="#dentistica">
@@ -159,7 +166,7 @@
 
         <div class="card">
             <a href="#odontopediatria">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontopediatria" class="area-img">
+                <img src="dente-polegar.jfif" class="area-img">
                 Odontopediatria
             </a>
             <ul class="dropdown" id="odontopediatria">
@@ -169,93 +176,13 @@
         </div>
 
         <div class="card">
-            <a href="#protesebm">
-                <img src="dente-polegar.jfif" alt="Imagem de Prótese Bucomaxilofacial" class="area-img">
-                Prótese Bucomaxilofacial
-            </a>
-            <ul class="dropdown" id="protesebm">
-                <li>Próteses faciais</li>
-                <li>Reabilitação maxilofacial</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <a href="#protesedentaria">
-                <img src="dente-polegar.jfif" alt="Imagem de Prótese Dentária" class="area-img">
-                Prótese Dentária
-            </a>
-            <ul class="dropdown" id="protesedentaria">
-                <li>Próteses fixas</li>
-                <li>Próteses removíveis</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <a href="#dtml">
-                <img src="dente-polegar.jfif" alt="Imagem de Disfunção Temporomandibular" class="area-img">
-                Disfunção Temporomandibular e oclusão
-            </a>
-            <ul class="dropdown" id="dtml">
-                <li>Tratamento de DTM</li>
-                <li>Controle da dor orofacial</li>
-            </ul>
-        </div>
-
-        <div class="card">
             <a href="#harmonizacao">
-                <img src="dente-polegar.jfif" alt="Imagem de Harmonização Orofacial" class="area-img">
+                <img src="dente-polegar.jfif" class="area-img">
                 Harmonização Orofacial
             </a>
             <ul class="dropdown" id="harmonizacao">
                 <li>Preenchimento labial</li>
                 <li>Botox</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <a href="#odontopaciente">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia para Pacientes com Necessidades Especiais" class="area-img">
-                Odontologia para Pacientes com Necessidades Especiais
-            </a>
-            <ul class="dropdown" id="odontopaciente">
-                <li>Cuidados especiais</li>
-                <li>Tratamento adaptado</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <a href="#odontoesporte">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Esporte" class="area-img">
-                Odontologia do Esporte
-            </a>
-            <ul class="dropdown" id="odontoesporte">
-                <li>Proteção dental para atletas</li>
-                <li>Tratamento de lesões orais</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <a href="#odontotrabalho">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Trabalho" class="area-img">
-                Odontologia do Trabalho
-            </a>
-            <ul class="dropdown" id="odontotrabalho">
-                <li>Saúde bucal no ambiente de trabalho</li>
-                <li>Prevenção de doenças ocupacionais</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <a href="#calculadora">
-                <img src="What is Financial Planning and Analysis _ Williams Charles & Scott LTD.jpeg" alt="Imagem de Calculadora e Itens" class="area-img">
-                Calculadora de Notas
-            </a>
-            <ul class="dropdown" id="calculadora">
-                <li>Média ponderada</li>
-                <li>Nota final necessária</li>
-                <li><a href="odontograma.html" style="color: #0077b6; font-weight: bold;">odontograma</a></li>
-                <li><a href="pacientes.html" style="color: #0077b6; font-weight: bold;">Pacientes</a></li>
-                <li><a href="calculadora.html" style="color: #0077b6; font-weight: bold;">Acessar Calculadora</a></li>
             </ul>
         </div>
 
@@ -267,5 +194,6 @@
             <a href="index.html">1</a> | <a href="pagina_nova.html" class="active">2</a>
         </div>
     </footer>
+
 </body>
 </html>

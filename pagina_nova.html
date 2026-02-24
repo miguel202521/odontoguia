@@ -3,197 +3,543 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontoguia - Nova Página</title>
+    <title>Odontoguia - Áreas da Odontologia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f4f8;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        /* Header Melhorado */
         header {
+            background: linear-gradient(135deg, #0077b6 0%, #00a8cc 100%);
+            padding: 30px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            background-color: #0077b6;
-            color: white;
+            box-shadow: 0 4px 20px rgba(0, 119, 182, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 {
-            font-size: 3em;
-            margin: 0;
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
         }
 
         header img {
-            max-width: 150px;
+            max-width: 120px;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+            animation: float 3s ease-in-out infinite;
         }
 
-        h2 {
-            margin-top: 20px;
-            font-size: 1.8em;
-            color: #333;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
-        .areas {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 40px;
-            gap: 30px;
-        }
-
-        /* CARD QUADRADO */
-        .card {
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 15px;
-            width: 260px;
-            height: 260px;
-            padding: 15px;
+        /* Título da Seção */
+        .section-title {
             text-align: center;
-            transition: transform 0.2s ease;
+            margin: 40px 20px 20px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: #0077b6;
+            margin-bottom: 10px;
             position: relative;
-            z-index: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #0077b6, #00a8cc);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* Container dos Cards */
+        .areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 30px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Card Moderno */
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0077b6, #00a8cc);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            z-index: 10;
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 119, 182, 0.2);
         }
 
-        .card a {
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-link {
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 25px 20px;
             text-decoration: none;
-            color: #0077b6;
-            font-weight: bold;
-            font-size: 1.1em;
+            color: inherit;
+            height: 100%;
         }
 
-        /* IMAGEM MAIOR */
-        .area-img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
+        /* Área da Imagem/Ícone */
+        .card-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: all 0.4s ease;
+            position: relative;
         }
 
-        .dropdown {
-            display: none;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 10px;
+        .card-icon-wrapper::after {
+            content: '';
             position: absolute;
-            top: 70px;
-            width: 90%;
-            left: 5%;
-            text-align: left;
-            z-index: 20;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #0077b6;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
         }
 
-        .card:hover .dropdown {
-            display: block;
+        .card:hover .card-icon-wrapper {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, #0077b6 0%, #00a8cc 100%);
         }
 
-        .dropdown li {
-            list-style: none;
-            padding: 6px 0;
-            color: #555;
-            font-size: 0.9em;
+        .card:hover .card-icon-wrapper::after {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        .dropdown li a {
-            text-decoration: none;
-            color: #0077b6;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #0077b6;
+        .card:hover .card-icon-wrapper i {
             color: white;
         }
 
+        .card-icon-wrapper i {
+            font-size: 2.5rem;
+            color: #0077b6;
+            transition: all 0.4s ease;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover .card-title {
+            color: #0077b6;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Dropdown Melhorado */
+        .dropdown {
+            max-height: 0;
+            overflow: hidden;
+            background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 0 0 15px 15px;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .card:hover .dropdown {
+            max-height: 300px;
+            padding: 15px;
+        }
+
+        .dropdown-list {
+            list-style: none;
+        }
+
+        .dropdown-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(0, 119, 182, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-item:hover {
+            background: rgba(0, 119, 182, 0.1);
+            border-radius: 8px;
+            padding-left: 20px;
+        }
+
+        .dropdown-item i {
+            color: #0077b6;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-item:hover i {
+            transform: translateX(5px);
+        }
+
+        .dropdown-item a {
+            text-decoration: none;
+            color: #444;
+            font-size: 0.9rem;
+            flex: 1;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-item:hover a {
+            color: #0077b6;
+        }
+
+        /* Badge de novidade */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(238, 90, 90, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0077b6 0%, #005f8a 100%);
+            color: white;
+            padding: 40px 50px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
         .pagination {
-            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .pagination a {
             text-decoration: none;
-            color: #ffffff;
-            font-weight: bold;
-            margin: 0 15px;
-            font-size: 1.2em;
+            color: white;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .pagination a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
         }
 
         .pagination a.active {
-            color: #ffd700;
+            background: white;
+            color: #0077b6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 25px 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .areas {
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .card {
+                margin: 0 10px;
+            }
+        }
+
+        /* Animação de entrada */
+        .card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.15s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.25s; }
+        .card:nth-child(5) { animation-delay: 0.3s; }
+        .card:nth-child(6) { animation-delay: 0.35s; }
+        .card:nth-child(7) { animation-delay: 0.4s; }
+        .card:nth-child(8) { animation-delay: 0.45s; }
+        .card:nth-child(9) { animation-delay: 0.5s; }
+        .card:nth-child(10) { animation-delay: 0.55s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>Odontoguia</h1>
         <img src="dente-polegar.jfif" alt="Imagem de um dente">
     </header>
 
-    <h2>Conheça outras áreas da odontologia e matérias relacionadas</h2>
+    <div class="section-title">
+        <h2>Áreas da Odontologia</h2>
+        <p>Explore as diversas especialidades odontológicas e encontre informações relevantes</p>
+    </div>
 
     <section class="areas">
-
-        <!-- MODELO DE CARD (repita igual para os outros se quiser manter padrão) -->
-
+        <!-- Card Dentística -->
         <div class="card">
-            <a href="#dentistica">
-                <img src="dent.jpeg" alt="Imagem de Dentística" class="area-img">
-                Dentística
+            <div class="badge">Popular</div>
+            <a href="#dentistica" class="card-link">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-tooth"></i>
+                </div>
+                <h3 class="card-title">Dentística</h3>
+                <p class="card-description">Restaurações estéticas e tratamentos dentários</p>
             </a>
-            <ul class="dropdown" id="dentistica">
-                <li>Restaurações estéticas</li>
-                <li>Materiais dentários</li>
-            </ul>
+            <div class="dropdown">
+                <ul class="dropdown-list">
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Restaurações estéticas</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Materiais dentários</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Clareamento dental</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
+        <!-- Card Odontopediatria -->
         <div class="card">
-            <a href="#odontopediatria">
-                <img src="dente-polegar.jfif" class="area-img">
-                Odontopediatria
+            <a href="#odontopediatria" class="card-link">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-baby"></i>
+                </div>
+                <h3 class="card-title">Odontopediatria</h3>
+                <p class="card-description">Cuidados odontológicos para crianças</p>
             </a>
-            <ul class="dropdown" id="odontopediatria">
-                <li>Cuidados com dentes de leite</li>
-                <li>Tratamento de cáries em crianças</li>
-            </ul>
+            <div class="dropdown">
+                <ul class="dropdown-list">
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Cuidados com dentes de leite</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Tratamento de cáries em crianças</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Orientação de higiene oral</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
+        <!-- Card Prótese Bucomaxilofacial -->
         <div class="card">
-            <a href="#harmonizacao">
-                <img src="dente-polegar.jfif" class="area-img">
-                Harmonização Orofacial
+            <a href="#protesebm" class="card-link">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-face-grin-stars"></i>
+                </div>
+                <h3 class="card-title">Prótese Bucomaxilofacial</h3>
+                <p class="card-description">Reabilitação facial e maxilofacial</p>
             </a>
-            <ul class="dropdown" id="harmonizacao">
-                <li>Preenchimento labial</li>
-                <li>Botox</li>
-            </ul>
+            <div class="dropdown">
+                <ul class="dropdown-list">
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Próteses faciais</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Reabilitação maxilofacial</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Implantes especiais</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Odontoguia</p>
-        <div class="pagination">
-            <a href="index.html">1</a> | <a href="pagina_nova.html" class="active">2</a>
+        <!-- Card Prótese Dentária -->
+        <div class="card">
+            <a href="#protesedentaria" class="card-link">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-teeth"></i>
+                </div>
+                <h3 class="card-title">Prótese Dentária</h3>
+                <p class="card-description">Próteses fixas e removíveis</p>
+            </a>
+            <div class="dropdown">
+                <ul class="dropdown-list">
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Próteses fixas</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Próteses removíveis</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Implantes dentários</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </footer>
 
-</body>
-</html>
+        <!-- Card DTM -->
+        <div class="card">
+            <a href="#dtml" class="card-link">
+                <div class="card-icon-wrapper">
+                    <i class="fa-solid fa-head-side-virus"></i>
+                </div>
+                <h3 class="card-title">DTM e Oclusão</h3>
+                <p class="card-description">Disfunção temporomandibular</p>
+            </a>
+            <div class="dropdown">
+                <ul class="dropdown-list">
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Tratamento de DTM</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Controle da dor orofacial</a>
+                    </li>
+                    <li class="dropdown-item">
+                        <i class="fa-solid fa-check"></i>
+                        <a href="#">Placas de mordida</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Card Harmonização Orofacial -->
+        <div class="card">
+            <div class="badge">Novo

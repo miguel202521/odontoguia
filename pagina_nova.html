@@ -3,145 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontoguia - Áreas da Odontologia</title>
+    <title>Odontoguia - Nova Página</title>
     <style>
-        /* Reset e Base */
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f4f8;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8f4f8 100%);
-            min-height: 100vh;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Header Aprimorado */
         header {
-            background: linear-gradient(135deg, #0077b6 0%, #005f8a 100%);
-            padding: 30px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 119, 182, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: 10%;
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 50%;
-        }
-
-        header h1 {
-            font-size: 2.8em;
-            font-weight: 700;
+            padding: 20px;
+            background-color: #0077b6;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
-            letter-spacing: 1px;
         }
 
-        header img {
-            max-width: 140px;
-            height: auto;
-            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 1;
+        h1 {
+            font-size: 3em;
+            margin: 0;
         }
 
-        header img:hover {
-            transform: scale(1.1) rotate(5deg);
+        img {
+            max-width: 150px;
         }
 
-        /* Título da Seção */
         h2 {
-            margin-top: 40px;
-            font-size: 2em;
-            color: #0077b6;
-            text-align: center;
-            font-weight: 600;
-            position: relative;
-            padding-bottom: 15px;
+            margin-top: 20px;
+            font-size: 1.8em;
+            color: #333;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #0077b6, #00b4d8);
-            border-radius: 2px;
-        }
-
-        /* Container Principal */
         .areas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
             gap: 30px;
-            padding: 40px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
         }
 
-        /* Cards Aprimorados */
         .card {
-            background: white;
-            border-radius: 16px;
-            padding: 0;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 200px;
+            padding: 20px;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.2s ease;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(0, 119, 182, 0.1);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #0077b6, #00b4d8);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            z-index: 0;
         }
 
         .card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 119, 182, 0.2);
-        }
-
-        .card:hover::before {
-            opacity: 1;
+            transform: translateY(-10px);
+            z-index: 10;
         }
 
         .card a {
@@ -150,272 +68,70 @@
             align-items: center;
             text-decoration: none;
             color: #0077b6;
-            font-weight: 600;
-            font-size: 1.1em;
-            padding: 20px;
-            transition: color 0.3s ease;
-        }
-
-        .card a:hover {
-            color: #005f8a;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
         }
 
         .area-img {
             width: 100%;
-            height: 160px;
+            height: 150px;
             object-fit: cover;
-            border-radius: 16px 16px 0 0;
-            transition: transform 0.4s ease;
+            border-radius: 10px;
+            margin-bottom: 10px;
         }
 
-        .card:hover .area-img {
-            transform: scale(1.05);
-        }
-
-        /* Dropdown Aprimorado */
         .dropdown {
             display: none;
-            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
-            border-radius: 12px;
-            padding: 15px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            padding: 10px;
             position: absolute;
-            top: 100%;
-            left: 10px;
-            right: 10px;
+            top: 60px;
+            width: 100%;
             text-align: left;
-            z-index: 100;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(0, 119, 182, 0.1);
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
+            z-index: 20;
         }
 
         .card:hover .dropdown {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .dropdown li {
             list-style: none;
-            padding: 10px 12px;
+            padding: 8px 0;
             color: #555;
             font-size: 0.9em;
-            border-bottom: 1px solid #eee;
-            transition: all 0.2s ease;
-            border-radius: 6px;
-        }
-
-        .dropdown li:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown li:hover {
-            background: rgba(0, 119, 182, 0.08);
-            color: #0077b6;
-            padding-left: 18px;
         }
 
         .dropdown li a {
-            display: inline;
-            padding: 0;
-            font-size: 0.95em;
+            text-decoration: none;
             color: #0077b6;
-            font-weight: 500;
         }
 
-        .dropdown li a:hover {
-            color: #005f8a;
-            text-decoration: underline;
-        }
-
-        /* Footer Aprimorado */
         footer {
-            margin-top: 60px;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #0077b6 0%, #005f8a 100%);
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #0077b6;
             color: white;
-            text-align: center;
             position: relative;
         }
 
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #00b4d8, #0077b6, #00b4d8);
-        }
-
-        footer p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
         .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
         .pagination a {
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 600;
-            padding: 12px 20px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            font-size: 1em;
-        }
-
-        .pagination a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            transform: translateY(-2px);
+            color: #ffffff;
+            font-weight: bold;
+            margin: 0 15px;
+            font-size: 1.2em;
         }
 
         .pagination a.active {
-            background: #ffd700;
-            color: #0077b6;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Responsividade Aprimorada */
-        @media (max-width: 1024px) {
-            .areas {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                padding: 30px;
-                gap: 25px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 25px 20px;
-                text-align: center;
-            }
-
-            header h1 {
-                font-size: 2.2em;
-                margin-bottom: 15px;
-            }
-
-            header img {
-                max-width: 120px;
-            }
-
-            h2 {
-                font-size: 1.6em;
-                padding: 0 20px;
-                margin-top: 30px;
-            }
-
-            .areas {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                padding: 25px 15px;
-                gap: 20px;
-            }
-
-            .card {
-                margin: 0 5px;
-            }
-
-            .dropdown {
-                left: 5px;
-                right: 5px;
-                font-size: 0.85em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            h2 {
-                font-size: 1.4em;
-            }
-
-            .areas {
-                grid-template-columns: 1fr;
-                padding: 20px 10px;
-            }
-
-            .card {
-                margin: 0 10px;
-            }
-
-            .area-img {
-                height: 140px;
-            }
-
-            .pagination a {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-        }
-
-        /* Animações de Entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.15s; }
-        .card:nth-child(3) { animation-delay: 0.2s; }
-        .card:nth-child(4) { animation-delay: 0.25s; }
-        .card:nth-child(5) { animation-delay: 0.3s; }
-        .card:nth-child(6) { animation-delay: 0.35s; }
-        .card:nth-child(7) { animation-delay: 0.4s; }
-        .card:nth-child(8) { animation-delay: 0.45s; }
-        .card:nth-child(9) { animation-delay: 0.5s; }
-        .card:nth-child(10) { animation-delay: 0.55s; }
-
-        /* Scrollbar Personalizada */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #0077b6, #00b4d8);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #005f8a;
-        }
-
-        /* Melhorias de Acessibilidade */
-        .card:focus-within {
-            outline: 3px solid #00b4d8;
-            outline-offset: 3px;
-        }
-
-        a:focus {
-            outline: 2px solid #ffd700;
-            outline-offset: 2px;
+            color: #ffd700;
         }
     </style>
 </head>
@@ -529,3 +245,33 @@
             <a href="#odontotrabalho">
                 <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Trabalho" class="area-img">
                 Odontologia do Trabalho
+            </a>
+            <ul class="dropdown" id="odontotrabalho">
+                <li>Saúde bucal no ambiente de trabalho</li>
+                <li>Prevenção de doenças ocupacionais</li>
+            </ul>
+        </div>
+        <!-- Cartão da Calculadora -->
+<div class="card">
+    <a href="#calculadora">
+        <img src="What is Financial Planning and Analysis _ Williams Charles & Scott LTD.jpeg" alt="Imagem de Calculadora e Itens" class="area-img">
+        Calculadora de Notas
+    </a>
+    <ul class="dropdown" id="calculadora">
+        <li>Média ponderada</li>
+        <li>Nota final necessária</li>
+        <li><a href="odontograma.html" style="color: #0077b6; font-weight: bold;">odontograma</a></li>
+        <li><a href="pacientes.html" style="color: #0077b6; font-weight: bold;">Pacientes</a></li>
+        <li><a href="calculadora.html" style="color: #0077b6; font-weight: bold;">Acessar Calculadora</a></li>
+    </ul>
+</div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Odontoguia</p>
+        <div class="pagination">
+            <a href="index.html">1</a> | <a href="pagina_nova.html" class="active">2</a>
+        </div>
+    </footer>
+</body>
+</html>

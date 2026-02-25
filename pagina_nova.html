@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odontoguia - Nova Página</title>
+    <title>Odontoguia</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -133,6 +133,65 @@
         .pagination a.active {
             color: #ffd700;
         }
+        /* Estilo para o 5º item */
+.card .dropdown li:nth-child(5) a {
+    background-color: #0077b6; /* Cor de fundo diferenciada */
+    color: white; /* Texto em branco */
+    padding: 10px 15px; /* Espaçamento interno */
+    border-radius: 5px; /* Cantos arredondados */
+    font-weight: bold; /* Texto em negrito */
+    display: inline-block; /* Formato de botão */
+    text-decoration: none; /* Remove sublinhado */
+    transition: background-color 0.3s ease; /* Efeito suave */
+}
+
+.card .dropdown li:nth-child(5) a:hover {
+    background-color: #005f8b; /* Cor ao passar o mouse */
+}
+ .pagination-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-buttons {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .footer-buttons {
+        position: static;
+        margin-top: 15px;
+        justify-content: center;
+    }
+}
+
+
+.footer-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-btn {
+    background-color: #ffd700;
+    color: #003049;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+    background-color: #ffb703;
+    transform: translateY(-2px);
+}
+
     </style>
 </head>
 <body>
@@ -141,152 +200,173 @@
         <img src="dente-polegar.jfif" alt="Imagem de um dente">
     </header>
 
-    <h2>Conheça outras áreas da odontologia e matérias relacionadas</h2>
+    <h2>Conheça sobre diferentes áreas da odontologia e matérias relacionadas</h2>
 
     <section class="areas">
         <!-- Cartão de Dentística -->
         <div class="card">
-            <a href="#dentistica">
+            <a href="#Dentística">
                 <img src="dent.jpeg" alt="Imagem de Dentística" class="area-img">
-                Dentística
+               Dentística
             </a>
-            <ul class="dropdown" id="dentistica">
-                <li>Restaurações estéticas</li>
-                <li>Materiais dentários</li>
+            <ul class="dropdown" id="Dentística">
+                <li><a href="introdução denti.html">Introdução</a></li>
+                <li>Técnicas de sedação</li>
+                <li>Anestesia geral</li>
+                <li>Anestesia local</li>
+                <li>Analgésicos odontológicos</li>
             </ul>
         </div>
 
-        <!-- Cartão de Odontopediatria -->
+        <!-- Cartão de Cirurgia -->
         <div class="card">
-            <a href="#odontopediatria">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontopediatria" class="area-img">
-                Odontopediatria
+            <a href="#cirurgia">
+                <img src="cirurgia do siso - Consulta Ideal.jpeg" alt="Imagem de Cirurgia" class="area-img">
+                Cirurgia
             </a>
-            <ul class="dropdown" id="odontopediatria">
-                <li>Cuidados com dentes de leite</li>
-                <li>Tratamento de cáries em crianças</li>
+            <ul class="dropdown" id="cirurgia">
+               <li><a href="Introdução buco.html">Introdução</a></li>
+                <li>Cirurgia ortognática</li>
+                <li>Cirurgia de cistos</li>
+                <li>Enxerto ósseo</li>
+                <li>Implante cirúrgico</li>
             </ul>
         </div>
 
-        <!-- Cartão de Prótese Bucomaxilofacial -->
+        <!-- Cartão de Radiografia -->
         <div class="card">
-            <a href="#protesebm">
-                <img src="dente-polegar.jfif" alt="Imagem de Prótese Bucomaxilofacial" class="area-img">
-                Prótese Bucomaxilofacial
+            <a href="#radiografia">
+                <img src="🦷.jpeg" alt="Imagem de Radiografia" class="area-img">
+                Radiografia
             </a>
-            <ul class="dropdown" id="protesebm">
-                <li>Próteses faciais</li>
-                <li>Reabilitação maxilofacial</li>
+            <ul class="dropdown" id="radiografia">
+                <li><a href="introradio.html">Introdução</a></li>
+                <li><a href="radiografiasperiap.html">Radiografias periapicais</a></li>
+                <li>Radiografia periapical</li>
+                <li>Cefalometria</li>
+                <li>Radiografia oclusal</li>
             </ul>
         </div>
 
-        <!-- Cartão de Prótese Dentária -->
+        <!-- Cartão de Periodontia -->
         <div class="card">
-            <a href="#protesedentaria">
-                <img src="dente-polegar.jfif" alt="Imagem de Prótese Dentária" class="area-img">
-                Prótese Dentária
+            <a href="#periodontia">
+                <img src="Laser Dentistry ( Using Diode Laser from Germany ).jpeg" alt="Imagem de Periodontia" class="area-img">
+                Periodontia
             </a>
-            <ul class="dropdown" id="protesedentaria">
-                <li>Próteses fixas</li>
-                <li>Próteses removíveis</li>
+            <ul class="dropdown" id="periodontia">
+                <li><a href="Introdução.perio.html">Introdução</a></li>
+                <li><a href="classificação.html">Classificações Periodontais</a></li>
+                <li><a href="Raspagem-periodontal.html">Raspagem periodontal</a></li>
+                <li>Cirurgias periodontais</li>
+                <li>Implantes gengivais</li>
             </ul>
         </div>
 
-        <!-- Cartão de Disfunção Temporomandibular e Dor Orofacial -->
+        <!-- Cartão de Biomateriais -->
         <div class="card">
-            <a href="#dtml">
-                <img src="dente-polegar.jfif" alt="Imagem de Disfunção Temporomandibular" class="area-img">
-                Disfunção Temporomandibular e oclusão
+            <a href="#biomateriais">
+                <img src="Grillz Luxo Cravejado ICE  - com Molde de Silicone para ajustar aos dentes - Prata.jpeg" alt="Imagem de Biomateriais" class="area-img">
+                Biomateriais
             </a>
-            <ul class="dropdown" id="dtml">
-                <li>Tratamento de DTM</li>
-                <li>Controle da dor orofacial</li>
+            <ul class="dropdown" id="biomateriais">
+                <li><a href="introbio.html">Introdução</a></li>
+                <li>Materiais para restaurações dentárias</li>
+                <li>Materiais cerâmicos</li>
+                <li>Compósitos dentários</li>
+                <li>Biomateriais para implantes</li>
             </ul>
         </div>
 
-        <!-- Cartão de Harmonização Orofacial -->
+        <!-- Cartão de Estomatologia -->
         <div class="card">
-            <a href="#harmonizacao">
-                <img src="dente-polegar.jfif" alt="Imagem de Harmonização Orofacial" class="area-img">
-                Harmonização Orofacial
+            <a href="#estomatologia">
+                <img src="Eight Common Oral Infections.jpeg" alt="Imagem de Estomatologia" class="area-img">
+                Estomatologia
             </a>
-            <ul class="dropdown" id="harmonizacao">
-                <li>Preenchimento labial</li>
-                <li>Botox</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Odontologia para Pacientes com Necessidades Especiais -->
-        <div class="card">
-            <a href="#odontopaciente">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia para Pacientes com Necessidades Especiais" class="area-img">
-                Odontologia para Pacientes com Necessidades Especiais
-            </a>
-            <ul class="dropdown" id="odontopaciente">
-                <li>Cuidados especiais</li>
-                <li>Tratamento adaptado</li>
-            </ul>
-        </div>
-
-        <!-- Cartão de Odontologia do Esporte -->
-        <div class="card">
-            <a href="#odontoesporte">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Esporte" class="area-img">
-                Odontologia do Esporte
-            </a>
-            <ul class="dropdown" id="odontoesporte">
-                <li>Proteção dental para atletas</li>
+            <ul class="dropdown" id="estomatologia">
+                <li><a href="Introdução estomato.html">Introdução</a></li>
                 <li>Tratamento de lesões orais</li>
+                <li>Doenças sistêmicas</li>
+                <li>Lesões de mucosas</li>
+                <li class="special-item"><a href="estomatologia-detalhada.html">Ver todos os tópicos</a></li>
             </ul>
         </div>
 
-        <!-- Cartão de Odontologia do Trabalho -->
+        <!-- Cartão de Implantodontia -->
         <div class="card">
-            <a href="#odontotrabalho">
-                <img src="dente-polegar.jfif" alt="Imagem de Odontologia do Trabalho" class="area-img">
-                Odontologia do Trabalho
+            <a href="#implantodontia">
+                <img src="Sobredentadura ou Overdenture - Dentista Sorridere Porto Alegre.jpeg" alt="Imagem de Implantodontia" class="area-img">
+                Implantodontia
             </a>
-            <ul class="dropdown" id="odontotrabalho">
-                <li>Saúde bucal no ambiente de trabalho</li>
-                <li>Prevenção de doenças ocupacionais</li>
+            <ul class="dropdown" id="implantodontia">
+                <li>Planejamento de implantes</li>
+                <li>Cirurgia de implantes</li>
+                <li>Manutenção de implantes</li>
+                <li>Próteses sobre implantes</li>
+                <li>Enxerto ósseo para implantes</li>
             </ul>
         </div>
-        <!-- Cartão da Calculadora -->
-<div class="card">
-    <a href="#calculadora">
-        <img src="What is Financial Planning and Analysis _ Williams Charles & Scott LTD.jpeg" alt="Imagem de Calculadora e Itens" class="area-img">
-        Calculadora de Notas
-    </a>
-    <ul class="dropdown" id="calculadora">
-        <li>Média ponderada</li>
-        <li>Nota final necessária</li>
-        <li><a href="odontograma.html" style="color: #0077b6; font-weight: bold;">odontograma</a></li>
-        <li><a href="pacientes.html" style="color: #0077b6; font-weight: bold;">Pacientes</a></li>
-        <li><a href="calculadora.html" style="color: #0077b6; font-weight: bold;">Acessar Calculadora</a></li>
-    </ul>
-</div>
+
+        <!-- Cartão de Ortodontia -->
+        <div class="card">
+            <a href="#ortodontia">
+                <img src="Dentistry ✨.jpeg" alt="Imagem de Ortodontia" class="area-img">
+                Ortodontia
+            </a>
+            <ul class="dropdown" id="ortodontia">
+                <li>Correção de dentes tortos</li>
+                <li>Uso de aparelhos fixos</li>
+                <li>Uso de aparelhos móveis</li>
+                <li>Alinhadores invisíveis</li>
+                <li>Tratamento com contenções</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Endodontia -->
+        <div class="card">
+            <a href="#endodontia">
+                <img src="¿Es seguro el tratamiento de endodoncia_, te explicamos el paso a paso.jpeg" alt="Imagem de Endodontia" class="area-img">
+                Endodontia
+            </a>
+            <ul class="dropdown" id="endodontia">
+                <li><a href="Introdução Endodontia.html">Introdução</a></li>
+                <li>Retratamento endodôntico</li>
+                <li>Cirurgia endodôntica</li>
+                <li>Tratamento de lesões periapicais</li>
+                <li>Uso de microscópio</li>
+            </ul>
+        </div>
+
+        <!-- Cartão de Odontologia Legal -->
+        <div class="card">
+            <a href="#odontologia-legal">
+                <img src="Detetive masculino com uma lupa na mão _ Vetor Premium.jpeg" alt="Imagem de Odontologia Legal" class="area-img">
+                Odontologia Legal
+            </a>
+            <ul class="dropdown" id="odontologia-legal">
+                <li>Identificação forense</li>
+                <li>Odontologia para perícia</li>
+                <li>Documentação de lesões</li>
+                <li>Biometria dental</li>
+                <li>Normas legais e éticas</li>
+            </ul>
+        </div>
     </section>
-<div style="text-align:center; margin:40px 0;">
-    <a href="index.html"
-       style="
-           display:inline-block;
-           padding:12px 25px;
-           background-color:#ffd700;
-           color:#0077b6;
-           text-decoration:none;
-           font-weight:bold;
-           font-size:18px;
-           border-radius:30px;
-       ">
-        ⬅ Voltar para a página principal
-    </a>
-</div>
 
     <footer>
-        <p>&copy; 2024 Odontoguia</p>
+    <div class="pagination-container">
         <div class="pagination">
-            <a href="index.html">1</a> | <a href="pagina_nova.html" class="active">2</a>
+            <a href="index.html" class="active">1</a> |
+            <a href="pagina_nova.html">2</a>
         </div>
-    </footer>
+
+        <div class="footer-buttons">
+            <a href="calculadora.html" class="footer-btn">Calculadora de notas</a>
+            <a href="pacientes.html" class="footer-btn">Salvar pacientes</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

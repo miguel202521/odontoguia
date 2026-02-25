@@ -148,13 +148,28 @@
 .card .dropdown li:nth-child(5) a:hover {
     background-color: #005f8b; /* Cor ao passar o mouse */
 }
-    .pagination-container {
+ .pagination-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
-    flex-wrap: wrap;
 }
+
+.footer-buttons {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .footer-buttons {
+        position: static;
+        margin-top: 15px;
+        justify-content: center;
+    }
+}
+
 
 .footer-buttons {
     display: flex;

@@ -5,7 +5,150 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pacientes - Odontoguia</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const { jsPDF } = window.jspdf;
+
+let patients = JSON.parse(localStorage.getItem("patients")) || [];
+let currentIndex = null;
+
+function savePatient() {
+    const nameEl = document.getElementById("name");
+    const ageEl = document.getElementById("age");
+    const genderEl = document.getElementById("gender");
+    const weightEl = document.getElementById("weight");
+    const dateEl = document.getElementById("date");
+    const complaintsEl = document.getElementById("complaints");
+    const historyEl = document.getElementById("history");
+    const notesEl = document.getElementById("notes");
+
+    const patient = {
+        name: nameEl.value.trim(),
+        age: ageEl.value.trim(),
+        gender: genderEl.value.trim(),
+        weight: weightEl.value.trim(),
+        date: dateEl.value,
+        complaints: complaintsEl.value.trim(),
+        history: historyEl.value.trim(),
+        notes: notesEl.value.trim()
+    };
+
+    if (patient.name === "") {
+        alert("Informe o nome do paciente.");
+        return;
+    }
+
+    if (currentIndex !== null) {
+        patients[currentIndex] = patient;
+        currentIndex = null;
+    } else {
+        patients.push(patient);
+    }
+
+    localStorage.setItem("patients", JSON.stringify(patients));
+    clearForm();
+    renderPatients();
+}
+
+function renderPatients() {
+    const list = document.getElementById("patientList");
+    list.innerHTML = "";
+
+    patients.forEach((p, i) => {
+        const card = document.createElement("div");
+        card.className = "patient-card";
+        card.onclick = () => openFicha(i);
+
+        card.innerHTML = `
+            <h3>${p.name}</h3>
+            <p>${p.gender || "-"}</p>
+            <p>${p.date || ""}</p>
+        `;
+
+        list.appendChild(card);
+    });
+}
+
+function openFicha(i) {
+    const p = patients[i];
+    currentIndex = i;
+
+    document.getElementById("fichaNome").textContent = p.name;
+    document.getElementById("fichaSexo").textContent = p.gender;
+    document.getElementById("fichaIdade").textContent = p.age;
+    document.getElementById("fichaPeso").textContent = p.weight;
+    document.getElementById("fichaData").textContent = p.date;
+    document.getElementById("fichaRec").textContent = p.complaints;
+    document.getElementById("fichaHist").textContent = p.history;
+    document.getElementById("fichaNotas").textContent = p.notes;
+
+    document.getElementById("fichaFoto").src =
+        p.gender === "Feminino"
+        ? "https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+        : "https://cdn-icons-png.flaticon.com/512/4140/4140047.png";
+
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("ficha").style.display = "block";
+}
+
+function closeFicha() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("ficha").style.display = "none";
+}
+
+function editFromFicha() {
+    const p = patients[currentIndex];
+
+    document.getElementById("name").value = p.name;
+    document.getElementById("age").value = p.age;
+    document.getElementById("gender").value = p.gender;
+    document.getElementById("weight").value = p.weight;
+    document.getElementById("date").value = p.date;
+    document.getElementById("complaints").value = p.complaints;
+    document.getElementById("history").value = p.history;
+    document.getElementById("notes").value = p.notes;
+
+    closeFicha();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function deleteFromFicha() {
+    if (confirm("Excluir paciente?")) {
+        patients.splice(currentIndex, 1);
+        localStorage.setItem("patients", JSON.stringify(patients));
+        closeFicha();
+        renderPatients();
+    }
+}
+
+function generatePDF() {
+    const p = patients[currentIndex];
+    const doc = new jsPDF();
+
+    let y = 20;
+    doc.setFontSize(16);
+    doc.text("Ficha do Paciente - Odontoguia", 20, y);
+    y += 12;
+
+    doc.setFontSize(11);
+    doc.text(`Nome: ${p.name}`, 20, y); y+=8;
+    doc.text(`Idade: ${p.age}`, 20, y); y+=8;
+    doc.text(`Sexo: ${p.gender}`, 20, y); y+=8;
+    doc.text(`Peso: ${p.weight}`, 20, y); y+=8;
+    doc.text(`Data: ${p.date}`, 20, y); y+=8;
+    doc.text(`Reclamações: ${p.complaints}`, 20, y); y+=8;
+    doc.text(`Histórico: ${p.history}`, 20, y); y+=8;
+    doc.text(`Anotações: ${p.notes}`, 20, y);
+
+    doc.save(`Ficha_${p.name.replace(/\s+/g,"_")}.pdf`);
+}
+
+function clearForm() {
+    document.querySelectorAll("input, textarea, select").forEach(e => e.value = "");
+}
+
+renderPatients();
+</script>
+
 
 <style>
 body {

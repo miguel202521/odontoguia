@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pacientes - Odontoguia</title>
 
-<!-- jsPDF CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    background: #f0f4f8;
+    font-family: Arial, sans-serif;
+    background: #eef3f8;
 }
 
 header {
@@ -23,35 +22,36 @@ header {
 }
 
 .container {
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #0077b6;
+    font-weight: bold;
 }
 
 .card {
     background: white;
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-    margin-bottom: 30px;
-}
-
-h2 {
-    margin-top: 0;
-    color: #0077b6;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
 }
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 12px;
 }
 
 input, select, textarea {
-    width: 100%;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ccc;
+    width: 100%;
 }
 
 textarea {
@@ -62,50 +62,103 @@ button {
     background: #0077b6;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 14px;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 button:hover {
     background: #005f8b;
 }
 
-.btn-secondary {
-    background: #6c757d;
+.btn-danger {
+    background: #c1121f;
+}
+
+.btn-danger:hover {
+    background: #9b0e18;
 }
 
 .patient-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
     gap: 15px;
 }
 
 .patient-card {
     background: #ffffff;
-    padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    padding: 15px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+    cursor: pointer;
 }
 
 .patient-card h3 {
-    margin: 0 0 5px;
+    margin: 0;
     color: #0077b6;
 }
 
-.actions {
-    margin-top: 10px;
+.patient-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+/* ===== FICHÁRIO ===== */
+
+.overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+
+.ficha {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #fdfdfd;
+    width: 95%;
+    max-width: 700px;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    z-index: 1001;
+}
+
+.ficha-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ficha-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ficha-header h2 {
+    margin: 0;
+    color: #0077b6;
+}
+
+.ficha-body {
+    margin-top: 20px;
+}
+
+.ficha-body p {
+    margin: 6px 0;
+}
+
+.ficha-actions {
+    margin-top: 20px;
     display: flex;
     gap: 10px;
-}
-
-.back {
-    display: inline-block;
-    margin-bottom: 20px;
-    text-decoration: none;
-    color: #0077b6;
-    font-weight: bold;
+    flex-wrap: wrap;
 }
 </style>
 </head>
@@ -118,26 +171,26 @@ button:hover {
 
 <div class="container">
 
-<a href="index.html" class="back">← Voltar para Página Principal</a>
+<a href="index.html">← Voltar para Página Principal</a>
 
 <div class="card">
-    <h2>Cadastrar Paciente</h2>
+    <h2>Cadastrar / Editar Paciente</h2>
     <div class="form-grid">
-        <input type="text" id="name" placeholder="Nome">
-        <input type="number" id="age" placeholder="Idade">
+        <input id="name" placeholder="Nome">
+        <input id="age" type="number" placeholder="Idade">
         <select id="gender">
             <option value="">Sexo</option>
-            <option>Homem</option>
-            <option>Mulher</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
         </select>
-        <input type="number" id="weight" placeholder="Peso (kg)">
-        <input type="date" id="date">
+        <input id="weight" placeholder="Peso">
+        <input id="date" type="date">
         <textarea id="complaints" placeholder="Reclamações"></textarea>
         <textarea id="history" placeholder="Histórico Médico"></textarea>
         <textarea id="notes" placeholder="Anotações"></textarea>
     </div>
     <br>
-    <button onclick="savePatient(true)">Salvar e Baixar PDF</button>
+    <button onclick="savePatient()">Salvar Paciente</button>
 </div>
 
 <div class="card">
@@ -147,11 +200,41 @@ button:hover {
 
 </div>
 
+<!-- FICHÁRIO -->
+<div class="overlay" id="overlay" onclick="closeFicha()"></div>
+
+<div class="ficha" id="ficha">
+    <div class="ficha-header">
+        <img id="fichaFoto">
+        <div>
+            <h2 id="fichaNome"></h2>
+            <p id="fichaSexo"></p>
+        </div>
+    </div>
+
+    <div class="ficha-body">
+        <p><strong>Idade:</strong> <span id="fichaIdade"></span></p>
+        <p><strong>Peso:</strong> <span id="fichaPeso"></span></p>
+        <p><strong>Data:</strong> <span id="fichaData"></span></p>
+        <p><strong>Reclamações:</strong> <span id="fichaRec"></span></p>
+        <p><strong>Histórico:</strong> <span id="fichaHist"></span></p>
+        <p><strong>Anotações:</strong> <span id="fichaNotas"></span></p>
+    </div>
+
+    <div class="ficha-actions">
+        <button onclick="editFromFicha()">Editar</button>
+        <button onclick="generatePDF()">Baixar PDF</button>
+        <button class="btn-danger" onclick="deleteFromFicha()">Excluir</button>
+        <button onclick="closeFicha()">Fechar</button>
+    </div>
+</div>
+
 <script>
 const { jsPDF } = window.jspdf;
 let patients = JSON.parse(localStorage.getItem("patients")) || [];
+let currentIndex = null;
 
-function savePatient(downloadPDF = false) {
+function savePatient() {
     const patient = {
         name: name.value,
         age: age.value,
@@ -164,61 +247,105 @@ function savePatient(downloadPDF = false) {
     };
 
     if (!patient.name) {
-        alert("Informe o nome do paciente.");
+        alert("Informe o nome.");
         return;
     }
 
-    patients.push(patient);
+    if (currentIndex !== null) {
+        patients[currentIndex] = patient;
+        currentIndex = null;
+    } else {
+        patients.push(patient);
+    }
+
     localStorage.setItem("patients", JSON.stringify(patients));
-
-    if (downloadPDF) generatePDF(patient);
-
     clearForm();
     renderPatients();
-}
-
-function generatePDF(p) {
-    const doc = new jsPDF();
-
-    doc.setFontSize(16);
-    doc.text("Ficha do Paciente - Odontoguia", 20, 20);
-
-    doc.setFontSize(11);
-    let y = 35;
-
-    const addLine = (label, value) => {
-        doc.text(`${label}: ${value || "-"}`, 20, y);
-        y += 8;
-    };
-
-    addLine("Nome", p.name);
-    addLine("Idade", p.age);
-    addLine("Sexo", p.gender);
-    addLine("Peso", p.weight);
-    addLine("Data da Consulta", p.date);
-    addLine("Reclamações", p.complaints);
-    addLine("Histórico Médico", p.history);
-    addLine("Anotações", p.notes);
-
-    doc.save(`Paciente_${p.name.replace(/\s+/g, "_")}.pdf`);
 }
 
 function renderPatients() {
     const list = document.getElementById("patientList");
     list.innerHTML = "";
 
-    patients.forEach(p => {
+    patients.forEach((p,i) => {
         list.innerHTML += `
-        <div class="patient-card">
+        <div class="patient-card" onclick="openFicha(${i})">
             <h3>${p.name}</h3>
-            <p><strong>Consulta:</strong> ${p.date || "-"}</p>
-        </div>
-        `;
+            <p>${p.gender || "-"}</p>
+            <p>${p.date || ""}</p>
+        </div>`;
     });
 }
 
+function openFicha(i) {
+    const p = patients[i];
+    currentIndex = i;
+
+    fichaNome.textContent = p.name;
+    fichaSexo.textContent = p.gender;
+    fichaIdade.textContent = p.age;
+    fichaPeso.textContent = p.weight;
+    fichaData.textContent = p.date;
+    fichaRec.textContent = p.complaints;
+    fichaHist.textContent = p.history;
+    fichaNotas.textContent = p.notes;
+
+    fichaFoto.src = p.gender === "Feminino"
+        ? "https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+        : "https://cdn-icons-png.flaticon.com/512/4140/4140047.png";
+
+    overlay.style.display = "block";
+    ficha.style.display = "block";
+}
+
+function closeFicha() {
+    overlay.style.display = "none";
+    ficha.style.display = "none";
+}
+
+function editFromFicha() {
+    const p = patients[currentIndex];
+    name.value = p.name;
+    age.value = p.age;
+    gender.value = p.gender;
+    weight.value = p.weight;
+    date.value = p.date;
+    complaints.value = p.complaints;
+    history.value = p.history;
+    notes.value = p.notes;
+    closeFicha();
+    window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function deleteFromFicha() {
+    if (confirm("Excluir paciente?")) {
+        patients.splice(currentIndex,1);
+        localStorage.setItem("patients", JSON.stringify(patients));
+        closeFicha();
+        renderPatients();
+    }
+}
+
+function generatePDF() {
+    const p = patients[currentIndex];
+    const doc = new jsPDF();
+
+    let y = 20;
+    doc.setFontSize(16);
+    doc.text("Ficha do Paciente - Odontoguia", 20, y);
+    y += 15;
+
+    doc.setFontSize(11);
+    Object.entries(p).forEach(([k,v])=>{
+        doc.text(`${k.toUpperCase()}: ${v || "-"}`,20,y);
+        y+=8;
+    });
+
+    doc.save(`Ficha_${p.name}.pdf`);
+}
+
 function clearForm() {
-    document.querySelectorAll("input, textarea, select").forEach(el => el.value = "");
+    document.querySelectorAll("input,textarea,select").forEach(e=>e.value="");
 }
 
 renderPatients();

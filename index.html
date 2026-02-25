@@ -148,6 +148,35 @@
 .card .dropdown li:nth-child(5) a:hover {
     background-color: #005f8b; /* Cor ao passar o mouse */
 }
+    .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-btn {
+    background-color: #ffd700;
+    color: #003049;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+.footer-btn:hover {
+    background-color: #ffb703;
+    transform: translateY(-2px);
+}
+
     </style>
 </head>
 <body>
@@ -311,9 +340,18 @@
     </section>
 
     <footer>
+    <div class="pagination-container">
         <div class="pagination">
-            <a href="index.html">1</a> | <a href="pagina_nova.html">2</a>
+            <a href="index.html" class="active">1</a> |
+            <a href="pagina_nova.html">2</a>
         </div>
-    </footer>
+
+        <div class="footer-buttons">
+            <a href="calculadora.html" class="footer-btn">Calculadora de notas</a>
+            <a href="pacientes.html" class="footer-btn">Salvar pacientes</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>

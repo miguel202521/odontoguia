@@ -6,44 +6,81 @@
 
 <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Arial, sans-serif;
         margin: 0;
-        background: #f4f6f8;
+        background: #eef2f7;
         color: #333;
     }
 
     header {
-        background: #2c7be5;
+        background: linear-gradient(135deg, #2c7be5, #1a4fbf);
         color: white;
-        padding: 20px;
+        padding: 30px 20px;
         text-align: center;
     }
 
-    section {
+    header h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    header p {
+        margin-top: 5px;
+        opacity: 0.9;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
         padding: 20px;
-        margin: 20px;
+    }
+
+    section {
         background: white;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 25px;
+        margin-bottom: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        text-align: center;
     }
 
     h2 {
         color: #2c7be5;
+        margin-bottom: 15px;
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        background: #f1f5ff;
+        margin: 8px auto;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 500px;
     }
 
     img {
         width: 100%;
-        max-width: 400px;
+        max-width: 350px;
+        margin: 20px auto;
         display: block;
-        margin: 15px auto;
-        border-radius: 10px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
     .destaque {
-        background: #e9f2ff;
-        padding: 10px;
-        border-left: 5px solid #2c7be5;
-        margin: 10px 0;
+        background: #e7f0ff;
+        padding: 12px;
+        border-radius: 10px;
+        margin-top: 15px;
+        font-weight: 500;
     }
 </style>
 </head>
@@ -52,74 +89,71 @@
 
 <header>
     <h1>Anatomia Interna dos Dentes</h1>
-    <p>Endodontia - Resumo</p>
+    <p>Resumo de Endodontia</p>
 </header>
 
+<div class="container">
+
 <section>
-    <h2>📌 O que é Endodontia?</h2>
+    <h2>O que é Endodontia?</h2>
     <p>
-        Endodontia é a área que estuda a etiologia, prevenção e tratamento das alterações da polpa dental.
+        Endodontia é a área responsável por estudar, prevenir e tratar alterações da polpa dental.
     </p>
 
     <div class="destaque">
-        Pode-se encontrar um tecido pulpar vivo ou necrosado, além de várias complexidades anatômicas.
+        Pode haver tecido pulpar vivo ou necrosado, além de várias complexidades anatômicas.
     </div>
 </section>
 
 <section>
-    <h2>🦷 Estrutura do Dente</h2>
-    <p>O dente é dividido em:</p>
-    <ul>
-        <li><b>Coroa</b></li>
-        <li><b>Raiz</b></li>
-    </ul>
+    <h2>Estrutura do Dente</h2>
+    <p>O dente é dividido em coroa e raiz.</p>
 
-    <p>Estruturas internas:</p>
     <ul>
-        <li><b>Cavidade pulpar</b></li>
-        <li><b>Câmara pulpar</b></li>
-        <li><b>Canal radicular</b></li>
+        <li>Cavidade pulpar</li>
+        <li>Câmara pulpar</li>
+        <li>Canal radicular</li>
     </ul>
 </section>
 
 <section>
-    <h2>📸 Câmara Pulpar</h2>
-    <img src="Camara pulpar9 23.08.30.jpeg" alt="Câmara Pulpar">
+    <h2>Câmara Pulpar</h2>
+    <img src="Camara pulpar9 23.08.30.jpeg">
 
     <p>
-        A câmara pulpar varia conforme o número de canais do dente.
+        A quantidade de paredes depende do número de canais do dente.
     </p>
 
     <ul>
-        <li>Dentes com 1 canal → 5 paredes</li>
-        <li>Dentes com mais de 1 canal → possuem também o assoalho</li>
+        <li>1 canal → 5 paredes</li>
+        <li>Mais de 1 canal → possui assoalho</li>
     </ul>
 
     <p>
-        Nos dentes anteriores → teto = face incisal <br>
-        Nos posteriores → teto = face oclusal
+        Dentes anteriores → teto = incisal <br>
+        Dentes posteriores → teto = oclusal
     </p>
 </section>
 
 <section>
-    <h2>📸 CDC (Constrição Dentinocementária)</h2>
-    <img src="CDC.jpeg" alt="CDC">
+    <h2>CDC (Constrição Dentinocementária)</h2>
+    <img src="CDC.jpeg">
 
     <p>
-        A CDC é a região onde o canal dentinário encontra o canal cementário.
+        Região onde o canal dentinário encontra o cementário.
     </p>
 
     <div class="destaque">
-        É uma das áreas mais importantes da endodontia!
+        É o limite ideal do tratamento endodôntico.
     </div>
 </section>
 
 <section>
-    <h2>📸 Sistema de Canais Radiculares</h2>
-    <img src="Sistema de canais radiculares.jpeg" alt="Sistema de Canais">
+    <h2>Sistema de Canais Radiculares</h2>
+    <img src="Sistema de canais radiculares.jpeg">
 
     <p>
-        Segundo Kutler (1955), o canal não é único, sendo dividido em:
+        O canal radicular não é único, sendo dividido em:
     </p>
 
     <ul>
@@ -128,29 +162,31 @@
     </ul>
 
     <p>
-        Eles se unem formando um formato de cone.
+        Ambos formam um cone ao se unirem.
     </p>
 </section>
 
 <section>
-    <h2>📸 Anatomia Apical</h2>
-    <img src="Anatomia apical.jpeg" alt="Anatomia Apical">
+    <h2>Anatomia Apical</h2>
+    <img src="Anatomia apical.jpeg">
 
     <p>
-        A região apical é onde ocorre o final do canal radicular.
+        Região final do canal radicular.
     </p>
 
     <p>
-        O forame apical é a saída do canal e a CDC fica próxima a ele.
+        O forame apical é a saída do canal, próximo da CDC.
     </p>
 </section>
 
 <section>
-    <h2>📍 Curiosidade</h2>
+    <h2>Curiosidade</h2>
     <p>
-        O <b>rostrum canalis</b> é uma linha escura encontrada no assoalho da câmara pulpar de dentes com várias raízes.
+        O rostrum canalis é uma linha escura encontrada no assoalho da câmara pulpar em dentes com várias raízes.
     </p>
 </section>
+
+</div>
 
 </body>
 </html>
